@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>流浪地球2观后感</title>
-    <url>/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/</url>
-    <content><![CDATA[<p>#胡言乱语</p>
-<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/1.png" alt="1"></p>
-<p>凎，这图怎么就是不显示</p>
-<p>哦哦哦，成了</p>
-<p>#正文</p>
-<p>##立场：本人数字生命派，人生苦短，机械飞升</p>
-<p>##感受：</p>
-<p>###首先是特效</p>
-<p>确实达到了世界一流水平，其中最令我印象深刻的是太空电梯和月球爆炸，视觉效果与音效令人深刻，全片的细节也很丰富</p>
-<p>###然后是剧情</p>
-<p>三条线，分别是战狼线，图恒宇线，周线，三条线没有交集，却又互相影响，让我想起了当时看《三体1》的时候，罗辑和章北海，都为人类做出了巨大的牺牲与无与伦比的贡献，但两人到最后都未曾谋面，有一种宿命感，和史诗感</p>
-<p>后面准备二刷，刷完再写吧</p>
-]]></content>
-      <tags>
-        <tag>随想</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第一篇博客</title>
     <url>/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次建立属于自己的博客，感觉真不错。</p>
@@ -30,6 +10,40 @@
 <p><a href="https://mp.weixin.qq.com/s?__biz=MzUyNjQxNjYyMg==&mid=2247484589&idx=1&sn=7ef61ad418eb4b16d3587a5859f5ce8e&chksm=fa0e6b2ccd79e23afc1767f07afeec6f3dd3de0be44be01c7548afd6476015b0c3d91528088c&scene=21#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzUyNjQxNjYyMg==&amp;mid=2247484589&amp;idx=1&amp;sn=7ef61ad418eb4b16d3587a5859f5ce8e&amp;chksm=fa0e6b2ccd79e23afc1767f07afeec6f3dd3de0be44be01c7548afd6476015b0c3d91528088c&amp;scene=21#wechat_redirect</a></p>
 <p><a href="http://www.manongjc.com/detail/54-mjacwxjjdprjsst.html">http://www.manongjc.com/detail/54-mjacwxjjdprjsst.html</a></p>
 <p>两个都要看，先看第一个</p>
+]]></content>
+      <tags>
+        <tag>随想</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>流浪地球2观后感</title>
+    <url>/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/</url>
+    <content><![CDATA[<h1 id="胡言乱语"><a href="#胡言乱语" class="headerlink" title="胡言乱语"></a>胡言乱语</h1><p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/a0372ef0903b1723232b7a3ae65d161.jpg" alt=" "></p>
+<p>凎，这图怎么就是不显示</p>
+<p>哦哦哦，成了</p>
+<p>hexo+typora无法显示图片的解决方法</p>
+<h2 id="hexo设置"><a href="#hexo设置" class="headerlink" title="hexo设置"></a>hexo设置</h2><ul>
+<li>在博客根目录下的_config.yml文件中，将post_asset_folder字段设置为true</li>
+<li><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195347685.png" alt="image-20230204195347685"></li>
+</ul>
+<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195228829.png" alt="image-20230204195228829"></p>
+<p>当设置 post_asset_folder 参数后，在hexo n命令建立文件时， 会自动建立一个与文章同名的文件夹，把与该文章相关的所有图片资源都放到此文件夹内，这样就可以方便的使用图片资源</p>
+<p>同时，只有当post_asset_folder设置为true后，后续安装的插件才会起作用</p>
+<ul>
+<li><p>安装插件</p>
+<p>在根目录执行</p>
+<p><code>npm install https://github.com/CodeFalling/hexo-asset-image --save</code></p>
+</li>
+</ul>
+<h2 id="Typora设置："><a href="#Typora设置：" class="headerlink" title="Typora设置："></a>Typora设置：</h2><p>文件中选偏好设置</p>
+<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195835546.png" alt="image-20230204195835546"></p>
+<p>然后点图像，如下配置：</p>
+<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195906816.png" alt="image-20230204195906816"></p>
+<p>参考文章：<a href="https://blog.csdn.net/hbhgf/article/details/115394764">https://blog.csdn.net/hbhgf/article/details/115394764</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>立场：本人数字生命派，人生苦短，机械飞升</p>
+<h2 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h2><h3 id="首先是特效"><a href="#首先是特效" class="headerlink" title="首先是特效"></a>首先是特效</h3><p>确实达到了世界一流水平，其中最令我印象深刻的是太空电梯和月球爆炸，视觉效果与音效令人深刻，全片的细节也很丰富</p>
+<h3 id="然后是剧情"><a href="#然后是剧情" class="headerlink" title="然后是剧情"></a>然后是剧情</h3><p>三条线，分别是战狼线，图恒宇线，周线，三条线没有交集，却又互相影响，让我想起了当时看《三体1》的时候，罗辑和章北海，都为人类做出了巨大的牺牲与无与伦比的贡献，但两人到最后都未曾谋面，有一种宿命感，和史诗感</p>
+<p>后面准备二刷，刷完再写吧</p>
 ]]></content>
       <tags>
         <tag>随想</tag>
