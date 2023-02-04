@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>第一篇博客</title>
-    <url>/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次建立属于自己的博客，感觉真不错</p>
-<h3 id="记录一下博客的制作过程"><a href="#记录一下博客的制作过程" class="headerlink" title="记录一下博客的制作过程"></a>记录一下博客的制作过程</h3><p>算了，不想写，直接见参考文章吧。<br><img src="C:/Users/14266/yuanjiu/md/1.jpg" alt="图片"></p>
-<p>参考文章：<br><a href="http://www.manongjc.com/detail/54-mjacwxjjdprjsst.html">http://www.manongjc.com/detail/54-mjacwxjjdprjsst.html</a></p>
-]]></content>
-      <tags>
-        <tag>随想</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hello World</title>
     <url>/2023/02/03/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
@@ -28,5 +17,19 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>第一篇博客</title>
+    <url>/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次建立属于自己的博客，感觉真不错。</p>
+<h3 id="记录一下博客的制作过程"><a href="#记录一下博客的制作过程" class="headerlink" title="记录一下博客的制作过程"></a>记录一下博客的制作过程</h3><p>算了，不想写，直接见参考文章吧。<br><img src="C:\Users\14266\yuanjiu\md\1.png" alt=" "></p>
+<p>参考文章：</p>
+<p><a href="https://mp.weixin.qq.com/s?__biz=MzUyNjQxNjYyMg==&mid=2247484589&idx=1&sn=7ef61ad418eb4b16d3587a5859f5ce8e&chksm=fa0e6b2ccd79e23afc1767f07afeec6f3dd3de0be44be01c7548afd6476015b0c3d91528088c&scene=21#wechat_redirect">https://mp.weixin.qq.com/s?__biz=MzUyNjQxNjYyMg==&amp;mid=2247484589&amp;idx=1&amp;sn=7ef61ad418eb4b16d3587a5859f5ce8e&amp;chksm=fa0e6b2ccd79e23afc1767f07afeec6f3dd3de0be44be01c7548afd6476015b0c3d91528088c&amp;scene=21#wechat_redirect</a></p>
+<p><a href="http://www.manongjc.com/detail/54-mjacwxjjdprjsst.html">http://www.manongjc.com/detail/54-mjacwxjjdprjsst.html</a></p>
+<p>两个都要看，先看第一个</p>
+]]></content>
+      <tags>
+        <tag>随想</tag>
+      </tags>
   </entry>
 </search>
