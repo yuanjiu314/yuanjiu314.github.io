@@ -21,10 +21,13 @@
   <entry>
     <title>第一篇博客</title>
     <url>/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<h2 id="1"><a href="#1" class="headerlink" title="1"></a>1</h2><h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次建立属于自己的博客，感觉真不错</p>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次建立属于自己的博客，感觉真不错</p>
 <h3 id="记录一下博客的制作过程"><a href="#记录一下博客的制作过程" class="headerlink" title="记录一下博客的制作过程"></a>记录一下博客的制作过程</h3>]]></content>
+      <categories>
+        <category>学习记录</category>
+      </categories>
       <tags>
-        <tag>随想</tag>
+        <tag>杂项</tag>
       </tags>
   </entry>
 </search>
