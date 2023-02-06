@@ -1,93 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>加密实验</title>
-    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>实验</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常见中间件的总结</title>
-    <url>/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h3 id="1-Apache"><a href="#1-Apache" class="headerlink" title="1.Apache"></a>1.Apache</h3><p>​		Apache HTTP服务器是一个模块化的服务器，可以运行在几乎所有广泛使用的计算机平台上。其属于应用服务器。Apache 支持支持模块多，性能稳定，Apache本身是静态解析，适合静态HTML、图片等，但可以通过扩展脚本、模块等支持动态页面等。</p>
-<p>（Apche 可以支持PHPcgiperl，但是要使用Java的话，你需要Tomcat在Apache后台支撑，将Java请求由Apache 转发给Tomcat处理。）</p>
-<p>缺点：配置相对复杂，自身不支持动态页面。</p>
-<h3 id="2-Tomcat"><a href="#2-Tomcat" class="headerlink" title="2.Tomcat"></a>2.Tomcat</h3><p>Tomcat 是应用（Java）服务器，它只是一个Servlet（JSP也翻译成Servlet）容器，可以认为是Apache的扩展，但是可以独立于Apache运行，适用于本地开发、小项目或个人开发，Apache为HTML页面服务，而tomcat实际操作JSP页面和servlet，但是tomcat处理静态html的能力不如Apache服务器。</p>
-<p>特点：支持最新标准、更新快、跨平台、体积小安装部署方便。</p>
-<h3 id="3-Nginx"><a href="#3-Nginx" class="headerlink" title="3.Nginx"></a>3.Nginx</h3><p>Nginx 是俄罗斯人编写的十分轻量级的HTTP服务器，Nginx，它的发音为“engine X”，是一个高性能的HTTP和反向代理服务器，同时也是一个IMAP&#x2F;POP3&#x2F;SMTP代理服务器。</p>
-<h3 id="4-weblogic"><a href="#4-weblogic" class="headerlink" title="4.weblogic"></a>4.weblogic</h3><p>大型项目或商业项目，Java动态功能和Java<br>Enterprise在大型网络应用的开发、集成、部署和管理中，引入了标准的安全性bea公司生产的基础j2ee架构中间件。</p>
-<p>特点：简化了可移植和可扩展应用系统的开发，为其他应用系统和系统提供了丰富的可操作性;商业软件功能齐全强大，主要用于大型企业的大型项目;是一种高扩展的架构体系。</p>
-<h3 id="5-jetty"><a href="#5-jetty" class="headerlink" title="5.jetty"></a>5.jetty</h3><p>jetty是使用Java语言编写，jetty运行速度快，轻量级，在Java中可以从test<br>case控制其运行。从而使自动化测试不再依赖外部环境，顺利实现自动化测试。</p>
-<p>特点：易用、可扩展、易嵌入;快速高效。</p>
-<h3 id="6-JBoss"><a href="#6-JBoss" class="headerlink" title="6.JBoss"></a>6.JBoss</h3><p>管理EJB容器和服务器，JBoss遵循商业友好LGPL授权分发，由开源社区开发。</p>
-<p>特点：应用服务器也有许多优秀的特点;内存和硬盘空间相对较小;安装方便，解压后，只需配置一些环境变量即可;JBoss支持集群等。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>中间件</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>流浪地球2观后感</title>
-    <url>/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/</url>
-    <content><![CDATA[<h1 id="胡言乱语"><a href="#胡言乱语" class="headerlink" title="胡言乱语"></a>胡言乱语</h1><p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/a0372ef0903b1723232b7a3ae65d161.jpg" alt=" "></p>
-<p>凎，这图怎么就是不显示</p>
-<p>哦哦哦，成了</p>
- <span id="more"></span>
-
-<p>hexo+typora无法显示图片的解决方法</p>
-<h2 id="hexo设置"><a href="#hexo设置" class="headerlink" title="hexo设置"></a>hexo设置</h2><ul>
-<li>在博客根目录下的_config.yml文件中，将post_asset_folder字段设置为true</li>
-<li><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195347685.png" alt="image-20230204195347685"></li>
-</ul>
-<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195228829.png" alt="image-20230204195228829"></p>
-<p>当设置 post_asset_folder 参数后，在hexo n命令建立文件时， 会自动建立一个与文章同名的文件夹，把与该文章相关的所有图片资源都放到此文件夹内，这样就可以方便的使用图片资源</p>
-<p>同时，只有当post_asset_folder设置为true后，后续安装的插件才会起作用</p>
-<ul>
-<li><p>安装插件</p>
-<p>在根目录执行</p>
-<p><code>npm install https://github.com/CodeFalling/hexo-asset-image --save</code></p>
-</li>
-</ul>
-<h2 id="Typora设置："><a href="#Typora设置：" class="headerlink" title="Typora设置："></a>Typora设置：</h2><p>文件中选偏好设置</p>
-<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195835546.png" alt="image-20230204195835546"></p>
-<p>然后点图像，如下配置：</p>
-<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195906816.png" alt="image-20230204195906816"></p>
-<p>参考文章：<a href="https://blog.csdn.net/hbhgf/article/details/115394764">https://blog.csdn.net/hbhgf/article/details/115394764</a></p>
-<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>立场：本人数字生命派，人生苦短，机械飞升</p>
-<h2 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h2><h3 id="首先是特效"><a href="#首先是特效" class="headerlink" title="首先是特效"></a>首先是特效</h3><p>确实达到了世界一流水平，其中最令我印象深刻的是太空电梯和月球爆炸，视觉效果与音效令人深刻，全片的细节也很丰富</p>
-<h3 id="然后是剧情"><a href="#然后是剧情" class="headerlink" title="然后是剧情"></a>然后是剧情</h3><p>三条线，分别是战狼线，图恒宇线，周线，三条线没有交集，却又互相影响，让我想起了当时看《三体1》的时候，罗辑和章北海，都为人类做出了巨大的牺牲与无与伦比的贡献，但两人到最后都未曾谋面，有一种宿命感，和史诗感</p>
-<p>后面准备二刷，刷完再写吧</p>
-]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随想</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>web中间件常见漏洞总结</title>
     <url>/2023/02/06/web%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h2 id="IIS"><a href="#IIS" class="headerlink" title="IIS"></a>IIS</h2><p>IIS是Internet Information Services的缩写，意为互联网信息服务，是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。<br><strong>IIS</strong> 目前只适用于目前只适用于 <strong>Windows</strong> 系统，不适用于其他操作系统。系统，不适用于其他操作系统。</p>
+ <span id="more"></span>
+
 <h4 id="解析漏洞解析漏洞"><a href="#解析漏洞解析漏洞" class="headerlink" title="解析漏洞解析漏洞"></a>解析漏洞解析漏洞</h4><h5 id="IIS-6-x"><a href="#IIS-6-x" class="headerlink" title="IIS 6.x"></a>IIS 6.x</h5><p>基于文件名</p>
 <p>该版本 默认会将 *.asp;.jpg 此种格式的文件名，当成Asp解析，原理是 服务器默认不解析; 号及其后面的内容，相当于截断。</p>
 <p>基于文件夹名</p>
@@ -583,6 +501,98 @@
 <p>设置密码。</p>
 <h3 id="参考资料参考资料"><a href="#参考资料参考资料" class="headerlink" title="参考资料参考资料"></a>参考资料参考资料</h3><p><a href="https://www.google.com.hk/">https://www.google.com.hk</a><br><a href="https://www.baidu.com/">https://www.baidu.com</a><br><a href="http://www.wooyun.org/">http://www.wooyun.org</a><br><a href="https://github.com/vulhub">https://github.com/vulhub</a> 漏洞列表<br><a href="http://cve.mitre.org/">http://cve.mitre.org</a> 漏洞列表</p>
 ]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>漏洞,中间件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常见中间件的总结</title>
+    <url>/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h3 id="1-Apache"><a href="#1-Apache" class="headerlink" title="1.Apache"></a>1.Apache</h3><p>​		Apache HTTP服务器是一个模块化的服务器，可以运行在几乎所有广泛使用的计算机平台上。其属于应用服务器。Apache 支持支持模块多，性能稳定，Apache本身是静态解析，适合静态HTML、图片等，但可以通过扩展脚本、模块等支持动态页面等。</p>
+<p>（Apche 可以支持PHPcgiperl，但是要使用Java的话，你需要Tomcat在Apache后台支撑，将Java请求由Apache 转发给Tomcat处理。）</p>
+<p>缺点：配置相对复杂，自身不支持动态页面。</p>
+ <span id="more"></span>
+
+<h3 id="2-Tomcat"><a href="#2-Tomcat" class="headerlink" title="2.Tomcat"></a>2.Tomcat</h3><p>Tomcat 是应用（Java）服务器，它只是一个Servlet（JSP也翻译成Servlet）容器，可以认为是Apache的扩展，但是可以独立于Apache运行，适用于本地开发、小项目或个人开发，Apache为HTML页面服务，而tomcat实际操作JSP页面和servlet，但是tomcat处理静态html的能力不如Apache服务器。</p>
+<p>特点：支持最新标准、更新快、跨平台、体积小安装部署方便。</p>
+<h3 id="3-Nginx"><a href="#3-Nginx" class="headerlink" title="3.Nginx"></a>3.Nginx</h3><p>Nginx 是俄罗斯人编写的十分轻量级的HTTP服务器，Nginx，它的发音为“engine X”，是一个高性能的HTTP和反向代理服务器，同时也是一个IMAP&#x2F;POP3&#x2F;SMTP代理服务器。</p>
+<h3 id="4-weblogic"><a href="#4-weblogic" class="headerlink" title="4.weblogic"></a>4.weblogic</h3><p>大型项目或商业项目，Java动态功能和Java<br>Enterprise在大型网络应用的开发、集成、部署和管理中，引入了标准的安全性bea公司生产的基础j2ee架构中间件。</p>
+<p>特点：简化了可移植和可扩展应用系统的开发，为其他应用系统和系统提供了丰富的可操作性;商业软件功能齐全强大，主要用于大型企业的大型项目;是一种高扩展的架构体系。</p>
+<h3 id="5-jetty"><a href="#5-jetty" class="headerlink" title="5.jetty"></a>5.jetty</h3><p>jetty是使用Java语言编写，jetty运行速度快，轻量级，在Java中可以从test<br>case控制其运行。从而使自动化测试不再依赖外部环境，顺利实现自动化测试。</p>
+<p>特点：易用、可扩展、易嵌入;快速高效。</p>
+<h3 id="6-JBoss"><a href="#6-JBoss" class="headerlink" title="6.JBoss"></a>6.JBoss</h3><p>管理EJB容器和服务器，JBoss遵循商业友好LGPL授权分发，由开源社区开发。</p>
+<p>特点：应用服务器也有许多优秀的特点;内存和硬盘空间相对较小;安装方便，解压后，只需配置一些环境变量即可;JBoss支持集群等。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>中间件</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>加密实验</title>
+    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>实验</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>流浪地球2观后感</title>
+    <url>/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/</url>
+    <content><![CDATA[<h1 id="胡言乱语"><a href="#胡言乱语" class="headerlink" title="胡言乱语"></a>胡言乱语</h1><p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/a0372ef0903b1723232b7a3ae65d161.jpg" alt=" "></p>
+<p>凎，这图怎么就是不显示</p>
+<p>哦哦哦，成了</p>
+ <span id="more"></span>
+
+<p>hexo+typora无法显示图片的解决方法</p>
+<h2 id="hexo设置"><a href="#hexo设置" class="headerlink" title="hexo设置"></a>hexo设置</h2><ul>
+<li>在博客根目录下的_config.yml文件中，将post_asset_folder字段设置为true</li>
+<li><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195347685.png" alt="image-20230204195347685"></li>
+</ul>
+<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195228829.png" alt="image-20230204195228829"></p>
+<p>当设置 post_asset_folder 参数后，在hexo n命令建立文件时， 会自动建立一个与文章同名的文件夹，把与该文章相关的所有图片资源都放到此文件夹内，这样就可以方便的使用图片资源</p>
+<p>同时，只有当post_asset_folder设置为true后，后续安装的插件才会起作用</p>
+<ul>
+<li><p>安装插件</p>
+<p>在根目录执行</p>
+<p><code>npm install https://github.com/CodeFalling/hexo-asset-image --save</code></p>
+</li>
+</ul>
+<h2 id="Typora设置："><a href="#Typora设置：" class="headerlink" title="Typora设置："></a>Typora设置：</h2><p>文件中选偏好设置</p>
+<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195835546.png" alt="image-20230204195835546"></p>
+<p>然后点图像，如下配置：</p>
+<p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/image-20230204195906816.png" alt="image-20230204195906816"></p>
+<p>参考文章：<a href="https://blog.csdn.net/hbhgf/article/details/115394764">https://blog.csdn.net/hbhgf/article/details/115394764</a></p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>立场：本人数字生命派，人生苦短，机械飞升</p>
+<h2 id="感受"><a href="#感受" class="headerlink" title="感受"></a>感受</h2><h3 id="首先是特效"><a href="#首先是特效" class="headerlink" title="首先是特效"></a>首先是特效</h3><p>确实达到了世界一流水平，其中最令我印象深刻的是太空电梯和月球爆炸，视觉效果与音效令人深刻，全片的细节也很丰富</p>
+<h3 id="然后是剧情"><a href="#然后是剧情" class="headerlink" title="然后是剧情"></a>然后是剧情</h3><p>三条线，分别是战狼线，图恒宇线，周线，三条线没有交集，却又互相影响，让我想起了当时看《三体1》的时候，罗辑和章北海，都为人类做出了巨大的牺牲与无与伦比的贡献，但两人到最后都未曾谋面，有一种宿命感，和史诗感</p>
+<p>后面准备二刷，刷完再写吧</p>
+]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随想</tag>
+      </tags>
   </entry>
   <entry>
     <title>第一篇博客</title>
