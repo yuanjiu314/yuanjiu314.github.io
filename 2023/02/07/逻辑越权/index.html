@@ -20,24 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="元酒">
-<meta property="og:url" content="http://example.com/archives/2023/index.html">
+    <meta name="description" content="水平垂直越权">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逻辑越权总结">
+<meta property="og:url" content="http://example.com/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/index.html">
 <meta property="og:site_name" content="元酒">
+<meta property="og:description" content="水平垂直越权">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/image-20230207151741353.png">
+<meta property="article:published_time" content="2023-02-07T07:17:25.000Z">
+<meta property="article:modified_time" content="2023-02-07T11:12:49.585Z">
 <meta property="article:author" content="yuanjiu">
-<meta property="article:tag" content="python 爬虫 web ">
+<meta property="article:tag" content="逻辑越权">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/image-20230207151741353.png">
 
 
-<link rel="canonical" href="http://example.com/archives/2023/">
+<link rel="canonical" href="http://example.com/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2023/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/","path":"2023/02/07/逻辑越权/","title":"逻辑越权总结"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 元酒</title>
+<title>逻辑越权总结 | 元酒</title>
   
 
 
@@ -71,7 +77,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">元酒</h1>
+      <p class="site-title">元酒</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description"> InfoSec learning</p>
@@ -125,7 +131,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -138,6 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83"><span class="nav-number">1.</span> <span class="nav-text">水平垂直越权</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.</span> <span class="nav-text">前提条件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="nav-number">2.0.1.</span> <span class="nav-text">如何获取数据包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%BC%8F%E6%B4%9E%E9%80%A0%E6%88%90%EF%BC%9A%E7%95%8C%E9%9D%A2"><span class="nav-number">3.0.1.</span> <span class="nav-text">前端漏洞造成：界面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E6%BC%8F%E6%B4%9E%E9%80%A0%E6%88%90%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">3.0.2.</span> <span class="nav-text">后端漏洞造成：数据库</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,189 +186,137 @@
 
     </div>
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 8 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuanjiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元酒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="逻辑越权总结 | 元酒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          逻辑越权总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-02-07 15:17:25 / 修改时间：19:12:49" itemprop="dateCreated datePublished" datetime="2023-02-07T15:17:25+08:00">2023-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="水平垂直越权"><a href="#水平垂直越权" class="headerlink" title="水平垂直越权"></a>水平垂直越权</h3><p><img src="/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/image-20230207151741353.png" alt="image-20230207151741353"></p>
+<span id="more"></span>
+
+<p><strong>水平越权</strong>：获取同级用户账户信息</p>
+<p><strong>垂直越权</strong>：添加高权限用户</p>
+<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>获取添加用户的数据包</p>
+<h5 id="如何获取数据包"><a href="#如何获取数据包" class="headerlink" title="如何获取数据包"></a>如何获取数据包</h5><ol>
+<li>普通用户前端有操作页面可以抓取数据包</li>
+<li>通过网站源码本地搭建去模拟抓取</li>
+<li>盲猜</li>
+</ol>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h5 id="前端漏洞造成：界面"><a href="#前端漏洞造成：界面" class="headerlink" title="前端漏洞造成：界面"></a>前端漏洞造成：界面</h5><p>判断用户等级后，代码界面部分进行可选显示 </p>
+<h5 id="后端漏洞造成：数据库"><a href="#后端漏洞造成：数据库" class="headerlink" title="后端漏洞造成：数据库"></a>后端漏洞造成：数据库</h5><p>user 表(管理员和普通用户同表）如：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>password</th>
+<th>usertype</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>admin</td>
+<td>123456</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>xiaodi</td>
+<td>11111</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p><strong>代码的级别判断</strong>：usertype值</p>
+<p>若访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，可尝试对此值进行修改，这就是测试越权漏洞基本方法。</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-07T15:17:25+08:00"
-              content="2023-02-07">
-          02-07
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/" itemprop="url">
-            <span itemprop="name">逻辑越权总结</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/" rel="tag"><i class="fa fa-tag"></i> 逻辑越权</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" rel="prev" title="关于xss的相关总结">
+                  <i class="fa fa-chevron-left"></i> 关于xss的相关总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-07T13:42:17+08:00"
-              content="2023-02-07">
-          02-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">关于xss的相关总结</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-07T12:51:30+08:00"
-              content="2023-02-07">
-          02-07
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">关于cookie的相关总结</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-06T13:53:27+08:00"
-              content="2023-02-06">
-          02-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/06/web%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">web中间件常见漏洞总结</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-06T13:33:51+08:00"
-              content="2023-02-06">
-          02-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/" itemprop="url">
-            <span itemprop="name">常见中间件的总结</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-04T21:20:53+08:00"
-              content="2023-02-04">
-          02-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/" itemprop="url">
-            <span itemprop="name">加密实验</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-04T19:14:12+08:00"
-              content="2023-02-04">
-          02-04
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/" itemprop="url">
-            <span itemprop="name">流浪地球2观后感</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-03T23:24:20+08:00"
-              content="2023-02-03">
-          02-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" itemprop="url">
-            <span itemprop="name">第一篇博客</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
 
 </div>
   </main>

@@ -1,41 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>关于xss的相关总结</title>
-    <url>/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h1><p>跨站攻击，即Cross Site Script Execution(通常简写为XSS)，是前端的漏洞，产生在浏览器一端的漏洞。它是指攻击者在网页中嵌入客户端脚本，主要利用js编写的恶意代码来执行一些想要的功能，也就是说它能干嘛是受到js的控制，那么js能执行出什么脚本代码就取决于它能干嘛。当用户使用浏览器浏览被嵌入恶意代码的网页时，恶意代码将会在用户的浏览器上执行。</p>
-<span id="more"></span>
-
-<p><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
-<h3 id="反射型xss"><a href="#反射型xss" class="headerlink" title="反射型xss"></a>反射型xss</h3><p>是一种非持续型攻击。漏洞本身存在，但是需要攻击者构造出来，然后让对方去触发。它不会对正常的访问造成跨站攻击。这种攻击是一次型攻击，它不会写入到数据库里。当用户访问一个带有XSS代码的URL请求时，服务器端接收数据后处理，然后把带有XSS的数据发送到浏览器，浏览器解析这段带有XSS代码的数据后，最终造成XSS漏洞。这个过程就像一次反射。</p>
-<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135008161.png" alt="image-20230207135008161"></p>
-<h4 id="出现地方"><a href="#出现地方" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据一般不会被存在数据库里面，一次性，所见即所得，一般出现在查询类页面</p>
-<h3 id="存储型xss"><a href="#存储型xss" class="headerlink" title="存储型xss"></a>存储型xss</h3><p>是一种持续型的攻击。将跨站代码植入到网站的数据库中。一旦攻击者第一次成功攻击之后，那么在后续的其他访问者均会受到跨站攻击。这种攻击可能是写到网站的留言板，那么当对方访问留言板就会被触发。它与反射型、DOM型XSS相比，具有更高的隐蔽性，危害性也更大。它们之间最大区别在于反射型与DOM型XSS执行都必须依靠用户手动触发，而存储型XSS却不需要。</p>
-<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135110317.png" alt="image-20230207135110317"></p>
-<h4 id="出现地方-1"><a href="#出现地方-1" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据会被存在数据库里面，永久性存储，一般出现在留言板、注册等页面</p>
-<h3 id="xss的作用"><a href="#xss的作用" class="headerlink" title="xss的作用"></a>xss的作用</h3><p>常规用到的是盗取cookie、js做钓鱼攻击、流量指向等。主要是盗取管理员的会话和cookie信息，就是我们常说的管理员凭证，就意味着得到后台权限，可以直接利用。还能配合别的漏洞，比如可以和网页木马结合，扔到那里去跳转到网马地址，网马地址被执行后续就控制一些权限</p>
-<h3 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h3><p>DOM的全称为Document Object Model，即文档对象模型，DOM通常用于代表在HTML、XHTML和XML中的对象。使用DOM可以允许程序和脚本动态地访问和更新文档的内容、结构和样式。</p>
-<p>通过js可以重构整个HTML页面，而要重构页面或者页面中的某个对象，js就需要知道HTML文档中所有元素的“位置”。而DOM为文档提供了结构化表示，并定义了如何通过脚本来访问文档结构。根据DOM规定，HTML文档中的每个成分都是一个节点。</p>
-<p>DOM的规定如下：</p>
-<p>整个文档是一个文档节点；</p>
-<p>每个HTML标签是一个元素节点；</p>
-<p>包含在HTML元素中的文本是文本节点；</p>
-<p>每一个HTML属性是一个属性节点；</p>
-<p>节点与节点之间都有等级关系。</p>
-<p>HTML的标签都是一个个的节点，而这些节点组成了DOM的整体结构：节点树。如图所示：</p>
-<p><img src="https://image.3001.net/images/20210602/1622624351_60b7485f98c53cbc653a9.jpg!small" alt="img"></p>
-<p>简单来说，DOM为一个一个访问html的标准编程接口。</p>
-<p>可以发现DOM本身就代表文档的意思，而基于DOM型的XSS是不需要与服务器端交互的，它只发生在客户端处理数据阶段，是基于javascript的。而上面两种XSS都需要服务端的反馈来构造xss。</p>
-<p>参考文章：<a href="https://www.freebuf.com/articles/web/276998.html">https://www.freebuf.com/articles/web/276998.html</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>xss</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>关于cookie的相关总结</title>
     <url>/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h3 id="set-cookie格式（一个cookie）"><a href="#set-cookie格式（一个cookie）" class="headerlink" title="set cookie格式（一个cookie）"></a>set cookie格式（一个cookie）</h3><p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png" alt="image-20230207125247970"></p>
@@ -58,6 +23,28 @@
       </categories>
       <tags>
         <tag>cookie</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>加密实验</title>
+    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>实验</category>
+      </categories>
+      <tags>
+        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
@@ -595,28 +582,6 @@
       </tags>
   </entry>
   <entry>
-    <title>加密实验</title>
-    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>实验</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>流浪地球2观后感</title>
     <url>/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/</url>
     <content><![CDATA[<h1 id="胡言乱语"><a href="#胡言乱语" class="headerlink" title="胡言乱语"></a>胡言乱语</h1><p><img src="/2023/02/04/%E6%B5%81%E6%B5%AA%E5%9C%B0%E7%90%832%E8%A7%82%E5%90%8E%E6%84%9F/a0372ef0903b1723232b7a3ae65d161.jpg" alt=" "></p>
@@ -684,6 +649,89 @@
       <tags>
         <tag>随想</tag>
         <tag>技术分享</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑越权总结</title>
+    <url>/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/</url>
+    <content><![CDATA[<h3 id="水平垂直越权"><a href="#水平垂直越权" class="headerlink" title="水平垂直越权"></a>水平垂直越权</h3><p><img src="/2023/02/07/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/image-20230207151741353.png" alt="image-20230207151741353"></p>
+<span id="more"></span>
+
+<p><strong>水平越权</strong>：获取同级用户账户信息</p>
+<p><strong>垂直越权</strong>：添加高权限用户</p>
+<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>获取添加用户的数据包</p>
+<h5 id="如何获取数据包"><a href="#如何获取数据包" class="headerlink" title="如何获取数据包"></a>如何获取数据包</h5><ol>
+<li>普通用户前端有操作页面可以抓取数据包</li>
+<li>通过网站源码本地搭建去模拟抓取</li>
+<li>盲猜</li>
+</ol>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h5 id="前端漏洞造成：界面"><a href="#前端漏洞造成：界面" class="headerlink" title="前端漏洞造成：界面"></a>前端漏洞造成：界面</h5><p>判断用户等级后，代码界面部分进行可选显示 </p>
+<h5 id="后端漏洞造成：数据库"><a href="#后端漏洞造成：数据库" class="headerlink" title="后端漏洞造成：数据库"></a>后端漏洞造成：数据库</h5><p>user 表(管理员和普通用户同表）如：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>password</th>
+<th>usertype</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>admin</td>
+<td>123456</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>xiaodi</td>
+<td>11111</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p><strong>代码的级别判断</strong>：usertype值</p>
+<p>若访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，可尝试对此值进行修改，这就是测试越权漏洞基本方法。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>逻辑越权</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于xss的相关总结</title>
+    <url>/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h1><p>跨站攻击，即Cross Site Script Execution(通常简写为XSS)，是前端的漏洞，产生在浏览器一端的漏洞。它是指攻击者在网页中嵌入客户端脚本，主要利用js编写的恶意代码来执行一些想要的功能，也就是说它能干嘛是受到js的控制，那么js能执行出什么脚本代码就取决于它能干嘛。当用户使用浏览器浏览被嵌入恶意代码的网页时，恶意代码将会在用户的浏览器上执行。</p>
+<span id="more"></span>
+
+<p><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<h3 id="反射型xss"><a href="#反射型xss" class="headerlink" title="反射型xss"></a>反射型xss</h3><p>是一种非持续型攻击。漏洞本身存在，但是需要攻击者构造出来，然后让对方去触发。它不会对正常的访问造成跨站攻击。这种攻击是一次型攻击，它不会写入到数据库里。当用户访问一个带有XSS代码的URL请求时，服务器端接收数据后处理，然后把带有XSS的数据发送到浏览器，浏览器解析这段带有XSS代码的数据后，最终造成XSS漏洞。这个过程就像一次反射。</p>
+<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135008161.png" alt="image-20230207135008161"></p>
+<h4 id="出现地方"><a href="#出现地方" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据一般不会被存在数据库里面，一次性，所见即所得，一般出现在查询类页面</p>
+<h3 id="存储型xss"><a href="#存储型xss" class="headerlink" title="存储型xss"></a>存储型xss</h3><p>是一种持续型的攻击。将跨站代码植入到网站的数据库中。一旦攻击者第一次成功攻击之后，那么在后续的其他访问者均会受到跨站攻击。这种攻击可能是写到网站的留言板，那么当对方访问留言板就会被触发。它与反射型、DOM型XSS相比，具有更高的隐蔽性，危害性也更大。它们之间最大区别在于反射型与DOM型XSS执行都必须依靠用户手动触发，而存储型XSS却不需要。</p>
+<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135110317.png" alt="image-20230207135110317"></p>
+<h4 id="出现地方-1"><a href="#出现地方-1" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据会被存在数据库里面，永久性存储，一般出现在留言板、注册等页面</p>
+<h3 id="xss的作用"><a href="#xss的作用" class="headerlink" title="xss的作用"></a>xss的作用</h3><p>常规用到的是盗取cookie、js做钓鱼攻击、流量指向等。主要是盗取管理员的会话和cookie信息，就是我们常说的管理员凭证，就意味着得到后台权限，可以直接利用。还能配合别的漏洞，比如可以和网页木马结合，扔到那里去跳转到网马地址，网马地址被执行后续就控制一些权限</p>
+<h3 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h3><p>DOM的全称为Document Object Model，即文档对象模型，DOM通常用于代表在HTML、XHTML和XML中的对象。使用DOM可以允许程序和脚本动态地访问和更新文档的内容、结构和样式。</p>
+<p>通过js可以重构整个HTML页面，而要重构页面或者页面中的某个对象，js就需要知道HTML文档中所有元素的“位置”。而DOM为文档提供了结构化表示，并定义了如何通过脚本来访问文档结构。根据DOM规定，HTML文档中的每个成分都是一个节点。</p>
+<p>DOM的规定如下：</p>
+<p>整个文档是一个文档节点；</p>
+<p>每个HTML标签是一个元素节点；</p>
+<p>包含在HTML元素中的文本是文本节点；</p>
+<p>每一个HTML属性是一个属性节点；</p>
+<p>节点与节点之间都有等级关系。</p>
+<p>HTML的标签都是一个个的节点，而这些节点组成了DOM的整体结构：节点树。如图所示：</p>
+<p><img src="https://image.3001.net/images/20210602/1622624351_60b7485f98c53cbc653a9.jpg!small" alt="img"></p>
+<p>简单来说，DOM为一个一个访问html的标准编程接口。</p>
+<p>可以发现DOM本身就代表文档的意思，而基于DOM型的XSS是不需要与服务器端交互的，它只发生在客户端处理数据阶段，是基于javascript的。而上面两种XSS都需要服务端的反馈来构造xss。</p>
+<p>参考文章：<a href="https://www.freebuf.com/articles/web/276998.html">https://www.freebuf.com/articles/web/276998.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>xss</tag>
       </tags>
   </entry>
 </search>
