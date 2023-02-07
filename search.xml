@@ -3,13 +3,10 @@
   <entry>
     <title>关于xss的相关总结</title>
     <url>/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<script>alert(1)</script>
-
-<h1 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h1><p>跨站攻击，即Cross Site Script Execution(通常简写为XSS)，是前端的漏洞，产生在浏览器一端的漏洞。它是指攻击者在网页中嵌入客户端脚本，主要利用js编写的恶意代码来执行一些想要的功能，也就是说它能干嘛是受到js的控制，那么js能执行出什么脚本代码就取决于它能干嘛。当用户使用浏览器浏览被嵌入恶意代码的网页时，恶意代码将会在用户的浏览器上执行。</p>
+    <content><![CDATA[<h1 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h1><p>跨站攻击，即Cross Site Script Execution(通常简写为XSS)，是前端的漏洞，产生在浏览器一端的漏洞。它是指攻击者在网页中嵌入客户端脚本，主要利用js编写的恶意代码来执行一些想要的功能，也就是说它能干嘛是受到js的控制，那么js能执行出什么脚本代码就取决于它能干嘛。当用户使用浏览器浏览被嵌入恶意代码的网页时，恶意代码将会在用户的浏览器上执行。</p>
 <span id="more"></span>
 
-
-
+<p><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
 <h3 id="反射型xss"><a href="#反射型xss" class="headerlink" title="反射型xss"></a>反射型xss</h3><p>是一种非持续型攻击。漏洞本身存在，但是需要攻击者构造出来，然后让对方去触发。它不会对正常的访问造成跨站攻击。这种攻击是一次型攻击，它不会写入到数据库里。当用户访问一个带有XSS代码的URL请求时，服务器端接收数据后处理，然后把带有XSS的数据发送到浏览器，浏览器解析这段带有XSS代码的数据后，最终造成XSS漏洞。这个过程就像一次反射。</p>
 <p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135008161.png" alt="image-20230207135008161"></p>
 <h4 id="出现地方"><a href="#出现地方" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据一般不会被存在数据库里面，一次性，所见即所得，一般出现在查询类页面</p>
