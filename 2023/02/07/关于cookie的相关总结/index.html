@@ -20,24 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Muse","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="元酒">
-<meta property="og:url" content="http://example.com/categories/%E5%AE%9E%E9%AA%8C/index.html">
+    <meta name="description" content="set cookie格式（一个cookie） expires的是否设定决定cookie保存在内存还是磁盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于cookie的相关总结">
+<meta property="og:url" content="http://example.com/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="元酒">
+<meta property="og:description" content="set cookie格式（一个cookie） expires的是否设定决定cookie保存在内存还是磁盘">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png">
+<meta property="og:image" content="http://example.com/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207132732376.png">
+<meta property="article:published_time" content="2023-02-07T04:51:30.000Z">
+<meta property="article:modified_time" content="2023-02-07T05:47:20.414Z">
 <meta property="article:author" content="yuanjiu">
-<meta property="article:tag" content="python 爬虫 web ">
+<meta property="article:tag" content="cookie">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png">
 
 
-<link rel="canonical" href="http://example.com/categories/%E5%AE%9E%E9%AA%8C/">
+<link rel="canonical" href="http://example.com/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/实验/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/","path":"2023/02/07/关于cookie的相关总结/","title":"关于cookie的相关总结"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: 实验 | 元酒</title>
+<title>关于cookie的相关总结 | 元酒</title>
   
 
 
@@ -125,7 +132,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -138,6 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#set-cookie%E6%A0%BC%E5%BC%8F%EF%BC%88%E4%B8%80%E4%B8%AAcookie%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">set cookie格式（一个cookie）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#session%E5%92%8Ccookie%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">2.</span> <span class="nav-text">session和cookie的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">JavaScript语法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -179,50 +187,117 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">实验
-          <small>分类</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuanjiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元酒">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="关于cookie的相关总结 | 元酒">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          关于cookie的相关总结
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+      <time title="创建时间：2023-02-07 12:51:30 / 修改时间：13:47:20" itemprop="dateCreated datePublished" datetime="2023-02-07T12:51:30+08:00">2023-02-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="set-cookie格式（一个cookie）"><a href="#set-cookie格式（一个cookie）" class="headerlink" title="set cookie格式（一个cookie）"></a>set cookie格式（一个cookie）</h3><p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png" alt="image-20230207125247970"></p>
+<p>expires的是否设定决定cookie保存在内存还是磁盘</p>
+ <span id="more"></span>
+
+<h3 id="session和cookie的区别"><a href="#session和cookie的区别" class="headerlink" title="session和cookie的区别"></a>session和cookie的区别</h3><p>若没有设定，则为短期cookie，保存于内存，关闭浏览器即失效</p>
+<p>若设定过期时间，则到过期时间失效，保存于磁盘</p>
+<p>（1）session保存在服务器端(客户端仅保存一个sessionID)，Cookie保存在客户端。</p>
+<p>（2）session保存的是对象，Cookie保存的是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>。cookie的存储限制数据量不大于4KB，而session的容量则是无限量的。</p>
+<p>（3）session不能区分路径，同一个用户在访问同一个Web应用程序期间，所有的session在任何路径都可访问。Cookie中如果设置了路径参数，则在其他路径下无法访问。</p>
+<p>（4）session默认保存SeesionID的方法是Cookie，如果客户端禁用了Cookie，服务器端应采用其他的替代方法替代SessionID。</p>
+<p>（5）session在会话结束后就会关闭，但是Cookie可以经过持久化而长期保存在客户端的本地硬盘上。所以session也更安全。</p>
+<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207132732376.png" alt="image-20230207132732376"></p>
+<h3 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h3><p>获取cookie：<code>document.cookie;</code></p>
+<p>设置cookie: <code>document.cookie=&quot;username=yuanjiu&quot;;</code></p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-02-04T21:20:53+08:00"
-              content="2023-02-04">
-          02-04
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/" itemprop="url">
-            <span itemprop="name">加密实验</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cookie/" rel="tag"><i class="fa fa-tag"></i> cookie</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/02/06/web%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" rel="prev" title="web中间件常见漏洞总结">
+                  <i class="fa fa-chevron-left"></i> web中间件常见漏洞总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" rel="next" title="关于xss的相关总结">
+                  关于xss的相关总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
