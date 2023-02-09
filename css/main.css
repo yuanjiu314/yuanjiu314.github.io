@@ -2056,6 +2056,13 @@ pre code {
     transform: rotateZ(-30deg);
   }
 }
+.post {
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 25px;
+  -webkit-box-shadow: 0 0 5px rgba(202,203,203,0.5);
+  -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
+}
 .category-all-page .category-all-title {
   text-align: center;
 }
@@ -2587,7 +2594,7 @@ mjx-container[display='true'] + br {
   vertical-align: middle;
 }
 .links-of-author a::before {
-  background: #9ebaff;
+  background: #cb8686;
   display: inline-block;
   margin-right: 3px;
   transform: translateY(-2px);
