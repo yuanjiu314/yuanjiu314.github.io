@@ -1,28 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>关于cookie的相关总结</title>
-    <url>/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h3 id="set-cookie格式（一个cookie）"><a href="#set-cookie格式（一个cookie）" class="headerlink" title="set cookie格式（一个cookie）"></a>set cookie格式（一个cookie）</h3><p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png" alt="image-20230207125247970"></p>
-<p>expires的是否设定决定cookie保存在内存还是磁盘</p>
- <span id="more"></span>
+    <title>业务逻辑漏洞</title>
+    <url>/2023/02/10/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>业务逻辑漏洞中，支付漏洞最常见，而支付漏洞一直以来就是是高风险，对企业来说危害很大，对用户来说同样危害也大。</p>
+<span id="more"></span>
 
-<h3 id="session和cookie的区别"><a href="#session和cookie的区别" class="headerlink" title="session和cookie的区别"></a>session和cookie的区别</h3><p>若没有设定，则为短期cookie，保存于内存，关闭浏览器即失效</p>
-<p>若设定过期时间，则到过期时间失效，保存于磁盘</p>
-<p>（1）session保存在服务器端(客户端仅保存一个sessionID)，Cookie保存在客户端。</p>
-<p>（2）session保存的是对象，Cookie保存的是<a href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>。cookie的存储限制数据量不大于4KB，而session的容量则是无限量的。</p>
-<p>（3）session不能区分路径，同一个用户在访问同一个Web应用程序期间，所有的session在任何路径都可访问。Cookie中如果设置了路径参数，则在其他路径下无法访问。</p>
-<p>（4）session默认保存SeesionID的方法是Cookie，如果客户端禁用了Cookie，服务器端应采用其他的替代方法替代SessionID。</p>
-<p>（5）session在会话结束后就会关闭，但是Cookie可以经过持久化而长期保存在客户端的本地硬盘上。所以session也更安全。</p>
-<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207132732376.png" alt="image-20230207132732376"></p>
-<h3 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h3><p>获取cookie：<code>document.cookie;</code></p>
-<p>设置cookie: <code>document.cookie=&quot;username=yuanjiu&quot;;</code></p>
+<h3 id="商品购买流程"><a href="#商品购买流程" class="headerlink" title="商品购买流程"></a>商品购买流程</h3><p><strong>要了解支付漏洞就要先了解商品的购买流程：</strong></p>
+<p>选择商品和数量**&#x3D;&gt;<strong>选择支付及配送方式</strong>&#x3D;&gt;<strong>生成订单编号&#x3D;&gt;订单支付选择</strong>&#x3D;&gt;**完成支付</p>
+<h3 id="常见参数："><a href="#常见参数：" class="headerlink" title="常见参数："></a>常见参数：</h3><p><strong>通过篡改参数来利用漏洞</strong></p>
+<p>商品编号 ID，购买价格，购买数量，支付方式，订单号，支付状态等</p>
+<p>购买数量：改成负数，达到金额偏差</p>
+<p>订单号：用B商品的价格买A商品</p>
+<p>支付方式：更改支付接口，使金额支付到其它账户</p>
+<h3 id="常见修改方法："><a href="#常见修改方法：" class="headerlink" title="常见修改方法："></a>常见修改方法：</h3><p>替换支付，重复支付，最小额支付，负数支付，溢出支付，优惠券支付等</p>
 ]]></content>
       <categories>
         <category>学习</category>
       </categories>
       <tags>
-        <tag>cookie</tag>
+        <tag>逻辑越权</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>水平垂直越权</title>
+    <url>/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/</url>
+    <content><![CDATA[<p><img src="/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/image-20230207151741353.png" alt="image-20230207151741353"></p>
+<span id="more"></span>
+
+<p><strong>水平越权</strong>：获取同级用户账户信息</p>
+<p><strong>垂直越权</strong>：添加高权限用户</p>
+<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>获取添加用户的数据包</p>
+<h5 id="如何获取数据包"><a href="#如何获取数据包" class="headerlink" title="如何获取数据包"></a>如何获取数据包</h5><ol>
+<li>普通用户前端有操作页面可以抓取数据包</li>
+<li>通过网站源码本地搭建去模拟抓取</li>
+<li>盲猜</li>
+</ol>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h5 id="前端漏洞造成：界面"><a href="#前端漏洞造成：界面" class="headerlink" title="前端漏洞造成：界面"></a>前端漏洞造成：界面</h5><p>判断用户等级后，代码界面部分进行可选显示 </p>
+<h5 id="后端漏洞造成：数据库"><a href="#后端漏洞造成：数据库" class="headerlink" title="后端漏洞造成：数据库"></a>后端漏洞造成：数据库</h5><p>user 表(管理员和普通用户同表）如：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>password</th>
+<th>usertype</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>admin</td>
+<td>123456</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>xiaodi</td>
+<td>11111</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p><strong>代码的级别判断</strong>：usertype值</p>
+<p>若访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，可尝试对此值进行修改，这就是测试越权漏洞基本方法。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>逻辑越权</tag>
       </tags>
   </entry>
   <entry>
@@ -58,6 +103,31 @@
       </categories>
       <tags>
         <tag>xss</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于cookie的相关总结</title>
+    <url>/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h3 id="set-cookie格式（一个cookie）"><a href="#set-cookie格式（一个cookie）" class="headerlink" title="set cookie格式（一个cookie）"></a>set cookie格式（一个cookie）</h3><p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png" alt="image-20230207125247970"></p>
+<p>expires的是否设定决定cookie保存在内存还是磁盘</p>
+ <span id="more"></span>
+
+<h3 id="session和cookie的区别"><a href="#session和cookie的区别" class="headerlink" title="session和cookie的区别"></a>session和cookie的区别</h3><p>若没有设定，则为短期cookie，保存于内存，关闭浏览器即失效</p>
+<p>若设定过期时间，则到过期时间失效，保存于磁盘</p>
+<p>（1）session保存在服务器端(客户端仅保存一个sessionID)，Cookie保存在客户端。</p>
+<p>（2）session保存的是对象，Cookie保存的是<a href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>。cookie的存储限制数据量不大于4KB，而session的容量则是无限量的。</p>
+<p>（3）session不能区分路径，同一个用户在访问同一个Web应用程序期间，所有的session在任何路径都可访问。Cookie中如果设置了路径参数，则在其他路径下无法访问。</p>
+<p>（4）session默认保存SeesionID的方法是Cookie，如果客户端禁用了Cookie，服务器端应采用其他的替代方法替代SessionID。</p>
+<p>（5）session在会话结束后就会关闭，但是Cookie可以经过持久化而长期保存在客户端的本地硬盘上。所以session也更安全。</p>
+<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207132732376.png" alt="image-20230207132732376"></p>
+<h3 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h3><p>获取cookie：<code>document.cookie;</code></p>
+<p>设置cookie: <code>document.cookie=&quot;username=yuanjiu&quot;;</code></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>cookie</tag>
       </tags>
   </entry>
   <entry>
@@ -570,28 +640,6 @@
       </tags>
   </entry>
   <entry>
-    <title>加密实验</title>
-    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>实验</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常见中间件的总结</title>
     <url>/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h3 id="1-Apache"><a href="#1-Apache" class="headerlink" title="1.Apache"></a>1.Apache</h3><p>​		Apache HTTP服务器是一个模块化的服务器，可以运行在几乎所有广泛使用的计算机平台上。其属于应用服务器。Apache 支持支持模块多，性能稳定，Apache本身是静态解析，适合静态HTML、图片等，但可以通过扩展脚本、模块等支持动态页面等。</p>
@@ -617,51 +665,25 @@
       </tags>
   </entry>
   <entry>
-    <title>水平垂直越权</title>
-    <url>/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/</url>
-    <content><![CDATA[<p><img src="/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/image-20230207151741353.png" alt="image-20230207151741353"></p>
-<span id="more"></span>
-
-<p><strong>水平越权</strong>：获取同级用户账户信息</p>
-<p><strong>垂直越权</strong>：添加高权限用户</p>
-<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>获取添加用户的数据包</p>
-<h5 id="如何获取数据包"><a href="#如何获取数据包" class="headerlink" title="如何获取数据包"></a>如何获取数据包</h5><ol>
-<li>普通用户前端有操作页面可以抓取数据包</li>
-<li>通过网站源码本地搭建去模拟抓取</li>
-<li>盲猜</li>
-</ol>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h5 id="前端漏洞造成：界面"><a href="#前端漏洞造成：界面" class="headerlink" title="前端漏洞造成：界面"></a>前端漏洞造成：界面</h5><p>判断用户等级后，代码界面部分进行可选显示 </p>
-<h5 id="后端漏洞造成：数据库"><a href="#后端漏洞造成：数据库" class="headerlink" title="后端漏洞造成：数据库"></a>后端漏洞造成：数据库</h5><p>user 表(管理员和普通用户同表）如：</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>username</th>
-<th>password</th>
-<th>usertype</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>admin</td>
-<td>123456</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>xiaodi</td>
-<td>11111</td>
-<td>2</td>
-</tr>
-</tbody></table>
-<p><strong>代码的级别判断</strong>：usertype值</p>
-<p>若访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，可尝试对此值进行修改，这就是测试越权漏洞基本方法。</p>
-]]></content>
+    <title>加密实验</title>
+    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>学习</category>
+        <category>实践</category>
       </categories>
       <tags>
-        <tag>逻辑越权</tag>
+        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
