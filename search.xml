@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>app抓不到包解决思路</title>
+    <url>/2023/02/19/app%E6%8A%93%E4%B8%8D%E5%88%B0%E5%8C%85%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF/</url>
+    <content><![CDATA[<h2 id="1-检测到模拟器环境"><a href="#1-检测到模拟器环境" class="headerlink" title="1.检测到模拟器环境"></a>1.检测到模拟器环境</h2><ol>
+<li>将app安装到手机上</li>
+<li>电脑和手机（模拟器）在同一个局域网</li>
+</ol>
+<p>​	3.burp抓手机的包</p>
+<h2 id="2-app代理检测导致burp代理时无法正常访问"><a href="#2-app代理检测导致burp代理时无法正常访问" class="headerlink" title="2.app代理检测导致burp代理时无法正常访问"></a>2.app代理检测导致burp代理时无法正常访问</h2><p>​	使用 Postern-3.1.2.apk 工具，下载地址 <a href="https://github.com/postern-overwal/postern-stuff%EF%BC%8C%E5%B7%A5%E5%85%B7%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B0%86%E4%BB%A3%E7%90%86%E7%BD%AE%E4%B8%BA">https://github.com/postern-overwal/postern-stuff，工具作用是将代理置为</a> vpn 代理绕过检测。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​	抓不到包，尝试直接在手机上操作或者挂代理</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>app</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>sql注入总结</title>
     <url>/2023/02/11/sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h3 id="一、SQL注入原理"><a href="#一、SQL注入原理" class="headerlink" title="一、SQL注入原理"></a>一、SQL注入原理</h3><ul>
+    <content><![CDATA[<h2 id="一、SQL注入原理"><a href="#一、SQL注入原理" class="headerlink" title="一、SQL注入原理"></a>一、SQL注入原理</h2><ul>
 <li>1.理解SQL注入<br> SQL注入是一种将SQL代码插入或添加到应用（用户）的输入参数中的攻击，之后再将这些参数传递给后台的sql服务器加以解析和执行。由于sql语句本身的多样性，以及可用于构造sql语句的编程方法很多，因此凡是构造sql语句的步骤均存在被攻击的潜在风险。Sql注入的方式主要是直接将代码插入参数中，这些参数会被置入sql命令中加以执行。间接的攻击方式是将恶意代码插入字符串中，之后将这些字符串保存到数据库的数据表中或将其当成元数据。当将存储的字符串置入动态sql命令中时，恶意代码就将被执行。</li>
 </ul>
 <span id="more"></span>
