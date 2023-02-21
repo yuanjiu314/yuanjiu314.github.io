@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>fortify安装</title>
+    <url>/2023/02/21/fortify%E5%AE%89%E8%A3%85/</url>
+    <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p><a href="https://pan.baidu.com/s/1Jw7idUwlfMZwX4eTb-9luw">https://pan.baidu.com/s/1Jw7idUwlfMZwX4eTb-9luw</a> 提取：<strong>w6dn</strong></p>
+<p>解压密码：<strong>shungg.cn</strong></p>
+<h2 id="安装与破解"><a href="#安装与破解" class="headerlink" title="安装与破解"></a>安装与破解</h2><p>1.下载一路next，注意安装目录，默认为c盘</p>
+<p>2.安装后取消选择最后一个选项 (关于更新软件的选项)</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/b0da108fb90d30c5cb7c9ea899c8a303.png" alt="img"></p>
+<p>3.将安装包中的规则复制到安装目录Core\config\rules文件夹下</p>
+<p><img src="https://img-blog.csdnimg.cn/img_convert/7c1d90ba15b365d38deb562389c939a9.png" alt="img"></p>
+<p><strong>破解</strong></p>
+<p>将 jar 文件放入: “C:\Program Files\Fortify\Fortify_SCA_and_Apps_20.1.1\Core\lib” 目录 (默认安装位置)</p>
+<p>然后转到 “C:\Program Files\Fortify\Fortify_SCA_and_Apps_20.1.1\bin&quot; 并打开 “auditworkbench.cmd”</p>
+<p><strong>打开Fortify</strong></p>
+<p>进入安装目录，打开bin文件夹，双击auditworkbench.cmd</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+        <tag>代码审计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码审计总结</title>
+    <url>/2023/02/21/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="关注点"><a href="#关注点" class="headerlink" title="关注点"></a>关注点</h2><h4 id="1-可控变量"><a href="#1-可控变量" class="headerlink" title="1.可控变量"></a>1.可控变量</h4><p>​	接收变量如：get,post </p>
+<p>​	接收关键字：$_GET</p>
+<h4 id="2-特定函数"><a href="#2-特定函数" class="headerlink" title="2.特定函数"></a>2.特定函数</h4><p>​	输出 print echo</p>
+<p>​	数据库操作语句</p>
+<h4 id="3-搜索特定关键字寻找特定漏洞"><a href="#3-搜索特定关键字寻找特定漏洞" class="headerlink" title="3.搜索特定关键字寻找特定漏洞"></a>3.搜索特定关键字寻找特定漏洞</h4><p>​	如：select、insert、update等sql执行语句 &#x3D;&#x3D;&#x3D;》sql注入漏洞 </p>
+<p>​	如：搜索echo、print尝试挖掘xss漏洞</p>
+<p>​	如：$_GET、$_post&#x3D;&#x3D;》数据包漏洞</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>代码审计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>内网基础</title>
     <url>/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<p><img src="/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/image-20230220133523195.png" alt="image-20230220133523195"></p>
@@ -163,7 +205,7 @@
 <p>得到flag</p>
 ]]></content>
       <categories>
-        <category>实践</category>
+        <category>实验</category>
       </categories>
       <tags>
         <tag>ctf</tag>
