@@ -218,7 +218,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-02-23 13:03:47 / 修改时间：13:20:18" itemprop="dateCreated datePublished" datetime="2023-02-23T13:03:47+08:00">2023-02-23</time>
+      <time title="创建时间：2023-02-23 13:03:47 / 修改时间：16:31:24" itemprop="dateCreated datePublished" datetime="2023-02-23T13:03:47+08:00">2023-02-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -242,20 +242,14 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="PDCERF-国际权威应急响应流程"><a href="#PDCERF-国际权威应急响应流程" class="headerlink" title="PDCERF(国际权威应急响应流程)"></a>PDCERF(国际权威应急响应流程)</h2><p>PDCERF 方法论是一种防范使用的方法，其将应急响应分成六个阶段，分别是准备阶段、检测阶段、抑制阶段、根除阶段、恢复阶段、总结阶段。</p>
 <p><img src="https://pic1.zhimg.com/v2-0be516bc34e75f8b7f249b989820e340_r.jpg" alt="preview"></p>
-<p>入侵情景：</p>
-<ol>
-<li>网站页面遭到篡改、被挂暗链、黑链；</li>
-<li>对外提供服务的服务器存在木马、挖矿软件、VPN等异常程序；</li>
-<li>发现异常链接、cpu占用率飙升、服务器卡死；</li>
-<li>安全软件检测到网内存在大量异常链接、占用带宽资源。导致单位无法正常上网；</li>
-<li>dos大规模流量攻击；</li>
-<li>安全监管部门检测发现该单位存在异常而被通告</li>
-</ol>
-<p>参考文章：</p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/simon7s/p/12484155.html">https://www.cnblogs.com/simon7s/p/12484155.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/web/198443.html">https://www.freebuf.com/articles/web/198443.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.wangan.com/wenda/2829">https://www.wangan.com/wenda/2829</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/23/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%80%BB%E7%BB%93/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -410,7 +404,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-23 14:30:55" itemprop="dateModified" datetime="2023-02-23T14:30:55+08:00">2023-02-23</time>
+      <time title="修改时间：2023-02-23 16:31:35" itemprop="dateModified" datetime="2023-02-23T16:31:35+08:00">2023-02-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -439,34 +433,14 @@
 <h4 id="3-搜索特定关键字寻找特定漏洞"><a href="#3-搜索特定关键字寻找特定漏洞" class="headerlink" title="3.搜索特定关键字寻找特定漏洞"></a>3.搜索特定关键字寻找特定漏洞</h4><p>​	如：select、insert、update等sql执行语句 &#x3D;&#x3D;&#x3D;》sql注入漏洞 </p>
 <p>​	如：搜索echo、print尝试挖掘xss漏洞</p>
 <p>​	如：<code>$_GET</code>、<code>$_post</code>&#x3D;&#x3D;》数据包漏洞</p>
-<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
-<li>理解应用程序或系统的功能和架构。这有助于确定应该关注哪些部分的代码，并有助于识别潜在的安全漏洞。</li>
-<li>寻找输入验证不足的漏洞。输入验证是应用程序或系统保护自身免受恶意输入的第一道防线。不正确的输入验证可能导致诸如SQL注入、跨站脚本（XSS）和跨站请求伪造（CSRF）等安全漏洞。</li>
-<li>寻找敏感数据泄露的漏洞。这些漏洞可能导致应用程序或系统泄露敏感数据，如用户名、密码、信用卡信息等。</li>
-<li>寻找授权和身份验证问题。这些漏洞可能导致未经授权的用户访问敏感信息或执行敏感操作。</li>
-<li>检查代码是否存在逻辑错误。这些漏洞可能导致应用程序或系统的意外行为，例如未经授权的操作或意外数据泄露。</li>
-<li>使用自动化工具辅助代码审计。有许多工具可用于自动化代码审计过程，例如静态代码分析工具和漏洞扫描器。但是，自动化工具不是万能的，它们通常只能检测一些常见的漏洞，并可能会误报或漏报漏洞。</li>
-</ol>
-<h2 id="php代码审计案例"><a href="#php代码审计案例" class="headerlink" title="php代码审计案例"></a>php代码审计案例</h2><p>假设有一个 PHP 程序，它使用 POST 请求从客户端接收用户名和密码，然后将它们存储在 MySQL 数据库中。在这个程序中，存在 SQL 注入漏洞，攻击者可以使用特定的输入值绕过应用程序的输入验证，从而获得对数据库的非授权访问。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;INSERT INTO users(username, password) VALUES(&#x27;<span class="subst">$username</span>&#x27;, &#x27;<span class="subst">$password</span>&#x27;)&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$query</span>);</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在上述代码中，输入验证的缺失在于，应用程序直接将接收到的 <code>$_POST[&#39;username&#39;]</code> 和 <code>$_POST[&#39;password&#39;]</code> 值插入 SQL 语句中，而没有对它们进行任何过滤或转义。因此，攻击者可以通过在输入中插入 SQL 语句，从而获得对数据库的非授权访问。</p>
-<p>要修复这个漏洞，可以使用预处理语句和参数化查询：</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="string">&quot;INSERT INTO users(username, password) VALUES(?, ?)&quot;</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;ss&quot;</span>, <span class="variable">$username</span>, <span class="variable">$password</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>使用预处理语句和参数化查询，应用程序会将输入值视为参数，而不是字符串。因此，即使攻击者尝试通过插入 SQL 语句来攻击应用程序，输入值也不会被视为 SQL 代码而被执行。</p>
-<h3 id="php代码审计要点"><a href="#php代码审计要点" class="headerlink" title="php代码审计要点"></a>php代码审计要点</h3><ol>
-<li>输入验证：验证输入数据的类型、长度、格式和范围，防止恶意用户提交非法输入数据。</li>
-<li>访问控制：限制用户对应用程序中的资源的访问权限，防止未授权的用户访问敏感信息。</li>
-<li>会话管理：确保会话ID的随机性和唯一性，验证会话数据的完整性和有效性，防止会话劫持和会话固定攻击。</li>
-<li>数据库安全：避免SQL注入攻击，使用预编译语句和参数化查询来处理用户输入的数据。</li>
-<li>文件上传：对上传的文件进行验证和过滤，限制上传的文件类型、大小和数量，防止文件包含漏洞和文件上传漏洞。</li>
-<li>输出过滤：对输出到浏览器的内容进行过滤和转义，防止跨站脚本攻击和HTML注入攻击。</li>
-<li>加密和解密：使用加密算法保护敏感数据的机密性，确保数据的完整性和可用性，防止加解密漏洞。</li>
-<li>错误处理：避免敏感信息泄漏，将错误信息记录到日志中，提供有用的错误信息提示给开发者，防止信息泄露。</li>
-<li>代码注释和文档：提供清晰的代码注释和文档，便于代码的维护和修改，防止代码混乱和漏洞。</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/02/21/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -528,7 +502,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-23 13:07:05" itemprop="dateModified" datetime="2023-02-23T13:07:05+08:00">2023-02-23</time>
+      <time title="修改时间：2023-02-23 16:31:38" itemprop="dateModified" datetime="2023-02-23T16:31:38+08:00">2023-02-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
