@@ -1,10 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>应急响应总结</title>
+    <url>/2023/02/23/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="PDCERF-国际权威应急响应流程"><a href="#PDCERF-国际权威应急响应流程" class="headerlink" title="PDCERF(国际权威应急响应流程)"></a>PDCERF(国际权威应急响应流程)</h2><p>PDCERF 方法论是一种防范使用的方法，其将应急响应分成六个阶段，分别是准备阶段、检测阶段、抑制阶段、根除阶段、恢复阶段、总结阶段。</p>
+<p><img src="https://pic1.zhimg.com/v2-0be516bc34e75f8b7f249b989820e340_r.jpg" alt="preview"></p>
+<p>入侵情景：</p>
+<ol>
+<li>网站页面遭到篡改、被挂暗链、黑链；</li>
+<li>对外提供服务的服务器存在木马、挖矿软件、VPN等异常程序；</li>
+<li>发现异常链接、cpu占用率飙升、服务器卡死；</li>
+<li>安全软件检测到网内存在大量异常链接、占用带宽资源。导致单位无法正常上网；</li>
+<li>dos大规模流量攻击；</li>
+<li>安全监管部门检测发现该单位存在异常而被通告</li>
+</ol>
+<p>参考文章：</p>
+<p><a href="https://www.cnblogs.com/simon7s/p/12484155.html">https://www.cnblogs.com/simon7s/p/12484155.html</a></p>
+<p><a href="https://www.freebuf.com/articles/web/198443.html">https://www.freebuf.com/articles/web/198443.html</a></p>
+<p><a href="https://www.wangan.com/wenda/2829">https://www.wangan.com/wenda/2829</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>应急响应</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>fortify安装</title>
     <url>/2023/02/21/fortify%E5%AE%89%E8%A3%85/</url>
     <content><![CDATA[<h2 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h2><p><a href="https://pan.baidu.com/s/1Jw7idUwlfMZwX4eTb-9luw">https://pan.baidu.com/s/1Jw7idUwlfMZwX4eTb-9luw</a> 提取：<strong>w6dn</strong></p>
 <p>解压密码：<strong>shungg.cn</strong></p>
+<span id="more"></span>
+
 <h2 id="安装与破解"><a href="#安装与破解" class="headerlink" title="安装与破解"></a>安装与破解</h2><p>1.下载一路next，注意安装目录，默认为c盘</p>
 <p>2.安装后取消选择最后一个选项 (关于更新软件的选项)</p>
 <p><img src="https://img-blog.csdnimg.cn/img_convert/b0da108fb90d30c5cb7c9ea899c8a303.png" alt="img"></p>
@@ -20,8 +48,8 @@
         <category>工具</category>
       </categories>
       <tags>
-        <tag>工具</tag>
         <tag>代码审计</tag>
+        <tag>工具</tag>
       </tags>
   </entry>
   <entry>
@@ -33,7 +61,34 @@
 <p>​	数据库操作语句</p>
 <h4 id="3-搜索特定关键字寻找特定漏洞"><a href="#3-搜索特定关键字寻找特定漏洞" class="headerlink" title="3.搜索特定关键字寻找特定漏洞"></a>3.搜索特定关键字寻找特定漏洞</h4><p>​	如：select、insert、update等sql执行语句 &#x3D;&#x3D;&#x3D;》sql注入漏洞 </p>
 <p>​	如：搜索echo、print尝试挖掘xss漏洞</p>
-<p>​	如：$_GET、$_post&#x3D;&#x3D;》数据包漏洞</p>
+<p>​	如：<code>$_GET</code>、<code>$_post</code>&#x3D;&#x3D;》数据包漏洞</p>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
+<li>理解应用程序或系统的功能和架构。这有助于确定应该关注哪些部分的代码，并有助于识别潜在的安全漏洞。</li>
+<li>寻找输入验证不足的漏洞。输入验证是应用程序或系统保护自身免受恶意输入的第一道防线。不正确的输入验证可能导致诸如SQL注入、跨站脚本（XSS）和跨站请求伪造（CSRF）等安全漏洞。</li>
+<li>寻找敏感数据泄露的漏洞。这些漏洞可能导致应用程序或系统泄露敏感数据，如用户名、密码、信用卡信息等。</li>
+<li>寻找授权和身份验证问题。这些漏洞可能导致未经授权的用户访问敏感信息或执行敏感操作。</li>
+<li>检查代码是否存在逻辑错误。这些漏洞可能导致应用程序或系统的意外行为，例如未经授权的操作或意外数据泄露。</li>
+<li>使用自动化工具辅助代码审计。有许多工具可用于自动化代码审计过程，例如静态代码分析工具和漏洞扫描器。但是，自动化工具不是万能的，它们通常只能检测一些常见的漏洞，并可能会误报或漏报漏洞。</li>
+</ol>
+<h2 id="php代码审计案例"><a href="#php代码审计案例" class="headerlink" title="php代码审计案例"></a>php代码审计案例</h2><p>假设有一个 PHP 程序，它使用 POST 请求从客户端接收用户名和密码，然后将它们存储在 MySQL 数据库中。在这个程序中，存在 SQL 注入漏洞，攻击者可以使用特定的输入值绕过应用程序的输入验证，从而获得对数据库的非授权访问。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;INSERT INTO users(username, password) VALUES(&#x27;<span class="subst">$username</span>&#x27;, &#x27;<span class="subst">$password</span>&#x27;)&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$query</span>);</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，输入验证的缺失在于，应用程序直接将接收到的 <code>$_POST[&#39;username&#39;]</code> 和 <code>$_POST[&#39;password&#39;]</code> 值插入 SQL 语句中，而没有对它们进行任何过滤或转义。因此，攻击者可以通过在输入中插入 SQL 语句，从而获得对数据库的非授权访问。</p>
+<p>要修复这个漏洞，可以使用预处理语句和参数化查询：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="string">&quot;INSERT INTO users(username, password) VALUES(?, ?)&quot;</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;ss&quot;</span>, <span class="variable">$username</span>, <span class="variable">$password</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用预处理语句和参数化查询，应用程序会将输入值视为参数，而不是字符串。因此，即使攻击者尝试通过插入 SQL 语句来攻击应用程序，输入值也不会被视为 SQL 代码而被执行。</p>
+<h3 id="php代码审计要点"><a href="#php代码审计要点" class="headerlink" title="php代码审计要点"></a>php代码审计要点</h3><ol>
+<li>输入验证：验证输入数据的类型、长度、格式和范围，防止恶意用户提交非法输入数据。</li>
+<li>访问控制：限制用户对应用程序中的资源的访问权限，防止未授权的用户访问敏感信息。</li>
+<li>会话管理：确保会话ID的随机性和唯一性，验证会话数据的完整性和有效性，防止会话劫持和会话固定攻击。</li>
+<li>数据库安全：避免SQL注入攻击，使用预编译语句和参数化查询来处理用户输入的数据。</li>
+<li>文件上传：对上传的文件进行验证和过滤，限制上传的文件类型、大小和数量，防止文件包含漏洞和文件上传漏洞。</li>
+<li>输出过滤：对输出到浏览器的内容进行过滤和转义，防止跨站脚本攻击和HTML注入攻击。</li>
+<li>加密和解密：使用加密算法保护敏感数据的机密性，确保数据的完整性和可用性，防止加解密漏洞。</li>
+<li>错误处理：避免敏感信息泄漏，将错误信息记录到日志中，提供有用的错误信息提示给开发者，防止信息泄露。</li>
+<li>代码注释和文档：提供清晰的代码注释和文档，便于代码的维护和修改，防止代码混乱和漏洞。</li>
+</ol>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -79,7 +134,8 @@
 <p>​	<strong>域树与域林</strong></p>
 <h5 id="6-linux域与windows域"><a href="#6-linux域与windows域" class="headerlink" title="6.linux域与windows域"></a>6.linux域与windows域</h5><p>​		linux上也有相对应的活动目录，但是要装LDAP环境，一般企业很少会用LDAP来管理，因为功能上不及域强大，而且用linux来管理要求技术人员门槛高，故linux更适合做服务器，而windows更适合域，所以一般遇到的域是windows域，当然域中包含linux服务器也是很常见的。</p>
 <h5 id="7-常用内网渗透流程"><a href="#7-常用内网渗透流程" class="headerlink" title="7.常用内网渗透流程"></a>7.常用内网渗透流程</h5><p>​		<strong>信息收集&#x3D;》权限提升&#x3D;》横向渗透&#x3D;》权限维持</strong></p>
-<p>参考文章：<a href="https://blog.csdn.net/weixin_44110913/article/details/106760045">https://blog.csdn.net/weixin_44110913/article/details/106760045</a></p>
+<p>参考文章：</p>
+<p><a href="https://blog.csdn.net/weixin_44110913/article/details/106760045">https://blog.csdn.net/weixin_44110913/article/details/106760045</a></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -154,7 +210,7 @@
 <p><img src="/2023/02/11/sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/image-20230211204805723.png" alt="image-20230211204805723"></p>
 <p><img src="/2023/02/11/sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/image-20230211204829872.png" alt="image-20230211204829872"></p>
 <p><img src="/2023/02/11/sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/image-20230211204846797.png" alt="image-20230211204846797"></p>
-<p><img src="/2023/02/11/sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/image-20230211204911974.png" alt="image-20230211204911974"></p>
+<h3 id="二次注入"><a href="#二次注入" class="headerlink" title="二次注入"></a><img src="/2023/02/11/sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/image-20230211204911974.png" alt="image-20230211204911974">二次注入</h3><p><img src="/2023/02/11/sql%E6%B3%A8%E5%85%A5%E6%80%BB%E7%BB%93/image-20230223124754162.png" alt="image-20230223124754162"></p>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -209,6 +265,9 @@
       </categories>
       <tags>
         <tag>ctf</tag>
+        <tag>代码审计</tag>
+        <tag>反序列化</tag>
+        <tag>弱类型绕过</tag>
       </tags>
   </entry>
   <entry>
@@ -246,8 +305,8 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>web</tag>
         <tag>反序列化</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -933,7 +992,7 @@
 </div>
 <script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>实践</category>
+        <category>实验</category>
       </categories>
       <tags>
         <tag>测试</tag>
