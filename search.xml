@@ -136,8 +136,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>SQL注入漏洞</tag>
         <tag>权限提升</tag>
+        <tag>SQL注入漏洞</tag>
       </tags>
   </entry>
   <entry>
@@ -153,8 +153,8 @@
         <category>漏洞复现</category>
       </categories>
       <tags>
-        <tag>poc</tag>
         <tag>SQL注入漏洞</tag>
+        <tag>poc</tag>
       </tags>
   </entry>
   <entry>
