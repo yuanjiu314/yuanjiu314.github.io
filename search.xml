@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>如何理解溢出漏洞</title>
+    <url>/2023/03/01/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/</url>
+    <content><![CDATA[<h2 id="如何理解缓冲区溢出？"><a href="#如何理解缓冲区溢出？" class="headerlink" title="如何理解缓冲区溢出？"></a>如何理解缓冲区溢出？</h2><p><strong>缓冲区溢出</strong>（buffer overflow），在<a href="https://zh.wikipedia.org/wiki/%E9%9B%BB%E8%85%A6%E5%AD%B8">电脑学</a>上是指针对<a href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">程序设计</a>缺陷，向程序输入<a href="https://zh.wikipedia.org/wiki/%E7%BC%93%E5%86%B2%E5%8C%BA">缓冲区</a>写入使之溢出的内容（通常是超过缓冲区能保存的最大数据量的数据），从而破坏程序运行、趁著中断之际并取得程序乃至系统的控制权。</p>
+<span id="more"></span>
+
+<p>缓冲区溢出原指当某个数据超过了处理程序回传<a href="https://zh.wikipedia.org/wiki/%E5%A0%86%E7%96%8A">堆叠</a>位址限制的范围时，程序出现的异常操作。造成此现象的原因有：</p>
+<ul>
+<li>存在<a href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E9%94%99%E8%AF%AF">缺陷的程序设计</a></li>
+<li>尤其是<a href="https://zh.wikipedia.org/wiki/C%E8%AF%AD%E8%A8%80">C语言</a>，不像其他一些<a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E7%BA%A7%E8%AF%AD%E8%A8%80">高级语言</a>会自动进行数组或者指针的堆叠区块<a href="https://zh.wikipedia.org/wiki/%E8%BE%B9%E7%95%8C%E6%A3%80%E6%9F%A5">边界检查</a>，增加溢出风险。</li>
+<li>C语言中的<a href="https://zh.wikipedia.org/wiki/C%E6%A0%87%E5%87%86%E5%BA%93">C标准库</a>还具有一些非常危险的操作函数，使用不当也为溢出创造条件。</li>
+</ul>
+<p>​		计算机程序一般都会使用到一些内存，这些内存或是程序内部使用，或是存放用户的输入数据，这样的内存一般称作缓冲区。溢出是指盛放的东西超出容器容量而溢出来了，在计算机程序中，就是数据使用到了被分配内存空间之外的内存空间。而缓冲区溢出，简单的说就是计算机对接收的输入数据没有进行有效的检测（理想的情况是程序检查数据长度并不允许输入超过缓冲区长度的字符），向缓冲区内填充数据时超过了缓冲区本身的容量，而导致数据溢出到被分配空间之外的内存空间，使得溢出的数据覆盖了其他内存空间的数据。</p>
+<h2 id="什么是溢出漏洞？"><a href="#什么是溢出漏洞？" class="headerlink" title="什么是溢出漏洞？"></a>什么是溢出漏洞？</h2><p>​		具体的讲，溢出漏洞是由于程序中的某个或某些输入<a href="https://baike.baidu.com/item/%E5%87%BD%E6%95%B0?fromModule=lemma_inlink">函数</a>（使用者输入参数）对所接收数据的边界验证不严密而造成。</p>
+<p>​		根据程序执行中<a href="https://baike.baidu.com/item/%E5%A0%86%E6%A0%88?fromModule=lemma_inlink">堆栈</a>调用原理，程序对超出边界的部分如果没有经过验证自动去掉，那么超出边界的部分就会覆盖后面的存放程序<a href="https://baike.baidu.com/item/%E6%8C%87%E9%92%88?fromModule=lemma_inlink">指针</a>的数据，当执行完上面的代码，程序会自动调用指针所指向地址的命令。</p>
+<p>​		根据这个原理，恶意使用者就可以构造出溢出<a href="https://baike.baidu.com/item/%E7%A8%8B%E5%BA%8F/71525?fromModule=lemma_inlink">程序</a>。</p>
+<h2 id="溢出原理"><a href="#溢出原理" class="headerlink" title="溢出原理"></a><strong>溢出原理</strong></h2><figure class="highlight c#"><table><tr><td class="code"><pre><span class="line"><span class="meta">#include “stdafx.h”</span></span><br><span class="line"><span class="meta">#include “string.h”</span></span><br><span class="line"><span class="meta">#include “stdio.h”</span></span><br><span class="line"><span class="built_in">char</span> buf[<span class="number">255</span>],pass[<span class="number">4</span>]; <span class="comment">/*声明变量，让计算机分配指定的内存*/</span></span><br><span class="line"><span class="function"><span class="built_in">int</span> <span class="title">main</span> (<span class="params"><span class="built_in">int</span> argc,<span class="built_in">char</span>* argv[ ]</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">printf（“请输入您的密码：”）; <span class="comment">/*指定输出的字符*/</span></span><br><span class="line">scanf(%s,buf)； <span class="comment">/*输入一个字符串，保存在变量buf中*/</span></span><br><span class="line">strcpy(pass,buf); <span class="comment">/*把字符串buf中的字符串复制到变量pass中*/</span></span><br><span class="line"><span class="keyword">if</span> (strcmp(pass，”wlqs”）= =<span class="number">0</span>) <span class="comment">/*比较输入的字符串是否为密码*/</span></span><br><span class="line">printf （“输入正确！”）；</span><br><span class="line"><span class="keyword">else</span> printf（“输入错误！）；</span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​		这是一段密码验证程序，与我们平时输入密码一样，先让用户输入密码，然后在取得真正的密码，与之对比，如果差异为0，则输出密码正确，否则输出密码错误。</p>
+<p>​		漏洞很容易就看出来了。那就是它给数据申请了4个字节的储存空间，但是万一用户输入的数据不只4个字节，那么剩余的字节存放在哪里？</p>
+<p><img src="https://bkimg.cdn.bcebos.com/pic/5882b2b7d0a20cf445a1319275094b36acaf994e?x-bce-process=image/watermark,image_d2F0ZXIvYmFpa2UyMjA=,g_7,xp_5,yp_5" alt="img"></p>
+<p>​		举个例子，有一条一米长的木头，有一张红色纸条从尾巴往头贴，上面写有字，然后又有一张蓝色纸条，上面也写有字，要从木头的头往它的尾巴贴，但是贴了红色纸条过后只剩4cm的长度，贴完后会有人读出后面96cm的字，并且执行字条的命令，但是蓝色纸条却有10cm的长度，怎么办呢？</p>
+<p>​		只有把蓝色纸条剩下的部分贴在红色纸条上了。那么红色纸条的一些字就被覆盖了。但是那个人还是会去读那后面96cm的字，所以他就只有读错，前面读的都是蓝色字条的字。先前去执行的是蓝色字条后面6cm的命令。</p>
+<p>​		其他剩下的字符将溢出！剩下的数字将占用内存空间，那么系统执行命令的时候将会执行占用内存的数据，而不是执行原先写好的命令了！这些数字系统根本就读不懂，如何执行？那么它只好报错了！说此程序遇到问题需要关闭。那么计算机上的程序将出错而无法执行或关闭。</p>
+<p>​		利用这样的溢出漏洞可以关闭很多程序，比如各学校机房里安装的那些<a href="https://baike.baidu.com/item/%E8%BF%9C%E7%A8%8B%E6%95%99%E8%82%B2%E7%B3%BB%E7%BB%9F?fromModule=lemma_inlink">远程教育系统</a>，学生的计算机被教师的计算机所控制是因为学生机上安装有一个学生端程序，教师机可以通过教师端来对学生端进行远程控制，学生端没有退出功能，学生所在的用户组也没有强行结束进程的权限，当学生不想被老师控制的时候，可以打开学生端自带的远程消息功能，在消息里输入很长的数据，比如几百上千句“敢控制我！看我不宰了你！”，然后发送，就可以令学生端程序出错而被系统强行关闭。这招对某些网吧的收费系统也有用。</p>
+<p>​		当然，随便往<a href="https://baike.baidu.com/item/%E7%BC%93%E5%86%B2%E5%8C%BA?fromModule=lemma_inlink">缓冲区</a>中填东西造成它溢出一般只会出现“分段错误”（Segmentation fault），而不能达到攻击的目的。</p>
+<p>​		最常见的攻击手段是通过制造<a href="https://baike.baidu.com/item/%E7%BC%93%E5%86%B2%E5%8C%BA?fromModule=lemma_inlink">缓冲区</a>溢出使程序运行一个用户shell，再通过shell执行其它命令。如果该程序有root或者suid执行权限的话，攻击者就获得了一个有<a href="https://baike.baidu.com/item/root%E6%9D%83%E9%99%90?fromModule=lemma_inlink">root权限</a>的shell，可以对系统进行任意操作了。</p>
+<p>​		例如，如果内存中的被覆盖部分包含一个指针（指向内存中另一个位置的对象），则攻击者的代码可以用另一个指向漏洞利用有效载荷的指针来替换该代码。这样就可以将整个程序的控制权转移给攻击者的代码。</p>
+<h2 id="技术特点"><a href="#技术特点" class="headerlink" title="技术特点"></a>技术特点</h2><p>​		人为的溢出是有一定企图的，攻击者写一个超过缓冲区长度的字符串，植入到缓冲区这时可能会出现两种结果：一是过长的字符串覆盖了相邻的存储单元，引起程序运行失败，严重的可导致系统崩溃；另一个结果就是利用这种漏洞可以执行任意指令，甚至可以取得系统root特级权限。</p>
+<p><strong><code>C 和 C++ 是两种脆弱性较高的热门语言，因为它们不包含内置的保护措施以防止访问或覆盖内存中的数据</code>。</strong></p>
+<h2 id="代码-amp-数据"><a href="#代码-amp-数据" class="headerlink" title="代码 &amp; 数据"></a><strong>代码 &amp;</strong> <strong>数据</strong></h2><p>​		缓冲区在系统中的表现形式是多样的，高级语言定义的变量、数组、结构体等在运行时可以说都是保存在缓冲区内的，因此所谓缓冲区可以更抽象地理解为一段可读写的内存区域，缓冲区攻击的最终目的就是希望系统能执行这块可读写内存中已经被蓄意设定好的恶意代码。按照冯·诺依曼存储程序原理，程序代码是作为二进制数据存储在内存的，同样程序的数据也在内存中，因此直接从内存的二进制形式上是无法区分哪些是数据哪些是代码的，这也为缓冲区溢出攻击提供了可能。</p>
+<p><img src="https://images0.cnblogs.com/blog/405877/201308/10184517-d89b6405a3484a998d0d1e083c1e2dba.jpg" alt="img"></p>
+<p>​		在上图中，代码存储了用户程序的所有可执行代码，在程序正常执行的情况下，程序计数器（PC指针）只会在代码段和操作系统地址空间（内核态）内寻址。</p>
+<p>​		数据段内存储了用户程序的全局变量，文字池等。栈空间存储了用户程序的函数栈帧（包括参数、局部数据等），实现函数调用机制，它的数据增长方向是低地址方向。堆空间存储了程序运行时动态申请的内存数据等，数据增长方向是高地址方向。</p>
+<p>​		除了代码段和受操作系统保护的数据区域，其他的内存区域都可能作为缓冲区，因此缓冲区溢出的位置可能在数据段，也可能在堆、栈段。如果程序的代码有软件漏洞，恶意程序会“教唆”程序计数器从上述缓冲区内取指，执行恶意程序提供的数据代码</p>
+<h2 id="函数栈帧"><a href="#函数栈帧" class="headerlink" title="函数栈帧"></a><strong>函数栈帧</strong></h2><p>​		栈的主要功能是实现函数的调用。</p>
+<p>参考文章：</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA">https://zh.wikipedia.org/wiki/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA</a></p>
+<p><a href="https://baike.baidu.com/item/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/15573423?fromModule=lemma_inlink">https://baike.baidu.com/item/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/15573423?fromModule=lemma_inlink</a></p>
+<p><a href="https://baike.baidu.com/item/%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/2961793?fr=aladdin">https://baike.baidu.com/item/%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/2961793?fr=aladdin</a></p>
+<p><a href="https://www.cnblogs.com/fanzhidongyzby/p/3250405.html">https://www.cnblogs.com/fanzhidongyzby/p/3250405.html</a></p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>缓冲区溢出漏洞</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>python的写入模式</title>
     <url>/2023/02/28/python%E7%9A%84%E5%86%99%E5%85%A5%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p><a href="https://so.csdn.net/so/search?q=python&spm=1001.2101.3001.7020">python</a>进行文件读写的时候，需要注意他的模式</p>
@@ -136,8 +185,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>权限提升</tag>
         <tag>SQL注入漏洞</tag>
+        <tag>权限提升</tag>
       </tags>
   </entry>
   <entry>
@@ -153,8 +202,8 @@
         <category>漏洞复现</category>
       </categories>
       <tags>
-        <tag>SQL注入漏洞</tag>
         <tag>poc</tag>
+        <tag>SQL注入漏洞</tag>
       </tags>
   </entry>
   <entry>
