@@ -5,6 +5,8 @@
     <url>/2023/02/28/python%E7%9A%84%E5%86%99%E5%85%A5%E6%A8%A1%E5%BC%8F/</url>
     <content><![CDATA[<p><a href="https://so.csdn.net/so/search?q=python&spm=1001.2101.3001.7020">python</a>进行文件读写的时候，需要注意他的模式</p>
 <p><img src="https://img-blog.csdnimg.cn/20210312112329568.png" alt="在这里插入图片描述"></p>
+<span id="more"></span>
+
 <p>‘rb’:以二进制方式读取</p>
 <p> ‘wb’:以二进制方式写入</p>
 <p>参考文章：</p>
@@ -32,6 +34,25 @@
 <p><strong>0x02特殊权限</strong></p>
 <p>除了上面提到的7个默认权限分组，系统还存在一些特殊权限成员，这些成员是为了特殊用途而设置，分别是:<em><strong>SYSTEM(系统)、Trustedinstaller（信任程序模块）、Everyone(所有人)、CREATOR OWNER(创建者)</strong></em> 等，这些特殊成员不被任何内置用户组吸纳，属于完全独立出来的账户。<br>真正拥有“完全访问权”的只有一个成员:<strong>SYSTEM</strong>。这个成员是系统产生的，真正拥有整台计算机管理权限的账户，一般的操作是无法获取与它等价的权限的。<br>“所有人”权限与普通用户组权限差不多，它的存在是为了让用户能访问被标记为“公有”的文件，这也是一些程序正常运行需要的访问权限——任何人都能正常访问被赋予“Everyone”权限的文件，包括来宾组成员。<br>被标记为“创建者”权限的文件只有建立文件的那个用户才能访问，做到了一定程度的隐私保护。<br>但是，所有的文件访问权限均可以被管理员组用户和SYSTEM成员忽略，除非用户使用了NTFS加密。<br>无论是普通权限还是特殊权限，它们都可以“叠加”使用，“叠加”就是指多个权限共同使用，例如一个账户原本属于Users组，而后我们把他加入Administrators组再加入Trustedinstaller等权限提升，那么现在这个账户便同时拥有两个或多个权限身份，而不是用管理员权限去覆盖原来身份。权限叠加并不是没有意义的，在一些需要特定身份访问的场合，用户只有为自己设置了指定的身份才能访问，这个时候“叠加”的使用就能减轻一部分劳动量了。</p>
 <h3 id="三、溢出漏洞思路"><a href="#三、溢出漏洞思路" class="headerlink" title="三、溢出漏洞思路"></a>三、溢出漏洞思路</h3><p>信息收集—&gt;补丁筛选—&gt;利用MSF或特定EXP-执行</p>
+<h3 id="三、AT-amp-SC-amp-PS"><a href="#三、AT-amp-SC-amp-PS" class="headerlink" title="三、AT&amp;SC&amp;PS"></a>三、AT&amp;SC&amp;PS</h3><ol>
+<li><p>at提权：</p>
+<p><code>at 21:26 /interactive cmd.exe //给系统添加一项作业，在21:26打开cmd命令</code></p>
+</li>
+</ol>
+<p>​		at  &#x2F;&#x2F;查看作业详情</p>
+<p>​		at &#x2F;del &#x2F;&#x2F;删除作业</p>
+<p>​		只针对win7之前的老系统</p>
+<p>​		弹出cmd后即为system权限</p>
+<p>2.sc提权</p>
+<p>​		<code>sc Create syscmd binPath = &quot;cmd /k start&quot; type= own type= interact</code></p>
+<p>​		&lt;1&gt;首先whoami查看用户身份为管理员</p>
+<p>​		&lt;2&gt;使用sc命令创建一个服务，启动这个服务</p>
+<p>​		&lt;3&gt;弹出cmd窗口，运行whoami，发现已经取得了system权限，提权成功。</p>
+<p>3.ps提权</p>
+<p>​		pstools是微软官方工具，是为windows提供的第三方工具库</p>
+<p>​		下载地址：<code>https://docs.microsoft.com/zh-cn/sysinternals/downloads/pstools</code></p>
+<p>​		<code>psexec.exe -accepteula -s -i -d cmd.exe</code></p>
+<p>​		win10之前有效</p>
 <p>参考文章：</p>
 <p><a href="https://blog.csdn.net/qq_17204441/article/details/89063095">https://blog.csdn.net/qq_17204441/article/details/89063095</a></p>
 ]]></content>
