@@ -6,6 +6,8 @@
     <content><![CDATA[<h2 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h2><p><strong>什么是令牌？</strong></p>
 <p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
 <p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
+<span id="more"></span>
+
 <p><strong>令牌种类</strong></p>
 <p>访问令牌(Access Token)：表示访问控制操作主体的系统对象 。<br>会话令牌(Session Token)：是交互会话中唯一的身份标识符。<br>密保令牌(Security Token)：又叫做认证令牌或硬件令牌，是一种计算机身 份校验的物理设备，例如 U 盾。<br>      Windows 的 AccessToken 有两种类型：</p>
 <p>Delegation Token：授权令牌，它支持交互式会话登录 (例如本地用户直接 登录、远程桌面登录访问)<br>Impresonation Token：模拟令牌，它是非交互的会话 (例如使用 net use 访问共享文件夹)。<br>      （注：<code>两种 token 只在系统重启后清除 具有 Delegation token 的用户在注销后，该 Token 将变成 Impersonation，依旧有效</code>。）<br><strong>窃取过程</strong></p>
@@ -225,8 +227,8 @@
         <category>实验</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>靶场</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
