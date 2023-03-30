@@ -20,16 +20,16 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Mist","darkmode":true,"version":"8.14.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"show_result":"default","style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":5,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="DNSLOG是一种回显机制，常用于在某些漏洞无法回显但可以发起DNS请求的情况下，利用此方式外带数据，以解决某些漏洞由于无回显而难以利用的问题。主要利用场景有SQL盲注、无回显的命令执行、无回显的SSRF。  参考文章 ： https:&#x2F;&#x2F;www.freebuf.com&#x2F;articles&#x2F;network&#x2F;237795.html https:&#x2F;&#x2F;www.freebuf.com&#x2F;vuls&#x2F;26426">
+    <meta name="description" content="DNSLOG是一种回显机制，常用于在某些漏洞无法回显但可以发起DNS请求的情况下，利用此方式外带数据，以解决某些漏洞由于无回显而难以利用的问题。主要利用场景有SQL盲注、无回显的命令执行、无回显的SSRF。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DNSlog">
 <meta property="og:url" content="http://example.com/2023/03/30/DNSlog/index.html">
 <meta property="og:site_name" content="元酒InfoSec">
-<meta property="og:description" content="DNSLOG是一种回显机制，常用于在某些漏洞无法回显但可以发起DNS请求的情况下，利用此方式外带数据，以解决某些漏洞由于无回显而难以利用的问题。主要利用场景有SQL盲注、无回显的命令执行、无回显的SSRF。  参考文章 ： https:&#x2F;&#x2F;www.freebuf.com&#x2F;articles&#x2F;network&#x2F;237795.html https:&#x2F;&#x2F;www.freebuf.com&#x2F;vuls&#x2F;26426">
+<meta property="og:description" content="DNSLOG是一种回显机制，常用于在某些漏洞无法回显但可以发起DNS请求的情况下，利用此方式外带数据，以解决某些漏洞由于无回显而难以利用的问题。主要利用场景有SQL盲注、无回显的命令执行、无回显的SSRF。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2023/03/30/DNSlog/1614164845_6036336de4817f724b780.jpeg">
 <meta property="article:published_time" content="2023-03-30T14:13:48.000Z">
-<meta property="article:modified_time" content="2023-03-30T14:40:04.561Z">
+<meta property="article:modified_time" content="2023-03-30T14:40:42.447Z">
 <meta property="article:author" content="yuanjiu">
 <meta property="article:tag" content="dns">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-03-30 22:13:48 / 修改时间：22:40:04" itemprop="dateCreated datePublished" datetime="2023-03-30T22:13:48+08:00">2023-03-30</time>
+      <time title="创建时间：2023-03-30 22:13:48 / 修改时间：22:40:42" itemprop="dateCreated datePublished" datetime="2023-03-30T22:13:48+08:00">2023-03-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -254,6 +254,8 @@
     
     <div class="post-body" itemprop="articleBody">
         <p> DNSLOG是一种回显机制，常用于在某些漏洞无法回显但可以发起DNS请求的情况下，利用此方式外带数据，以解决某些漏洞由于无回显而难以利用的问题。主要利用场景有SQL盲注、无回显的命令执行、无回显的SSRF。</p>
+<span id="more"></span>
+
 <p><img src="/2023/03/30/DNSlog/1614164845_6036336de4817f724b780.jpeg" alt="dnllog原理图"></p>
 <p>参考文章 ：</p>
 <p><a target="_blank" rel="noopener" href="https://www.freebuf.com/articles/network/237795.html">https://www.freebuf.com/articles/network/237795.html</a></p>
