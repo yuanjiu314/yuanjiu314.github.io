@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>shiro总结</title>
+    <url>/2023/04/05/shiro%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<h2 id="shiro"><a href="#shiro" class="headerlink" title="shiro"></a>shiro</h2><p>shiro-550、shiro-721</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>shiro</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>护网蓝队笔记</title>
+    <url>/2023/04/05/%E6%8A%A4%E7%BD%91%E8%93%9D%E9%98%9F%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h2 id="工具特征"><a href="#工具特征" class="headerlink" title="工具特征"></a>工具特征</h2><p>冰蝎 大量请求头 默认 16 个 ua </p>
+<p>菜刀 asp php 有明文传授 2016 后版本有加密和混淆 但部分高危和关键函数没有如 ini eval assert </p>
+<p>哥斯拉 可以绕大部分静态，但他 有一个 http 响应为空 且执行回显为固定内容</p>
+<span id="more"></span>
+
+<h2 id="溯源"><a href="#溯源" class="headerlink" title="溯源"></a>溯源</h2><p>当时的日志和蜜罐获取 ip 或 vps 信息，</p>
+<p>负载均衡 cdn dnsinfo 看 xff 或 refer</p>
+<p>有图标 icon 转哈希黑暗引擎搜 </p>
+<h2 id="挖矿病毒检测"><a href="#挖矿病毒检测" class="headerlink" title="挖矿病毒检测"></a>挖矿病毒检测</h2><p>1.从第一个协议包检测，如登陆包、提交包会有测点信息 </p>
+<p>2.从流量里还原文件然后将文件放到沙箱中检测</p>
+<p>3.主机异常，一般攻击者会横向</p>
+<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><p>00 截断 结束符 适用于 c php</p>
+<p>反弹 shell nc -lvvp 端口</p>
+<p>查注册表或隐藏文件找用户</p>
+]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>护网</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>DNSlog</title>
     <url>/2023/03/30/DNSlog/</url>
     <content><![CDATA[<p> DNSLOG是一种回显机制，常用于在某些漏洞无法回显但可以发起DNS请求的情况下，利用此方式外带数据，以解决某些漏洞由于无回显而难以利用的问题。主要利用场景有SQL盲注、无回显的命令执行、无回显的SSRF。</p>
@@ -349,8 +386,8 @@
         <category>实验</category>
       </categories>
       <tags>
-        <tag>靶场</tag>
         <tag>随笔</tag>
+        <tag>靶场</tag>
       </tags>
   </entry>
   <entry>
