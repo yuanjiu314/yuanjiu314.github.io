@@ -4,6 +4,12 @@
     <title>shiro-721总结</title>
     <url>/2023/04/10/shiro-721%E6%80%BB%E7%BB%93/</url>
     <content><![CDATA[]]></content>
+      <categories>
+        <category>学习笔记</category>
+      </categories>
+      <tags>
+        <tag>shiro</tag>
+      </tags>
   </entry>
   <entry>
     <title>shiro总结</title>
@@ -11,6 +17,8 @@
     <content><![CDATA[<h2 id="shiro"><a href="#shiro" class="headerlink" title="shiro"></a>shiro</h2><p>shiro-550、shiro-721</p>
 <h2 id="什么是shiro？"><a href="#什么是shiro？" class="headerlink" title="什么是shiro？"></a>什么是shiro？</h2><p><strong>Apache Shiro</strong>框架是一个功能强大且易于使用的 Java 安全框架，它执行身份验证、授权、加密和会话管理。借助 Shiro 易于理解的 API，您可以快速轻松地保护任何应用程序——从最小的移动应用程序到最大的 Web 和企业应用程序。</p>
 <p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93/1654678054_62a0622634db0bc5f79c4.jpeg" alt="1654678054_62a0622634db0bc5f79c4.png!small?1654678055051"></p>
+<span id="more"></span>
+
 <h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会将用户信息加密</p>
 <p>加密过程:</p>
 <p><strong>用户信息&#x3D;&gt;序列化&#x3D;&gt;AES加密&#x3D;&gt;base64编码&#x3D;&gt;RememberMe Cookie值。</strong></p>
