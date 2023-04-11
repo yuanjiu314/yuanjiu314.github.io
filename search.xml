@@ -1,9 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>oracle_padding原理学习</title>
+    <url>/2023/04/11/oracle_padding%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<p>挖个坑先，以后再填（大概）</p>
+]]></content>
+  </entry>
+  <entry>
     <title>shiro-721总结</title>
     <url>/2023/04/10/shiro-721%E6%80%BB%E7%BB%93/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<h2 id="什么是shiro-721"><a href="#什么是shiro-721" class="headerlink" title="什么是shiro-721"></a>什么是shiro-721</h2><p>shiro-721是1.4.2之前版本中存在的漏洞，是由于shiro cookie中通过<strong>AES-128-CBC</strong>模式加密的rememberMe字段存在问题，用户通过<strong>Padding Oracle</strong>攻击生成的攻击代码来构造恶意的rememberMe字段，造成任意代码执行。</p>
+<p>注意：shiro-721攻击的前提是先登录后台获取一个合法cookie</p>
+<h2 id="什么是padding-oracle"><a href="#什么是padding-oracle" class="headerlink" title="什么是padding oracle"></a>什么是padding oracle</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">padding表示填充，oracle表示提示(不是甲骨文哈)，在解密的时候，如果算法发现解密后数据的填充方式不符合规则，那么就表示输入数据有问题，那么解密的类库就会抛出一个异常，提示输入数据的padding不对。</span><br><span class="line"></span><br><span class="line">shiro中出现padding oracle漏洞的是CBC加密模式，CBC加密模式是密码学5种加密模式中的一种(ECB、CBC、CFB、OFB、CTR)，意思是密码块链模式(Cipher Block Chaining)，简单来说就是在加密之前会设置一个初始向量IV，IV先与第一个明文分组异或，然后使用密钥加密得到第一个分组的密文，然后依次将每一个明文分组与前一个分组的密文进行异或后再进行密钥加密。由于CBC有一个随机的初始变量，那么相同的明文每次经过CBC加密模式的加密结果是不同的，但是CBC存在设计缺陷，造成padding oracle攻击。</span><br><span class="line"></span><br><span class="line">【漏洞点：客户端发送加密数据，服务器端会解密数据，然后进行一个回显，反映解密成功与否。服务器的回显总归是有些危险的，我们可以以回显差异来判断我们的输入是否正确，这也是padding oracle攻击的利用点。】</span><br><span class="line"></span><br><span class="line">以AES/DES为例，AES的分组长度为128bit(16字节)，DES每块为8个字节，但并不是每一段明文都可以刚好被16或8整除，那么就需要用到一些强制措施将明文补充到16或8的倍数，最直接的就是直接填充(padding)。</span><br><span class="line"></span><br><span class="line">那么怎么才能有意义的填充？CBC模式的设计者就考虑到这个问题，以DES为例，假设DES按8个字节分为明文分组，那么CBC的填充方法就是缺了1位(即明文7个字节)就填一个0x01，缺了2位(即明文6个字节)就填2个0x02，缺了3位就填3个0x03......需要注意的是即使明文正好是分组的整数倍，也会再填充8个0x08。服务器端在解密的时候，其实就是加密过程反过来。</span><br><span class="line"></span><br><span class="line">加密流程：iv初始向量异或第一组明文-&gt;用密钥加密第一组明文-&gt;上一组密文和当前明文异或-&gt;......-&gt;最后一个明文分组缺n位就填充n位0x0n。</span><br><span class="line"></span><br><span class="line">解密流程：解密密文的第一分组-&gt;解密得到iv和第一段明文异或的结果(中间值)-&gt;中间值和iv再异或一次就得到了第一组的明文-&gt;......直到解密完最后一组密文。</span><br><span class="line"></span><br><span class="line">这个时候按理说服务器端会将解密后的数据交给业务逻辑进行后续的判断执行，但是实际上中间还有一个步骤，程序会判断明文最后的填充位是否正确。这个判断本身没有问题，反而可以过滤掉一些错误的、被恶意篡改的加密数据，但是判断出明文最后的一个分组的填充位是错误的之后，返回给客户端的信息，会被攻击者利用。</span><br><span class="line"></span><br><span class="line">a. 如果密文解密成明文后，填充位判断正确，而且经过业务逻辑代码的校验后，也是正确，那么服务端会返回200的状态码。</span><br><span class="line"></span><br><span class="line">b. 如果密文解密成明文后，填充位判断正确，但是业务逻辑判断不通过，也就是说这个明文有问题，那么服务端会返回200或者300等状态码。</span><br><span class="line"></span><br><span class="line">c. 如果密文解密成明文后，填充位判断不正确，就会返回500等状态码。</span><br><span class="line"></span><br><span class="line">总结起来就是，明文填充位的正确与否，服务器端返回的状态码不一样，padding oracle正是通过这一点进行漏洞利用。</span><br><span class="line">具体见参考文章二</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>环境：vulfocus</p>
+<p>影响版本：&lt;1.4.2</p>
+<p>先用给出的密码登录以此生成cookie</p>
+<p>然后刷新抓包</p>
+<p><img src="/2023/04/10/shiro-721%E6%80%BB%E7%BB%93/image-20230411160949005.png" alt="image-20230411160949005"></p>
+<p>然后复制rememberMe字段</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar ysoserial-all.jar CommonsBeanutils1 &quot;ls/tmp&quot; &gt; payload.class</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">python shiro_exp.py http://123.58.224.8:62497/ rememberMe字段 payload.class</span><br></pre></td></tr></table></figure>
+
+<p>没弄出来，寄</p>
+<p><img src="/2023/04/10/shiro-721%E6%80%BB%E7%BB%93/image-20230411164816506.png" alt="image-20230411164816506"></p>
+<p>参考文章：</p>
+<p><a href="https://www.freebuf.com/vuls/347628.html">https://www.freebuf.com/vuls/347628.html</a></p>
+<p><a href="http://blog.topsec.com.cn/padding-oracle%E5%8E%9F%E7%90%86%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/">http://blog.topsec.com.cn/padding-oracle%E5%8E%9F%E7%90%86%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90/</a></p>
+]]></content>
       <categories>
         <category>学习笔记</category>
       </categories>
@@ -12,11 +39,11 @@
       </tags>
   </entry>
   <entry>
-    <title>shiro总结</title>
-    <url>/2023/04/10/shiro%E6%80%BB%E7%BB%93/</url>
+    <title>shiro总结（shiro-550）</title>
+    <url>/2023/04/10/shiro%E6%80%BB%E7%BB%93%EF%BC%88shiro-550%EF%BC%89/</url>
     <content><![CDATA[<h2 id="shiro"><a href="#shiro" class="headerlink" title="shiro"></a>shiro</h2><p>shiro-550、shiro-721</p>
 <h2 id="什么是shiro？"><a href="#什么是shiro？" class="headerlink" title="什么是shiro？"></a>什么是shiro？</h2><p><strong>Apache Shiro</strong>框架是一个功能强大且易于使用的 Java 安全框架，它执行身份验证、授权、加密和会话管理。借助 Shiro 易于理解的 API，您可以快速轻松地保护任何应用程序——从最小的移动应用程序到最大的 Web 和企业应用程序。</p>
-<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93/1654678054_62a0622634db0bc5f79c4.jpeg" alt="1654678054_62a0622634db0bc5f79c4.png!small?1654678055051"></p>
+<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93%EF%BC%88shiro-550%EF%BC%89/1654678054_62a0622634db0bc5f79c4.jpeg" alt="1654678054_62a0622634db0bc5f79c4.png!small?1654678055051"></p>
 <span id="more"></span>
 
 <h2 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理"></a>漏洞原理</h2><p>Apache Shiro框架提供了记住密码的功能（RememberMe），用户登录成功后会将用户信息加密</p>
@@ -42,15 +69,15 @@
 <p>，使用时要先base64解码。</p>
 <p>在1.2.4版本之后，修复为自定义AES密钥(CBC模式)，这时需要获取到key才可以开始渗透，可以通过google、github进行搜索来收集常用的github中的key值。</p>
 <h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><p>环境：VUKFOCUS</p>
-<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93/image-20230410155928746.png" alt="image-20230410155928746"></p>
-<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93/image-20230410155945534.png" alt="image-20230410155945534"></p>
-<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93/image-20230410160150456.png" alt="image-20230410160150456">用shiro_attack</p>
+<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93%EF%BC%88shiro-550%EF%BC%89/image-20230410155928746.png" alt="image-20230410155928746"></p>
+<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93%EF%BC%88shiro-550%EF%BC%89/image-20230410155945534.png" alt="image-20230410155945534"></p>
+<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93%EF%BC%88shiro-550%EF%BC%89/image-20230410160150456.png" alt="image-20230410160150456">用shiro_attack</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar shiro_attack-2.2.jar</span><br></pre></td></tr></table></figure>
 
-<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93/image-20230410161356302.png" alt="image-20230410161356302"></p>
+<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93%EF%BC%88shiro-550%EF%BC%89/image-20230410161356302.png" alt="image-20230410161356302"></p>
 <p>一个个试利用链</p>
 <p>最后搞到flag</p>
-<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93/image-20230410161432770.png" alt="image-20230410161432770"></p>
+<p><img src="/2023/04/10/shiro%E6%80%BB%E7%BB%93%EF%BC%88shiro-550%EF%BC%89/image-20230410161432770.png" alt="image-20230410161432770"></p>
 <p>参考文章：</p>
 <p><a href="https://blog.csdn.net/dreamthe/article/details/124390531">https://blog.csdn.net/dreamthe/article/details/124390531</a></p>
 <p><a href="https://www.freebuf.com/vuls/347628.html">https://www.freebuf.com/vuls/347628.html</a></p>
@@ -1024,8 +1051,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>sql</tag>
         <tag>web</tag>
+        <tag>sql</tag>
       </tags>
   </entry>
   <entry>
@@ -1036,8 +1063,8 @@
         <category>学习笔记</category>
       </categories>
       <tags>
-        <tag>web</tag>
         <tag>xxe</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -1825,8 +1852,8 @@
         <category>随笔</category>
       </categories>
       <tags>
-        <tag>随bi</tag>
         <tag>技术分享</tag>
+        <tag>随bi</tag>
       </tags>
   </entry>
   <entry>
@@ -1848,8 +1875,8 @@
         <category>随笔</category>
       </categories>
       <tags>
-        <tag>技术分享</tag>
         <tag>随笔</tag>
+        <tag>技术分享</tag>
       </tags>
   </entry>
 </search>
